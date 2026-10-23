@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAKA SOLUTIONS — Powering Businesses Through Smarter Digital Solutions</title>
+  <meta name="description" content="HAKA SOLUTIONS delivers reliable technology, digital operations, and business support solutions designed to help organizations work smarter, scale faster, and achieve sustainable growth.">
+
+  <!-- Google Fonts: Inter & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HAKA SOLUTIONS NAVIGATION BAR COMPONENT
+       ========================================================================== -->
+  <header class="haka-header" id="hakaHeader">
+    <div class="haka-container">
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="haka-logo-link" aria-label="HAKA SOLUTIONS Homepage">
+        <div class="logo-brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="logo-text-group">
+          <div class="logo-main">HAKA<span class="logo-dot">.</span></div>
+          <span class="logo-subtitle">SOLUTIONS</span>
+        </div>
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav class="haka-nav" id="primaryNav" role="navigation" aria-label="Primary Navigation">
+        <ul class="haka-nav-list" role="menubar">
+          <li class="haka-nav-item" role="none">
+            <a href="index.html" class="haka-nav-link active" role="menuitem" aria-current="page">Home</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="about.html" class="haka-nav-link" role="menuitem">About Us</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="services.html" class="haka-nav-link" role="menuitem">Services</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="solutions.html" class="haka-nav-link" role="menuitem">Solutions</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="technology.html" class="haka-nav-link" role="menuitem">Technology</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="careers.html" class="haka-nav-link" role="menuitem">Careers</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="contact.html" class="haka-nav-link" role="menuitem">Contact</a>
+          </li>
+        </ul>
+
+        <!-- Mobile Drawer Preferences / Controls -->
+        <div class="haka-nav-mobile-controls">
+          <button 
+            type="button" 
+            class="haka-control-btn theme-toggle-btn" 
+            onclick="toggleTheme()"
+            aria-label="Toggle dark and light mode"
+            title="Toggle Dark / Light Theme"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="themeLabel">Light</span>
+          </button>
+
+          <button 
+            type="button" 
+            class="haka-control-btn rtl-toggle-btn" 
+            onclick="toggleRTL()"
+            aria-label="Toggle text direction between LTR and RTL"
+            title="Toggle RTL / LTR Direction"
+          >
+            <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="17 11 21 7 17 3"></polyline>
+              <line x1="21" y1="7" x2="9" y2="7"></line>
+              <polyline points="7 21 3 17 7 13"></polyline>
+              <line x1="3" y1="17" x2="15" y2="17"></line>
+            </svg>
+            <span class="rtlLabel">RTL</span>
+          </button>
+        </div>
+
+        <!-- Mobile Drawer Action Buttons -->
+        <div class="haka-nav-mobile-cta">
+          <a href="contact.html" class="haka-nav-btn-primary" aria-label="Contact HAKA Solutions">
+            <span>Let's Talk</span>
+            <span class="flip-rtl cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Right Actions: CTA Buttons & Controls -->
+      <div class="haka-actions-group">
+        <!-- Header CTA Buttons -->
+        <div class="haka-cta-group">
+          <!-- Primary CTA: Let's Talk -->
+          <a href="contact.html" class="haka-nav-btn-primary" aria-label="Contact HAKA Solutions">
+            <span>Let's Talk</span>
+            <span class="flip-rtl cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <!-- Controls Group: Dark/Light Theme & RTL Toggles -->
+        <div class="haka-controls-group">
+          <!-- Theme Toggle -->
+          <button 
+            type="button" 
+            class="haka-control-btn theme-toggle-btn" 
+            id="themeToggleBtn"
+            onclick="toggleTheme()"
+            aria-label="Toggle dark and light mode"
+            title="Toggle Dark / Light Theme"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="themeLabel" id="themeLabel">Light</span>
+          </button>
+
+          <!-- RTL Direction Toggle -->
+          <button 
+            type="button" 
+            class="haka-control-btn rtl-toggle-btn" 
+            id="rtlToggleBtn"
+            onclick="toggleRTL()"
+            aria-label="Toggle text direction between LTR and RTL"
+            title="Toggle RTL / LTR Direction"
+          >
+            <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="17 11 21 7 17 3"></polyline>
+              <line x1="21" y1="7" x2="9" y2="7"></line>
+              <polyline points="7 21 3 17 7 13"></polyline>
+              <line x1="3" y1="17" x2="15" y2="17"></line>
+            </svg>
+            <span class="rtlLabel" id="rtlLabel">RTL</span>
+          </button>
+        </div>
+
+        <!-- Accessible Hamburger Toggle Button (Tablets / Mobile) -->
+        <button 
+          type="button" 
+          class="haka-hamburger-btn" 
+          id="hamburgerBtn" 
+          aria-expanded="false" 
+          aria-controls="primaryNav" 
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Overlay Backdrop -->
+  <div class="haka-mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER (EXACTLY 7 DISTINCT SECTIONS)
+       ========================================================================== -->
+  <main>
+
+    <!-- ==========================================================================
+         SECTION 1 — HERO: POWERING BUSINESSES THROUGH SMARTER DIGITAL SOLUTIONS
+         ========================================================================== -->
+    <section class="hero-section" id="hero" aria-label="Hero Introduction">
+      <div class="hero-bg-glow-blue" aria-hidden="true"></div>
+      <div class="hero-bg-glow-cyan" aria-hidden="true"></div>
+      <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+      <!-- Interactive Canvas Network Background -->
+      <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+      <div class="container hero-container">
+        
+        <!-- Left Column: Copy & Dual Action Buttons -->
+        <div class="hero-content">
+          <div class="hero-pill-badge reveal-item">
+            <span class="pulse-dot"></span>
+            Next-Gen Digital Operations
+          </div>
+
+          <h1 class="hero-headline reveal-item delay-1">
+            Powering Businesses Through <br class="desktop-break">
+            <span class="gradient-text">Smarter Digital Solutions</span>
+          </h1>
+
+          <p class="hero-supporting-text reveal-item delay-2">
+            HAKA SOLUTIONS delivers reliable technology, digital operations and business support solutions designed to help organizations work smarter, scale faster and achieve sustainable growth.
+          </p>
+
+          <div class="hero-cta-group reveal-item delay-3">
+            <a href="solutions.html" class="btn-primary-gradient">
+              Explore Our Solutions
+              <span class="btn-arrow flip-rtl" aria-hidden="true">→</span>
+            </a>
+            <a href="contact.html" class="btn-secondary-outline">
+              Talk to Us
+              <span class="btn-arrow flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Animated Digital Technology Illustration -->
+        <div class="hero-visual-wrapper reveal-item delay-2" aria-hidden="true">
+          <div class="visual-ambient-circle"></div>
+
+          <!-- Central Glassmorphism Dashboard -->
+          <div class="glass-dashboard-card">
+            <div class="card-top-bar">
+              <div class="card-status-badge">
+                <span class="live-dot"></span>
+                System Operational
+              </div>
+              <span class="card-meta-tag">SYS.CORE.v4.8</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-title">Throughput Efficiency</span>
+              <span class="metric-value">99.98<span>%</span></span>
+            </div>
+
+            <svg class="dashboard-chart" viewBox="0 0 320 65" fill="none">
+              <defs>
+                <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#3478F6" />
+                  <stop offset="60%" stop-color="#48D9ED" />
+                  <stop offset="100%" stop-color="#3478F6" />
+                </linearGradient>
+                <linearGradient id="fillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(72, 217, 237, 0.3)" />
+                  <stop offset="100%" stop-color="rgba(52, 120, 246, 0.0)" />
+                </linearGradient>
+              </defs>
+              <path d="M0,52 Q40,48 80,32 T160,38 T240,16 T320,24 L320,65 L0,65 Z" fill="url(#fillGradient)" />
+              <path d="M0,52 Q40,48 80,32 T160,38 T240,16 T320,24" stroke="url(#chartGradient)" stroke-width="3" stroke-linecap="round" fill="none" />
+              <circle cx="80" cy="32" r="4" fill="#48D9ED" />
+              <circle cx="160" cy="38" r="4" fill="#3478F6" />
+              <circle cx="240" cy="16" r="4" fill="#48D9ED" />
+            </svg>
+
+            <div class="dashboard-footer">
+              <span>Active Stream: <strong class="footer-highlight">Synchronized</strong></span>
+              <span>Latency: <strong class="footer-highlight">&lt;12ms</strong></span>
+            </div>
+          </div>
+
+          <!-- Floating Micro Card 1: Data Analytics -->
+          <div class="floating-card card-data-analytics">
+            <div class="f-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
+            </div>
+            <div class="f-card-info">
+              <span class="f-card-label">Data Analytics</span>
+              <span class="f-card-desc">Predictive Intelligence</span>
+            </div>
+          </div>
+
+          <!-- Floating Micro Card 2: Automation -->
+          <div class="floating-card card-automation">
+            <div class="f-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </div>
+            <div class="f-card-info">
+              <span class="f-card-label">Automation</span>
+              <span class="f-card-desc">Zero-Latency Workflows</span>
+            </div>
+          </div>
+
+          <!-- Floating Micro Card 3: Cloud Technology -->
+          <div class="floating-card card-cloud">
+            <div class="f-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+              </svg>
+            </div>
+            <div class="f-card-info">
+              <span class="f-card-label">Cloud Technology</span>
+              <span class="f-card-desc">Resilient Infrastructure</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 2 — COMPANY INTRODUCTION: WHO WE ARE
+         ========================================================================== -->
+    <section class="intro-section" id="about" aria-label="Company Introduction">
+      <div class="container">
+
+        <div class="intro-grid">
+          
+          <!-- Left Column: Editorial Content -->
+          <div class="intro-content">
+            <span class="section-eyebrow reveal-item">WHO WE ARE</span>
+            
+            <h2 class="intro-headline reveal-item delay-1">
+              Building Digital Solutions That Move <br>
+              <span class="highlight-blue">Businesses Forward</span>
+            </h2>
+
+            <p class="intro-desc reveal-item delay-2">
+              At <strong>HAKA SOLUTIONS</strong>, we focus on delivering reliable technology, structured digital operations, and strategic business support solutions designed to empower organizations to optimize their processes and pursue sustainable growth.
+            </p>
+
+            <p class="intro-desc-secondary reveal-item delay-2">
+              We bridge the divide between technical capability and everyday business execution. By deploying robust architectures, intelligent process automation, and adaptive support models, we ensure your organization operates with agility and resilience in an increasingly competitive digital economy.
+            </p>
+
+            <a href="about.html" class="btn-text-link reveal-item delay-3">
+              Discover HAKA Solutions
+              <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Right Column: Abstract Technology Architecture Panels -->
+          <div class="intro-visual-composition reveal-item delay-2">
+            
+            <div class="intro-panel-card active-panel">
+              <div class="panel-header">
+                <div class="panel-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </div>
+                <h3 class="panel-title">Digital Operations & Support</h3>
+              </div>
+              <p class="panel-body-text">
+                Comprehensive operational workflows that eliminate friction, ensure consistent service delivery, and streamline enterprise business routines.
+              </p>
+            </div>
+
+            <div class="intro-panel-card">
+              <div class="panel-header">
+                <div class="panel-icon-wrap cyan-variant">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <h3 class="panel-title">Reliable Technology Architecture</h3>
+              </div>
+              <p class="panel-body-text">
+                Scalable and resilient technological foundations engineered to secure mission-critical data, guarantee uptime, and handle rapid operational growth.
+              </p>
+            </div>
+
+            <div class="intro-panel-card">
+              <div class="panel-header">
+                <div class="panel-icon-wrap emerald-variant">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M16 12l-4-4-4 4M12 16V9"/>
+                  </svg>
+                </div>
+                <h3 class="panel-title">Sustainable Business Acceleration</h3>
+              </div>
+              <p class="panel-body-text">
+                Strategic digital enablement tailored to reduce resource expenditure, modernize internal workflows, and unlock long-term organizational value.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Configurable Capabilities Section -->
+        <div class="stats-container" aria-label="Capabilities and Statistics">
+          <div class="stats-grid" id="companyStatsGrid">
+            <!-- Dynamically populated via js/script.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3 — SERVICES: WHAT WE DO
+         ========================================================================== -->
+    <section class="services-section" id="services" aria-label="Our Services">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-eyebrow reveal-item">OUR SERVICES</span>
+          <h2 class="section-title reveal-item delay-1">Practical Services. Meaningful Business Impact.</h2>
+          <p class="section-subtitle reveal-item delay-2">
+            Engineered around operational reliability and measurable efficiency across each stage of your organization's digital journey.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          
+          <!-- Service 1: Data & Digital Operations -->
+          <div class="service-card reveal-item delay-1">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">Data & Digital Operations</h3>
+            <p class="service-desc">
+              Comprehensive data processing, structural verification, and quality-controlled documentation pipelines ensuring operational accuracy.
+            </p>
+            <a href="services.html" class="service-link">
+              Learn More <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Service 2: Technology Solutions -->
+          <div class="service-card reveal-item delay-2">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Technology Solutions</h3>
+            <p class="service-desc">
+              Technology-enabled business improvements that modernize existing operational frameworks and upgrade infrastructure resilience.
+            </p>
+            <a href="services.html" class="service-link">
+              Learn More <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Service 3: Business Process Support -->
+          <div class="service-card reveal-item delay-3">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Business Process Support</h3>
+            <p class="service-desc">
+              Structured operational support tailored to remove organizational bottlenecks, optimize turnaround times, and maintain service continuity.
+            </p>
+            <a href="services.html" class="service-link">
+              Learn More <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Service 4: Digital Services -->
+          <div class="service-card reveal-item delay-1">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">Digital Services</h3>
+            <p class="service-desc">
+              Seamless digital workflows and online operational coordination enabling remote execution, cloud alignment, and uninterrupted productivity.
+            </p>
+            <a href="services.html" class="service-link">
+              Learn More <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Service 5: Custom Solutions -->
+          <div class="service-card reveal-item delay-2">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="service-title">Custom Solutions</h3>
+            <p class="service-desc">
+              Specialized services designed around specific organizational parameters, bespoke workflow architectures, and distinctive operational KPIs.
+            </p>
+            <a href="services.html" class="service-link">
+              Learn More <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Service 6: Support & Operations -->
+          <div class="service-card reveal-item delay-3">
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="service-title">Support & Operations</h3>
+            <p class="service-desc">
+              Dedicated, dependable ongoing operational assistance ensuring system availability, regular maintenance checks, and proactive problem-solving.
+            </p>
+            <a href="services.html" class="service-link">
+              Learn More <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 4 — FEATURED SOLUTIONS: TECHNOLOGY FOR BETTER WORKFLOWS
+         ========================================================================== -->
+    <section class="solutions-section" id="solutions" aria-label="Featured Solutions">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-eyebrow cyan-accent reveal-item">OUR SOLUTIONS</span>
+          <h2 class="section-title reveal-item delay-1">Transform Complex Work into Smarter Processes</h2>
+          <p class="section-subtitle reveal-item delay-2">
+            Explore our core solution architectures engineered to streamline operations and elevate enterprise velocity.
+          </p>
+        </div>
+
+        <div class="solutions-interactive-grid">
+          
+          <!-- Left: Large Featured Solution Showcase Panel -->
+          <div class="solution-showcase-panel reveal-item delay-1">
+            <div>
+              <div class="showcase-badge-row">
+                <span class="showcase-tag" id="solShowcaseTag">Workforce Acceleration</span>
+                <span class="showcase-status" id="solShowcaseStatus">WF.STATUS: ACTIVE // PIPELINE SYNCED</span>
+              </div>
+
+              <h3 class="showcase-title" id="solShowcaseTitle">Digital Workforce</h3>
+              <p class="showcase-desc" id="solShowcaseDesc">
+                Deploy resilient digital workforce frameworks that integrate specialized capabilities, optimize operational throughput, and scale dynamically with enterprise demands.
+              </p>
+
+              <!-- Interactive Workflow Steps Visualization -->
+              <div class="showcase-workflow-box">
+                <div class="workflow-steps-track" id="solShowcaseSteps">
+                  <div class="wf-connector-line"></div>
+                  <div class="wf-step-node">
+                    <div class="wf-dot">1</div>
+                    <span class="wf-label">Task Mapping</span>
+                  </div>
+                  <div class="wf-step-node">
+                    <div class="wf-dot">2</div>
+                    <span class="wf-label">Digital Tooling</span>
+                  </div>
+                  <div class="wf-step-node">
+                    <div class="wf-dot">3</div>
+                    <span class="wf-label">Quality Gate</span>
+                  </div>
+                  <div class="wf-step-node">
+                    <div class="wf-dot">4</div>
+                    <span class="wf-label">Output Sync</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a href="solutions.html" class="btn-text-link">
+              Explore All Solutions <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Right: Interactive Vertical Solutions Selector List -->
+          <div class="solutions-nav-list reveal-item delay-2">
+            
+            <div class="solution-nav-item is-active" data-index="0">
+              <div class="sol-item-left">
+                <span class="sol-item-number">01</span>
+                <span class="sol-item-name">Digital Workforce</span>
+              </div>
+              <span class="sol-item-arrow flip-rtl">→</span>
+            </div>
+
+            <div class="solution-nav-item" data-index="1">
+              <div class="sol-item-left">
+                <span class="sol-item-number">02</span>
+                <span class="sol-item-name">Data Operations</span>
+              </div>
+              <span class="sol-item-arrow flip-rtl">→</span>
+            </div>
+
+            <div class="solution-nav-item" data-index="2">
+              <div class="sol-item-left">
+                <span class="sol-item-number">03</span>
+                <span class="sol-item-name">Business Automation</span>
+              </div>
+              <span class="sol-item-arrow flip-rtl">→</span>
+            </div>
+
+            <div class="solution-nav-item" data-index="3">
+              <div class="sol-item-left">
+                <span class="sol-item-number">04</span>
+                <span class="sol-item-name">Workflow Management</span>
+              </div>
+              <span class="sol-item-arrow flip-rtl">→</span>
+            </div>
+
+            <div class="solution-nav-item" data-index="4">
+              <div class="sol-item-left">
+                <span class="sol-item-number">05</span>
+                <span class="sol-item-name">Custom Technology</span>
+              </div>
+              <span class="sol-item-arrow flip-rtl">→</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 5 — WHY HAKA SOLUTIONS: BUILT ON TRUST
+         ========================================================================== -->
+    <section class="why-us-section" id="why-us" aria-label="Why Choose HAKA SOLUTIONS">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-eyebrow reveal-item">WHY CHOOSE US</span>
+          <h2 class="section-title reveal-item delay-1">Technology with Reliability at Its Core</h2>
+          <p class="section-subtitle reveal-item delay-2">
+            Our operational ethos is grounded in consistent execution, scalable architectures, and enduring client partnerships.
+          </p>
+        </div>
+
+        <div class="why-grid-layout">
+          
+          <!-- Principle 1: Reliability -->
+          <div class="why-card reveal-item delay-1">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h3 class="why-principle-title">Reliability</h3>
+            <p class="why-principle-desc">
+              Engineered for continuous stability and dependable day-to-day operations that minimize disruption to your core business functions.
+            </p>
+          </div>
+
+          <!-- Principle 2: Scalability -->
+          <div class="why-card reveal-item delay-2">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+            </div>
+            <h3 class="why-principle-title">Scalability</h3>
+            <p class="why-principle-desc">
+              Modular foundations that expand smoothly as operational demand surges, avoiding complex restructuring as your enterprise grows.
+            </p>
+          </div>
+
+          <!-- Principle 3: Technology Driven -->
+          <div class="why-card reveal-item delay-3">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="why-principle-title">Technology Driven</h3>
+            <p class="why-principle-desc">
+              Modern digital practices leveraging verified technology standards and systematic processes to enhance organizational efficiency.
+            </p>
+          </div>
+
+          <!-- Principle 4: Security Awareness -->
+          <div class="why-card reveal-item delay-1">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="why-principle-title">Security Awareness</h3>
+            <p class="why-principle-desc">
+              Carefully structured access-management practices and protocol awareness designed to preserve the privacy of operational assets.
+            </p>
+          </div>
+
+          <!-- Principle 5: Flexibility -->
+          <div class="why-card reveal-item delay-2">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+              </svg>
+            </div>
+            <h3 class="why-principle-title">Flexibility</h3>
+            <p class="why-principle-desc">
+              Agile workflows and tailored service models designed to adjust flexibly to your evolving organizational priorities.
+            </p>
+          </div>
+
+          <!-- Principle 6: Long-Term Partnership -->
+          <div class="why-card reveal-item delay-3">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="why-principle-title">Long-Term Partnership</h3>
+            <p class="why-principle-desc">
+              Dedicated collaborative support focused on continuous alignment, transparent communication, and sustainable client success.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 6 — TECHNOLOGY & CAPABILITIES: TABBED ARCHITECTURE
+         ========================================================================== -->
+    <section class="tech-capabilities-section" id="technology" aria-label="Technology and Capabilities">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-eyebrow reveal-item">OUR TECHNOLOGY</span>
+          <h2 class="section-title reveal-item delay-1">Enabling Progress Through Intelligent Technology</h2>
+          <p class="section-subtitle reveal-item delay-2">
+            Explore the core capability domains powering HAKA SOLUTIONS’ digital architectures and business integrations.
+          </p>
+        </div>
+
+        <!-- Capability Tabs Selector -->
+        <div class="tech-tab-nav reveal-item delay-1" role="tablist">
+          <button type="button" class="tech-tab-btn is-active" role="tab" aria-selected="true" data-index="0">Data & Analytics</button>
+          <button type="button" class="tech-tab-btn" role="tab" aria-selected="false" data-index="1">Cloud</button>
+          <button type="button" class="tech-tab-btn" role="tab" aria-selected="false" data-index="2">Automation</button>
+          <button type="button" class="tech-tab-btn" role="tab" aria-selected="false" data-index="3">Artificial Intelligence</button>
+          <button type="button" class="tech-tab-btn" role="tab" aria-selected="false" data-index="4">Security</button>
+        </div>
+
+        <!-- Interactive Capability Display Card -->
+        <div class="tech-display-card reveal-item delay-2">
+          
+          <!-- Left Column: Details -->
+          <div class="tech-info-col">
+            <span class="tech-cap-badge" id="techCapBadge">Data Intelligence</span>
+            <h3 class="tech-cap-title" id="techCapTitle">Data & Analytics</h3>
+            <p class="tech-cap-desc" id="techCapDesc">
+              Robust data processing, structured pipeline engineering, and actionable business intelligence reporting designed to transform raw operations into strategic foresight.
+            </p>
+
+            <div class="tech-tags-list" id="techCapTags">
+              <span class="tech-tag-pill">Data Pipelines</span>
+              <span class="tech-tag-pill">ETL Verification</span>
+              <span class="tech-tag-pill">BI Dashboards</span>
+              <span class="tech-tag-pill">Predictive Metrics</span>
+              <span class="tech-tag-pill">Data Governance</span>
+            </div>
+
+            <a href="technology.html" class="btn-text-link">
+              View Our Technology <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Right Column: Layered Architecture SVG Mockup -->
+          <div class="tech-diagram-col" id="techCapDiagram" aria-hidden="true">
+            <!-- Dynamically populated via js/script.js -->
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 7 — HOW WE WORK & FINAL CALL TO ACTION
+         ========================================================================== -->
+    <section class="process-section" id="process" aria-label="Our Process and Call to Action">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-eyebrow cyan-accent reveal-item">LET'S MOVE FORWARD</span>
+          <h2 class="section-title reveal-item delay-1">A Clear Process. A Better Way to Work.</h2>
+          <p class="section-subtitle reveal-item delay-2">
+            Our systematic four-step engagement methodology delivers predictable quality and transparent collaboration from initial alignment to ongoing improvement.
+          </p>
+        </div>
+
+        <!-- 4-Step Connected Timeline -->
+        <div class="timeline-wrapper reveal-item delay-2">
+          <div class="timeline-track">
+            <div class="timeline-connector" aria-hidden="true"></div>
+
+            <!-- Step 01 -->
+            <div class="timeline-step">
+              <div class="step-number-node">01</div>
+              <h3 class="step-title">Understand</h3>
+              <p class="step-desc">
+                Gain deep clarity into your unique business requirements, existing technical landscape, and key operational challenges.
+              </p>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="timeline-step">
+              <div class="step-number-node">02</div>
+              <h3 class="step-title">Design</h3>
+              <p class="step-desc">
+                Architect a structured approach and operational workflow closely aligned with your organizational milestones.
+              </p>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="timeline-step">
+              <div class="step-number-node">03</div>
+              <h3 class="step-title">Implement</h3>
+              <p class="step-desc">
+                Put the selected technology architecture or operational process into practice with measured milestones and rigorous verification.
+              </p>
+            </div>
+
+            <!-- Step 04 -->
+            <div class="timeline-step">
+              <div class="step-number-node">04</div>
+              <h3 class="step-title">Improve</h3>
+              <p class="step-desc">
+                Continuously review, refine, and upgrade the operational approach over time to sustain velocity and efficiency.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Prominent Final CTA Panel -->
+        <div class="final-cta-panel reveal-item delay-3">
+          <div class="cta-glow-backdrop" aria-hidden="true"></div>
+
+          <div class="cta-content-inner">
+            <h2 class="cta-title">Ready to Explore What's Possible?</h2>
+            <p class="cta-desc">
+              Let's discuss your business needs and explore solutions designed around your goals.
+            </p>
+
+            <div class="cta-buttons-wrap">
+              <a href="contact.html" class="btn-primary-gradient">
+                Let's Talk <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+              <a href="solutions.html" class="btn-secondary-outline">
+                Explore Solutions <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       HAKA SOLUTIONS FOOTER COMPONENT
+       ========================================================================== -->
+  <footer class="haka-footer" role="contentinfo">
+    <div class="footer-glow-accent" aria-hidden="true"></div>
+    
+    <div class="container">
+      <div class="footer-top-grid">
+
+        <!-- Column 1: Brand Info & Socials -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="haka-logo-link" aria-label="HAKA SOLUTIONS Homepage">
+            <div class="logo-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="logo-text-group">
+              <div class="logo-main">HAKA<span class="logo-dot">.</span></div>
+              <span class="logo-subtitle">SOLUTIONS</span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Empowering modern enterprises with dependable technology architecture, digital operations, and business acceleration solutions.
+          </p>
+
+          <div class="footer-social-links" aria-label="Social media channels">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v8.37h-2.8V10.9M7.86 6.5a1.63 1.63 0 0 0-1.63 1.62c0 .9.73 1.63 1.63 1.63.9 0 1.63-.73 1.63-1.63 0-.9-.73-1.62-1.63-1.62Z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Topics -->
+        <div>
+          <h3 class="footer-col-title">Navigation</h3>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="solutions.html" class="footer-link">Solutions</a></li>
+            <li><a href="technology.html" class="footer-link">Technology</a></li>
+            <li><a href="careers.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Solutions -->
+        <div>
+          <h3 class="footer-col-title">Solutions</h3>
+          <ul class="footer-links-list">
+            <li><a href="solutions.html" class="footer-link">Digital Operations</a></li>
+            <li><a href="solutions.html" class="footer-link">Cloud Infrastructure</a></li>
+            <li><a href="solutions.html" class="footer-link">Intelligent Automation</a></li>
+            <li><a href="solutions.html" class="footer-link">Data Analytics</a></li>
+            <li><a href="solutions.html" class="footer-link">Enterprise Architecture</a></li>
+            <li><a href="solutions.html" class="footer-link">Workflow Optimization</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact / Connect -->
+        <div>
+          <h3 class="footer-col-title">Get in Touch</h3>
+          <div class="footer-contact-box">
+            <h4 class="footer-contact-title">Have a Project in Mind?</h4>
+            <p class="footer-contact-text">
+              Let's explore how HAKA SOLUTIONS can optimize your digital operations.
+            </p>
+            <a href="contact.html" class="footer-contact-link">
+              Connect With Our Team <span class="flip-rtl">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 HAKA SOLUTIONS. All rights reserved.
+        </div>
+
+        <ul class="footer-legal-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="security.html">Security</a></li>
+        </ul>
+
+        <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+          Back to Top ↑
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       VANILLA JAVASCRIPT
+       ========================================================================== -->
+  <script src="js/script.js"></script>
+
+  <!-- Client Login Modal Component -->
+  <div class="haka-login-modal" id="clientLoginModal" aria-hidden="true" role="dialog" aria-labelledby="loginModalTitle">
+    <div class="login-modal-backdrop" id="loginModalBackdrop"></div>
+    <div class="login-modal-container">
+      <div class="login-modal-card">
+        <button type="button" class="login-modal-close" id="loginModalCloseBtn" aria-label="Close client login modal">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="login-modal-header">
+          <div class="login-modal-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h2 class="login-modal-title" id="loginModalTitle">Client Portal Login</h2>
+          <p class="login-modal-subtitle">Access your enterprise dashboard, analytics, and project deliverables.</p>
+        </div>
+
+        <form class="login-modal-form" id="clientLoginForm" onsubmit="event.preventDefault(); handleLoginSubmit();">
+          <div class="form-group">
+            <label for="clientEmail" class="form-label">Work Email</label>
+            <div class="auth-input-wrapper">
+              <span class="auth-field-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </span>
+              <input type="email" id="clientEmail" class="form-input has-icon" placeholder="name@company.com" required autocomplete="username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="clientPassword" class="form-label">Password</label>
+              <a href="#forgot-password" class="form-forgot-link">Forgot?</a>
+            </div>
+            <div class="auth-input-wrapper">
+              <span class="auth-field-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </span>
+              <input type="password" id="clientPassword" class="form-input has-icon" placeholder="••••••••" required autocomplete="current-password">
+            </div>
+          </div>
+
+          <div class="form-options-row">
+            <label class="form-checkbox-label">
+              <input type="checkbox" id="rememberMe">
+              <span>Remember this session</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary-gradient login-submit-btn">
+            Sign In to Portal <span class="flip-rtl" aria-hidden="true">→</span>
+          </button>
+
+          <!-- SSO Divider -->
+          <div class="auth-sso-divider" role="separator" aria-label="Or continue with">
+            <span>Or continue with</span>
+          </div>
+
+          <!-- 3 Social / Enterprise SSO Icons -->
+          <div class="auth-social-row">
+            <button type="button" class="auth-social-btn" onclick="alert('Google Workspace Single Sign-On selected (Demo Mode)');" aria-label="Sign in with Google" title="Sign in with Google">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+            </button>
+            <button type="button" class="auth-social-btn" onclick="alert('Microsoft Entra ID Single Sign-On selected (Demo Mode)');" aria-label="Sign in with Microsoft" title="Sign in with Microsoft">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <rect x="2" y="2" width="9.5" height="9.5" fill="#F25022"/>
+                <rect x="12.5" y="2" width="9.5" height="9.5" fill="#7FBA00"/>
+                <rect x="2" y="12.5" width="9.5" height="9.5" fill="#00A4EF"/>
+                <rect x="12.5" y="12.5" width="9.5" height="9.5" fill="#FFB900"/>
+              </svg>
+            </button>
+            <button type="button" class="auth-social-btn" onclick="alert('GitHub Enterprise Single Sign-On selected (Demo Mode)');" aria-label="Sign in with GitHub" title="Sign in with GitHub">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="login-modal-footer-note">
+            <span>Need enterprise onboarding? <a href="contact.html">Contact Support</a></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers — HAKA SOLUTIONS | Build Your Future With HAKA</title>
+  <meta name="description" content="Bring your skills, ideas, and ambition to a technology-driven environment. Explore opportunities to learn, contribute, and grow while helping businesses move forward at HAKA SOLUTIONS.">
+
+  <!-- Google Fonts: Inter & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Primary Shared Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HAKA SOLUTIONS NAVIGATION BAR COMPONENT
+       ========================================================================== -->
+  <header class="haka-header" id="hakaHeader">
+    <div class="haka-container">
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="haka-logo-link" aria-label="HAKA SOLUTIONS Homepage">
+        <div class="logo-brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="logo-text-group">
+          <div class="logo-main">HAKA<span class="logo-dot">.</span></div>
+          <span class="logo-subtitle">SOLUTIONS</span>
+        </div>
+      </a>
+
+      <!-- Navigation Menu (Careers is Active) -->
+      <nav class="haka-nav" id="primaryNav" role="navigation" aria-label="Primary Navigation">
+        <ul class="haka-nav-list" role="menubar">
+          <li class="haka-nav-item" role="none">
+            <a href="index.html" class="haka-nav-link" role="menuitem">Home</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="about.html" class="haka-nav-link" role="menuitem">About Us</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="services.html" class="haka-nav-link" role="menuitem">Services</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="solutions.html" class="haka-nav-link" role="menuitem">Solutions</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="technology.html" class="haka-nav-link" role="menuitem">Technology</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="careers.html" class="haka-nav-link active" role="menuitem" aria-current="page">Careers</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="contact.html" class="haka-nav-link" role="menuitem">Contact</a>
+          </li>
+        </ul>
+
+        <!-- Mobile Drawer Preferences / Controls -->
+        <div class="haka-nav-mobile-controls">
+          <button 
+            type="button" 
+            class="haka-control-btn theme-toggle-btn" 
+            onclick="toggleTheme()"
+            aria-label="Toggle dark and light mode"
+            title="Toggle Dark / Light Theme"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="themeLabel">Light</span>
+          </button>
+
+          <button 
+            type="button" 
+            class="haka-control-btn rtl-toggle-btn" 
+            onclick="toggleRTL()"
+            aria-label="Toggle text direction between LTR and RTL"
+            title="Toggle RTL / LTR Direction"
+          >
+            <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="17 11 21 7 17 3"></polyline>
+              <line x1="21" y1="7" x2="9" y2="7"></line>
+              <polyline points="7 21 3 17 7 13"></polyline>
+              <line x1="3" y1="17" x2="15" y2="17"></line>
+            </svg>
+            <span class="rtlLabel">RTL</span>
+          </button>
+        </div>
+
+        <!-- Mobile Drawer Action Buttons -->
+        <div class="haka-nav-mobile-cta">
+          <a href="contact.html" class="haka-nav-btn-primary" aria-label="Contact HAKA Solutions">
+            <span>Let's Talk</span>
+            <span class="flip-rtl cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Right Actions: CTA Buttons & Controls -->
+      <div class="haka-actions-group">
+        <!-- Header CTA Buttons -->
+        <div class="haka-cta-group">
+          <!-- Primary CTA: Let's Talk -->
+          <a href="contact.html" class="haka-nav-btn-primary" aria-label="Contact HAKA Solutions">
+            <span>Let's Talk</span>
+            <span class="flip-rtl cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <!-- Controls Group: Dark/Light Theme & RTL Toggles -->
+        <div class="haka-controls-group">
+          <!-- Theme Toggle -->
+          <button 
+            type="button" 
+            class="haka-control-btn theme-toggle-btn" 
+            id="themeToggleBtn"
+            onclick="toggleTheme()"
+            aria-label="Toggle dark and light mode"
+            title="Toggle Dark / Light Theme"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="themeLabel" id="themeLabel">Light</span>
+          </button>
+
+          <!-- RTL Direction Toggle -->
+          <button 
+            type="button" 
+            class="haka-control-btn rtl-toggle-btn" 
+            id="rtlToggleBtn"
+            onclick="toggleRTL()"
+            aria-label="Toggle text direction between LTR and RTL"
+            title="Toggle RTL / LTR Direction"
+          >
+            <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="17 11 21 7 17 3"></polyline>
+              <line x1="21" y1="7" x2="9" y2="7"></line>
+              <polyline points="7 21 3 17 7 13"></polyline>
+              <line x1="3" y1="17" x2="15" y2="17"></line>
+            </svg>
+            <span class="rtlLabel" id="rtlLabel">RTL</span>
+          </button>
+        </div>
+
+        <!-- Accessible Hamburger Toggle Button (Tablets / Mobile) -->
+        <button 
+          type="button" 
+          class="haka-hamburger-btn" 
+          id="hamburgerBtn" 
+          aria-expanded="false" 
+          aria-controls="primaryNav" 
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Overlay Backdrop -->
+  <div class="haka-mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT: EXACTLY 7 UNIQUE CAREERS SECTIONS
+       ========================================================================== -->
+  <main>
+
+    <!-- ==========================================================================
+         SECTION 1: CAREERS HERO — BUILD YOUR FUTURE WITH HAKA
+         ========================================================================== -->
+    <section class="careers-hero-section" id="careersHero" aria-label="Careers Hero">
+      <div class="container">
+        <div class="careers-hero-grid">
+
+          <!-- Left Text Content -->
+          <div class="careers-hero-text">
+            <span class="section-eyebrow cyan-accent">
+              <span aria-hidden="true">●</span> CAREERS AT HAKA SOLUTIONS
+            </span>
+
+            <h1 class="careers-hero-title">
+              Build Your Future <span class="text-gradient-electric">With HAKA</span>
+            </h1>
+
+            <p class="careers-hero-desc">
+              Bring your skills, ideas, and ambition to a technology-driven environment. Explore opportunities to learn, contribute, and grow while helping businesses move forward.
+            </p>
+
+            <div class="careers-hero-buttons">
+              <a href="#careersPositions" class="btn-primary-gradient">
+                Explore Open Positions <span class="flip-rtl" aria-hidden="true">↓</span>
+              </a>
+              <a href="#careersCulture" class="btn-secondary-outline">
+                Our Work Culture <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Visual: Abstract Connected People & Career Paths Visual -->
+          <div class="careers-hero-visual" aria-hidden="true">
+            <div class="careers-visual-backdrop"></div>
+
+            <!-- Floating Badges -->
+            <div class="career-floating-pill pill-top-left">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <span>Skill Mastery</span>
+            </div>
+
+            <div class="career-floating-pill pill-bottom-right">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <line x1="20" y1="8" x2="20" y2="14"></line>
+                <line x1="23" y1="11" x2="17" y2="11"></line>
+              </svg>
+              <span>Collaborative Impact</span>
+            </div>
+
+            <!-- Abstract Visual Card -->
+            <div class="careers-hero-art-card">
+              <svg class="careers-hero-svg" viewBox="0 0 460 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="careerCurveGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#2563EB"/>
+                    <stop offset="50%" stop-color="#0284C7"/>
+                    <stop offset="100%" stop-color="#38BDF8"/>
+                  </linearGradient>
+                  <linearGradient id="careerApexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2563EB"/>
+                    <stop offset="100%" stop-color="#0284C7"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Subtle Ambient Dash Wave -->
+                <path d="M 45 265 C 105 265, 140 210, 180 210 C 230 210, 260 155, 300 155 C 345 155, 375 95, 415 95" stroke="rgba(37, 99, 235, 0.2)" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+
+                <!-- Primary Career Progression Curve (Flows precisely through every node center) -->
+                <path d="M 65 235 C 115 235, 125 180, 170 180 C 215 180, 230 125, 275 125 C 320 125, 340 65, 385 65" stroke="url(#careerCurveGrad)" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Node 1: Discovery -->
+                <g transform="translate(65, 235)">
+                  <circle r="22" fill="rgba(37, 99, 235, 0.12)" stroke="#2563EB" stroke-width="2"/>
+                  <circle r="8" fill="#2563EB"/>
+                  <text y="38" text-anchor="middle" fill="var(--color-text-heading)" font-size="12" font-weight="700" font-family="var(--font-heading)">Discovery</text>
+                </g>
+
+                <!-- Node 2: Contribution -->
+                <g transform="translate(170, 180)">
+                  <circle r="22" fill="rgba(2, 132, 199, 0.14)" stroke="#0284C7" stroke-width="2"/>
+                  <path d="M-6 0 L-2 4 L6 -4" stroke="#0284C7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <text y="38" text-anchor="middle" fill="var(--color-text-heading)" font-size="12" font-weight="700" font-family="var(--font-heading)">Contribution</text>
+                </g>
+
+                <!-- Node 3: Leadership -->
+                <g transform="translate(275, 125)">
+                  <circle r="24" fill="rgba(37, 99, 235, 0.15)" stroke="#2563EB" stroke-width="2"/>
+                  <circle r="9" fill="#0284C7"/>
+                  <text y="40" text-anchor="middle" fill="var(--color-text-heading)" font-size="12" font-weight="700" font-family="var(--font-heading)">Leadership</text>
+                </g>
+
+                <!-- Node 4: Transformation (Apex) -->
+                <g transform="translate(385, 65)">
+                  <circle r="26" fill="url(#careerApexGrad)" stroke="#38BDF8" stroke-width="2.5"/>
+                  <polygon points="0,-8 8,0 0,8 -8,0" fill="#FFFFFF"/>
+                  <text y="44" text-anchor="middle" fill="#0284C7" font-size="12" font-weight="700" font-family="var(--font-heading)">Transformation</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 2: WHY BUILD YOUR CAREER HERE? (EDITORIAL ROWS)
+         ========================================================================== -->
+    <section class="careers-section-pad careers-why-section" id="careersWhy" aria-label="Why Build Your Career Here">
+      <div class="container">
+        
+        <div class="section-header-center">
+          <span class="section-eyebrow">YOUR NEXT CHAPTER</span>
+          <h2 class="section-title">Make Your Skills Part of Something Meaningful</h2>
+          <p class="section-subtitle">
+            We foster an operational environment where practical execution, open knowledge sharing, and technical curiosity empower teams to solve real business challenges.
+          </p>
+        </div>
+
+        <!-- Editorial 4 Horizontal Rows -->
+        <div class="careers-editorial-list">
+          
+          <!-- Row 1: Continuous Learning -->
+          <div class="career-editorial-row">
+            <div class="editorial-num" aria-hidden="true">01</div>
+            <h3 class="editorial-title">Continuous Learning</h3>
+            <p class="editorial-desc">
+              Encourage skill development, deliberate practice, and mutual knowledge sharing across systems, tools, and modern methodologies.
+            </p>
+            <div class="editorial-tag">Knowledge Exchange</div>
+          </div>
+
+          <!-- Row 2: Meaningful Contributions -->
+          <div class="career-editorial-row">
+            <div class="editorial-num" aria-hidden="true">02</div>
+            <h3 class="editorial-title">Meaningful Contributions</h3>
+            <p class="editorial-desc">
+              Connect individual work directly with technology architectures and strategic business milestones, ensuring every effort has tangible purpose.
+            </p>
+            <div class="editorial-tag">Measurable Value</div>
+          </div>
+
+          <!-- Row 3: Collaborative Thinking -->
+          <div class="career-editorial-row">
+            <div class="editorial-num" aria-hidden="true">03</div>
+            <h3 class="editorial-title">Collaborative Thinking</h3>
+            <p class="editorial-desc">
+              Value constructive communication, transparent teamwork, and varied perspectives that turn complex operational requirements into straightforward solutions.
+            </p>
+            <div class="editorial-tag">Shared Perspective</div>
+          </div>
+
+          <!-- Row 4: Professional Growth -->
+          <div class="career-editorial-row">
+            <div class="editorial-num" aria-hidden="true">04</div>
+            <h3 class="editorial-title">Professional Growth</h3>
+            <p class="editorial-desc">
+              Support the progressive expansion of technical capabilities, autonomous ownership, and project responsibility as our operational horizon evolves.
+            </p>
+            <div class="editorial-tag">Progressive Horizon</div>
+          </div>
+
+        </div>
+
+        <!-- Intended Career Themes Note -->
+        <div class="editorial-note-box">
+          <strong>Intended Focus:</strong> The above themes describe our operating ethos and intended workplace direction. They represent collaborative principles rather than contractual benefits or employment guarantees.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3: CURRENT JOB OPENINGS (SEARCH, FILTERS & CARDS)
+         ========================================================================== -->
+    <section class="careers-section-pad careers-jobs-section" id="careersPositions" aria-label="Current Job Openings">
+      <div class="container">
+
+        <div class="section-header-center">
+          <span class="section-eyebrow cyan-accent">OPEN POSITIONS</span>
+          <h2 class="section-title">Find the Role That Fits Your Skills</h2>
+          <p class="section-subtitle">
+            Explore verified opportunities to contribute to enterprise solutions. Filter roles by location, work mode, and employment category.
+          </p>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="jobs-search-filter-panel">
+          <div class="jobs-search-row">
+            
+            <!-- Search Input -->
+            <div class="jobs-search-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="jobSearchInput" class="jobs-search-input" placeholder="Search by position title or skill..." aria-label="Search openings by title or skill">
+            </div>
+
+            <!-- Location Filter -->
+            <div>
+              <select id="jobLocationFilter" class="jobs-filter-select" aria-label="Filter by Location">
+                <option value="all">All Locations</option>
+                <option value="riyadh">Riyadh, KSA</option>
+                <option value="dubai">Dubai, UAE</option>
+                <option value="remote">Remote</option>
+              </select>
+            </div>
+
+            <!-- Work Mode Filter -->
+            <div>
+              <select id="jobModeFilter" class="jobs-filter-select" aria-label="Filter by Work Mode">
+                <option value="all">All Work Modes</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="on-site">On-site</option>
+                <option value="remote">Remote</option>
+              </select>
+            </div>
+
+            <!-- Employment Type Filter -->
+            <div>
+              <select id="jobTypeFilter" class="jobs-filter-select" aria-label="Filter by Employment Type">
+                <option value="all">All Employment Types</option>
+                <option value="full-time">Full-time</option>
+                <option value="contract">Contract</option>
+              </select>
+            </div>
+
+            <!-- Reset Button -->
+            <div>
+              <button type="button" id="jobResetFiltersBtn" class="jobs-btn-reset">
+                Reset Filters
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Status Bar -->
+          <div class="jobs-counter-status">
+            <div>Showing <strong id="jobsVisibleCount">3</strong> verified positions</div>
+            <div class="verified-source-badge">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>Verified Company Openings</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verified Job Cards List -->
+        <div class="jobs-list-wrap" id="jobsListContainer">
+
+          <!-- Role 1: Frontend Solutions Engineer -->
+          <article class="job-listing-card" data-title="Frontend Solutions Engineer" data-skills="html5 css3 modern js web performance ui/ux responsive" data-location="riyadh" data-mode="hybrid" data-type="full-time">
+            <div class="job-card-top-row">
+              <div>
+                <h3 class="job-title">Frontend Solutions Engineer</h3>
+                <div class="job-meta-badges">
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Riyadh, KSA
+                  </span>
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    Hybrid Work Mode
+                  </span>
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Standard Business Hours
+                  </span>
+                  <span class="job-meta-pill verified-tag">Full-time (Verified)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-skills-row">
+              <span class="job-skill-badge">HTML5 & Semantic Markup</span>
+              <span class="job-skill-badge">Modern CSS & Design Systems</span>
+              <span class="job-skill-badge">Vanilla JavaScript</span>
+              <span class="job-skill-badge">Web Accessibility (a11y)</span>
+              <span class="job-skill-badge">RTL Bi-Directionality</span>
+            </div>
+
+            <!-- Expandable Details Accordion -->
+            <div class="job-details-expandable" id="details-job-1">
+              <div class="job-details-grid">
+                <div class="job-details-col">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Develop high-performance, responsive interfaces adhering to corporate brand guidelines.</li>
+                    <li>Ensure strict multi-browser compatibility, fast page load speeds, and RTL layout fidelity.</li>
+                    <li>Collaborate with product designers and backend engineers to integrate data services.</li>
+                    <li>Maintain component documentation and participate in peer code reviews.</li>
+                  </ul>
+                </div>
+                <div class="job-details-col">
+                  <h4>Qualifications & Experience</h4>
+                  <ul>
+                    <li>Demonstrated experience crafting accessible web applications with clean HTML/CSS/JS.</li>
+                    <li>Proficiency with responsive typography, fluid grid layouts, and layout mirroring.</li>
+                    <li>Strong problem-solving ability with structured attention to visual detail.</li>
+                    <li>Excellent communication and collaborative team habits.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-actions-row">
+              <button type="button" class="job-btn-toggle" aria-expanded="false" aria-controls="details-job-1">
+                <span class="btn-toggle-text">View Details</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+
+              <a href="#careersApply" class="job-btn-apply" data-job-title="Frontend Solutions Engineer">
+                <span>Apply Now</span>
+                <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Role 2: Enterprise Systems Consultant -->
+          <article class="job-listing-card" data-title="Enterprise Systems Consultant" data-skills="systems architecture cloud infrastructure process workflow enterprise" data-location="dubai" data-mode="hybrid" data-type="full-time">
+            <div class="job-card-top-row">
+              <div>
+                <h3 class="job-title">Enterprise Systems Consultant</h3>
+                <div class="job-meta-badges">
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Dubai, UAE
+                  </span>
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    Hybrid Work Mode
+                  </span>
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Standard Business Shift
+                  </span>
+                  <span class="job-meta-pill verified-tag">Full-time (Verified)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-skills-row">
+              <span class="job-skill-badge">Systems Architecture</span>
+              <span class="job-skill-badge">Cloud Optimization</span>
+              <span class="job-skill-badge">Business Process Mapping</span>
+              <span class="job-skill-badge">Operational Security</span>
+              <span class="job-skill-badge">Client Advisory</span>
+            </div>
+
+            <!-- Expandable Details Accordion -->
+            <div class="job-details-expandable" id="details-job-2">
+              <div class="job-details-grid">
+                <div class="job-details-col">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Assess client business operations and evaluate technology architectures for scalability.</li>
+                    <li>Design implementation milestones and risk mitigation procedures for digital adoption.</li>
+                    <li>Conduct technical alignment sessions with stakeholder leadership teams.</li>
+                    <li>Verify infrastructure stability, high-availability targets, and compliance requirements.</li>
+                  </ul>
+                </div>
+                <div class="job-details-col">
+                  <h4>Qualifications & Experience</h4>
+                  <ul>
+                    <li>Background in enterprise systems analysis, cloud architectures, or technology consulting.</li>
+                    <li>Ability to articulate technical architectures to non-technical business partners.</li>
+                    <li>Experience defining and executing phased implementation roadmaps.</li>
+                    <li>Relevant bachelor's degree or equivalent verified industry track record.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-actions-row">
+              <button type="button" class="job-btn-toggle" aria-expanded="false" aria-controls="details-job-2">
+                <span class="btn-toggle-text">View Details</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+
+              <a href="#careersApply" class="job-btn-apply" data-job-title="Enterprise Systems Consultant">
+                <span>Apply Now</span>
+                <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- Role 3: Data & Integration Specialist -->
+          <article class="job-listing-card" data-title="Data & Integration Specialist" data-skills="api integration data pipelines telemetry automation structured verification" data-location="remote" data-mode="remote" data-type="contract">
+            <div class="job-card-top-row">
+              <div>
+                <h3 class="job-title">Data & Integration Specialist</h3>
+                <div class="job-meta-badges">
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Remote (Global)
+                  </span>
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    100% Remote
+                  </span>
+                  <span class="job-meta-pill">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Flexible Schedule
+                  </span>
+                  <span class="job-meta-pill verified-tag">Contract (Verified)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-skills-row">
+              <span class="job-skill-badge">REST & GraphQL APIs</span>
+              <span class="job-skill-badge">ETL Data Pipelines</span>
+              <span class="job-skill-badge">Telemetry & Logging</span>
+              <span class="job-skill-badge">Automated Validation</span>
+              <span class="job-skill-badge">Schema Governance</span>
+            </div>
+
+            <!-- Expandable Details Accordion -->
+            <div class="job-details-expandable" id="details-job-3">
+              <div class="job-details-grid">
+                <div class="job-details-col">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Build resilient data connectors linking client legacy databases and modern cloud systems.</li>
+                    <li>Establish structured telemetry and validation triggers to detect data anomalies early.</li>
+                    <li>Document API endpoints, payload contracts, and error recovery sequences.</li>
+                    <li>Ensure data handling aligns strictly with privacy guidelines and enterprise protocols.</li>
+                  </ul>
+                </div>
+                <div class="job-details-col">
+                  <h4>Qualifications & Experience</h4>
+                  <ul>
+                    <li>Demonstrated competence architecting data pipelines and managing API integrations.</li>
+                    <li>Familiarity with structured query modeling, data reconciliation, and caching strategies.</li>
+                    <li>Disciplined approach to testing, documentation, and operational telemetry.</li>
+                    <li>Comfortable working autonomously within distributed, asynchronous team workflows.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-actions-row">
+              <button type="button" class="job-btn-toggle" aria-expanded="false" aria-controls="details-job-3">
+                <span class="btn-toggle-text">View Details</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+
+              <a href="#careersApply" class="job-btn-apply" data-job-title="Data & Integration Specialist">
+                <span>Apply Now</span>
+                <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Empty State (Shown when 0 matches or no verified openings) -->
+        <div class="jobs-empty-state" id="jobsEmptyState" role="region" aria-live="polite">
+          <div class="empty-state-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+          </div>
+          <h3 class="empty-state-title">No Matching Roles Found</h3>
+          <p class="empty-state-text">
+            There are currently no verified openings listed matching your selected criteria. Please check back later or contact us about future opportunities.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button type="button" class="btn-secondary-outline" onclick="document.getElementById('jobResetFiltersBtn').click()">
+              Reset All Filters
+            </button>
+            <a href="#careersApply" class="btn-primary-gradient">
+              Send General Application <span class="flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 4: OUR WORK CULTURE (MAGAZINE-STYLE LAYOUT)
+         ========================================================================== -->
+    <section class="careers-section-pad careers-culture-section" id="careersCulture" aria-label="Our Work Culture">
+      <div class="container">
+
+        <div class="section-header-center">
+          <span class="section-eyebrow">LIFE AT HAKA</span>
+          <h2 class="section-title">A Culture Built on How We Work Together</h2>
+          <p class="section-subtitle">
+            Our culture is defined by daily interactions, mutual accountability, and how we deliver value. We prioritize disciplined execution over rhetoric.
+          </p>
+        </div>
+
+        <div class="culture-magazine-grid">
+
+          <!-- Left: Featured Manifesto Panel -->
+          <div class="culture-featured-panel">
+            <div class="culture-featured-quote">
+              “Great technology solutions are built by teams who communicate openly, take genuine ownership, and continually refine their craft.”
+            </div>
+            <div class="culture-quote-author">
+              <span aria-hidden="true">■</span> HAKA SOLUTIONS Operational Principles
+            </div>
+
+            <!-- Abstract Workspace Illustration -->
+            <div class="culture-abstract-shapes" aria-hidden="true">
+              <div class="culture-shape-block">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </div>
+              <div class="culture-shape-block">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <div class="culture-shape-block">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Staggered Principles Grid -->
+          <div class="culture-principles-grid">
+
+            <!-- Principle 1: Integrity -->
+            <div class="culture-principle-card">
+              <div class="culture-card-top">
+                <h3 class="culture-card-title">Integrity</h3>
+                <div class="culture-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+              </div>
+              <p class="culture-card-desc">Act honestly and responsibly in every team commitment, architectural decision, and client conversation.</p>
+            </div>
+
+            <!-- Principle 2: Innovation -->
+            <div class="culture-principle-card">
+              <div class="culture-card-top">
+                <h3 class="culture-card-title">Innovation</h3>
+                <div class="culture-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="2" x2="12" y2="6"></line>
+                    <line x1="12" y1="18" x2="12" y2="22"></line>
+                    <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+                    <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+                  </svg>
+                </div>
+              </div>
+              <p class="culture-card-desc">Stay curious and open to better ideas, practical operational improvements, and modern technological tools.</p>
+            </div>
+
+            <!-- Principle 3: Reliability -->
+            <div class="culture-principle-card">
+              <div class="culture-card-top">
+                <h3 class="culture-card-title">Reliability</h3>
+                <div class="culture-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                  </svg>
+                </div>
+              </div>
+              <p class="culture-card-desc">Take complete ownership of assigned tasks, delivery timelines, and shared project milestones.</p>
+            </div>
+
+            <!-- Principle 4: Discipline -->
+            <div class="culture-principle-card">
+              <div class="culture-card-top">
+                <h3 class="culture-card-title">Discipline</h3>
+                <div class="culture-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <p class="culture-card-desc">Work with measured focus, high code quality standards, and consistent operational execution.</p>
+            </div>
+
+            <!-- Principle 5: Customer Focus -->
+            <div class="culture-principle-card">
+              <div class="culture-card-top">
+                <h3 class="culture-card-title">Customer Focus</h3>
+                <div class="culture-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+              </div>
+              <p class="culture-card-desc">Understand the real business context and organizational goals behind every technical initiative.</p>
+            </div>
+
+            <!-- Principle 6: Growth -->
+            <div class="culture-principle-card">
+              <div class="culture-card-top">
+                <h3 class="culture-card-title">Growth</h3>
+                <div class="culture-card-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <p class="culture-card-desc">Keep learning, seeking feedback, and expanding professional capabilities every single week.</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 5: SKILLS AND PROFESSIONAL DEVELOPMENT
+         ========================================================================== -->
+    <section class="careers-section-pad careers-skills-section" id="careersSkills" aria-label="Skills and Professional Development">
+      <div class="container">
+
+        <div class="section-header-center">
+          <span class="section-eyebrow cyan-accent">GROW YOUR CAPABILITIES</span>
+          <h2 class="section-title">Keep Learning. Keep Moving Forward.</h2>
+          <p class="section-subtitle">
+            Explore the core developmental pathways that shape professional growth across our operational and engineering engagements.
+          </p>
+        </div>
+
+        <div class="skills-dev-container">
+          
+          <!-- 3 Connected Pathway Tabs -->
+          <div class="skills-paths-tabs" role="tablist">
+            
+            <button type="button" class="skills-path-tab-btn is-active" data-skill-path="technology" role="tab" aria-selected="true" id="tab-tech" aria-controls="skillsDisplayCard">
+              <div class="skills-tab-icon-row">
+                <div class="skills-tab-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <span class="editorial-tag">Path 01</span>
+              </div>
+              <div class="skills-tab-name">Technology Skills</div>
+            </button>
+
+            <button type="button" class="skills-path-tab-btn" data-skill-path="business" role="tab" aria-selected="false" id="tab-biz" aria-controls="skillsDisplayCard">
+              <div class="skills-tab-icon-row">
+                <div class="skills-tab-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <span class="editorial-tag">Path 02</span>
+              </div>
+              <div class="skills-tab-name">Business Skills</div>
+            </button>
+
+            <button type="button" class="skills-path-tab-btn" data-skill-path="professional" role="tab" aria-selected="false" id="tab-prof" aria-controls="skillsDisplayCard">
+              <div class="skills-tab-icon-row">
+                <div class="skills-tab-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <span class="editorial-tag">Path 03</span>
+              </div>
+              <div class="skills-tab-name">Professional Skills</div>
+            </button>
+
+          </div>
+
+          <!-- Dynamic Detail Display Card -->
+          <div class="skills-detail-display" id="skillsDisplayCard" role="tabpanel" aria-labelledby="tab-tech">
+            
+            <div class="skills-display-header">
+              <h3 class="skills-display-title" id="skillsActiveTitle">Technology Skills</h3>
+              <p class="skills-display-desc" id="skillsActiveDesc">
+                Focus on cultivating modern computational capabilities, reliable tool mastery, and scalable engineering practices.
+              </p>
+            </div>
+
+            <!-- Dynamic Focus Cards Grid -->
+            <div class="skills-focus-grid" id="skillsFocusContainer">
+              <div class="skills-focus-card">
+                <h4 class="focus-card-title">Programming & Digital Tools</h4>
+                <p class="focus-card-text">Modern web architectures, clean code modularity, design systems, and responsive front-end state management.</p>
+              </div>
+              <div class="skills-focus-card">
+                <h4 class="focus-card-title">Data & Analytics Fundamentals</h4>
+                <p class="focus-card-text">Structured telemetry, business metric tracking, API data contracts, and data-driven problem evaluation.</p>
+              </div>
+              <div class="skills-focus-card">
+                <h4 class="focus-card-title">Automation & Tech Awareness</h4>
+                <p class="focus-card-text">Workflow continuous integration, automated deployment, performance auditing, and emerging operational frameworks.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Notice on self-development -->
+          <div class="editorial-note-box" style="margin-top: 1.75rem;">
+            <strong>Development Context:</strong> These focus areas represent domains of personal capability cultivation and team collaboration. They are presented as areas of continuous professional growth rather than confirmed company training programs or certifications.
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 6: RECRUITMENT JOURNEY (TIMELINE & SHOWCASE PANEL)
+         ========================================================================== -->
+    <section class="careers-section-pad careers-journey-section" id="careersJourney" aria-label="Recruitment Journey">
+      <div class="container">
+
+        <div class="section-header-center">
+          <span class="section-eyebrow">HOW TO JOIN US</span>
+          <h2 class="section-title">Your Application Journey, Step by Step</h2>
+          <p class="section-subtitle">
+            A clear, transparent five-stage recruitment process designed to evaluate mutual technical and cultural alignment.
+          </p>
+        </div>
+
+        <div class="journey-timeline-grid">
+
+          <!-- Left: Vertical Numbered Timeline Navigation -->
+          <div class="journey-steps-nav" role="tablist" aria-label="Recruitment stages timeline">
+            
+            <button type="button" class="journey-step-btn is-active" data-step="1" role="tab" aria-selected="true">
+              <div class="journey-step-num">01</div>
+              <div>
+                <span class="journey-step-name">Explore</span>
+                <span class="journey-step-summary">Review verified position descriptions</span>
+              </div>
+            </button>
+
+            <button type="button" class="journey-step-btn" data-step="2" role="tab" aria-selected="false">
+              <div class="journey-step-num">02</div>
+              <div>
+                <span class="journey-step-name">Apply</span>
+                <span class="journey-step-summary">Submit details via application form</span>
+              </div>
+            </button>
+
+            <button type="button" class="journey-step-btn" data-step="3" role="tab" aria-selected="false">
+              <div class="journey-step-num">03</div>
+              <div>
+                <span class="journey-step-name">Review</span>
+                <span class="journey-step-summary">Hiring team evaluates role qualifications</span>
+              </div>
+            </button>
+
+            <button type="button" class="journey-step-btn" data-step="4" role="tab" aria-selected="false">
+              <div class="journey-step-num">04</div>
+              <div>
+                <span class="journey-step-name">Interview</span>
+                <span class="journey-step-summary">Interactive technical & cultural assessment</span>
+              </div>
+            </button>
+
+            <button type="button" class="journey-step-btn" data-step="5" role="tab" aria-selected="false">
+              <div class="journey-step-num">05</div>
+              <div>
+                <span class="journey-step-name">Next Steps</span>
+                <span class="journey-step-summary">Updates via confirmed communication</span>
+              </div>
+            </button>
+
+          </div>
+
+          <!-- Right: Interactive Stage Detail Panel -->
+          <div class="journey-detail-panel" id="journeyDetailPanel">
+            <span class="journey-panel-tag" id="journeyPanelBadge">STAGE 01 — RESEARCH & ALIGNMENT</span>
+            <h3 class="journey-panel-title" id="journeyPanelTitle">Explore Role Requirements</h3>
+            <p class="journey-panel-desc" id="journeyPanelDesc">
+              Review the verified job openings, required competencies, and key responsibilities outlined on this careers page. Identify where your background, technical interests, and ambition align with HAKA Solutions operational goals.
+            </p>
+            <div class="journey-panel-tip-box" id="journeyPanelTip">
+              <strong>Applicant Tip:</strong> Check the work mode (On-site, Hybrid, or Remote) and verify that your core capabilities align with the listed skills.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Timeline Disclaimer -->
+        <p class="journey-disclaimer-note">
+          Please note: Recruitment stages and timelines may adapt depending on position level and operational requirements. We do not guarantee interview schedules, response turnaround times, or candidate selection.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 7: APPLICATION FORM AND CONTACT (TWO-COLUMN DESKTOP)
+         ========================================================================== -->
+    <section class="careers-section-pad careers-apply-section" id="careersApply" aria-label="Application Form and Contact">
+      <div class="container">
+
+        <div class="section-header-center">
+          <span class="section-eyebrow cyan-accent">TAKE THE NEXT STEP</span>
+          <h2 class="section-title">Ready to Build Your Future With HAKA?</h2>
+          <p class="section-subtitle">
+            Found a role that matches your skills? Prepare your application details and follow the available submission instructions.
+          </p>
+        </div>
+
+        <div class="apply-layout-grid">
+
+          <!-- Left Column: Application Form Card -->
+          <div class="apply-form-card">
+            <h3 class="apply-form-title">Application Details</h3>
+            <p class="apply-form-subtitle">Fill out the information below to review and verify your candidate submission.</p>
+
+            <form id="careersApplicationForm" novalidate>
+              
+              <div class="apply-form-grid">
+                
+                <!-- Full Name -->
+                <div class="apply-form-group">
+                  <label for="applyFullName" class="apply-form-label">Full Name *</label>
+                  <input type="text" id="applyFullName" class="apply-input" placeholder="e.g. Alex Morgan" required autocomplete="name">
+                </div>
+
+                <!-- Email Address -->
+                <div class="apply-form-group">
+                  <label for="applyEmail" class="apply-form-label">Email Address *</label>
+                  <input type="email" id="applyEmail" class="apply-input" placeholder="name@company.com" required autocomplete="email">
+                </div>
+
+                <!-- Phone Number -->
+                <div class="apply-form-group">
+                  <label for="applyPhone" class="apply-form-label">Phone Number *</label>
+                  <input type="tel" id="applyPhone" class="apply-input" placeholder="+966 5X XXX XXXX" required autocomplete="tel">
+                </div>
+
+                <!-- Current Location -->
+                <div class="apply-form-group">
+                  <label for="applyLocation" class="apply-form-label">Current Location *</label>
+                  <input type="text" id="applyLocation" class="apply-input" placeholder="City, Country" required>
+                </div>
+
+                <!-- Position Applying For -->
+                <div class="apply-form-group">
+                  <label for="applyPosition" class="apply-form-label">Position Applying For *</label>
+                  <select id="applyPosition" class="apply-select" required>
+                    <option value="" disabled selected>Select a verified position...</option>
+                    <option value="Frontend Solutions Engineer">Frontend Solutions Engineer (Hybrid, Riyadh)</option>
+                    <option value="Enterprise Systems Consultant">Enterprise Systems Consultant (Hybrid, Dubai)</option>
+                    <option value="Data & Integration Specialist">Data & Integration Specialist (Remote, Global)</option>
+                    <option value="General Technical Inquiry">General Technical Inquiry (Future Opportunities)</option>
+                  </select>
+                </div>
+
+                <!-- Years of Experience -->
+                <div class="apply-form-group">
+                  <label for="applyExperience" class="apply-form-label">Years of Experience</label>
+                  <select id="applyExperience" class="apply-select">
+                    <option value="" disabled selected>Select experience range...</option>
+                    <option value="1-3 Years">1 - 3 Years</option>
+                    <option value="3-5 Years">3 - 5 Years</option>
+                    <option value="5-8 Years">5 - 8 Years</option>
+                    <option value="8+ Years">8+ Years</option>
+                  </select>
+                </div>
+
+                <!-- Relevant Skills -->
+                <div class="apply-form-group full-span">
+                  <label for="applySkills" class="apply-form-label">Relevant Skills & Core Competencies</label>
+                  <input type="text" id="applySkills" class="apply-input" placeholder="e.g. Modern CSS, Architecture, Systems, REST APIs">
+                </div>
+
+                <!-- Resume Upload -->
+                <div class="apply-form-group full-span">
+                  <label class="apply-form-label">Resume / CV Document (PDF, DOC, DOCX up to 5MB) *</label>
+                  <div class="apply-file-dropzone" id="applyFileDropzone">
+                    <input type="file" id="applyResume" class="apply-file-input" accept=".pdf,.doc,.docx" required>
+                    <div class="dropzone-inner-content">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <div class="dropzone-text">Click or drag your resume document here</div>
+                      <div class="dropzone-hint">Supported formats: PDF, DOC, DOCX (Max: 5MB)</div>
+                    </div>
+                  </div>
+                  <!-- Chosen File Badge -->
+                  <div class="apply-file-badge" id="applyFileBadge">
+                    <span id="applyFileName">filename.pdf</span>
+                    <span style="font-size: 0.75rem; color: #10B981; font-weight: 700;">✓ Validated</span>
+                  </div>
+                </div>
+
+                <!-- Optional Cover Letter -->
+                <div class="apply-form-group full-span">
+                  <label for="applyCoverLetter" class="apply-form-label">Optional Cover Letter or Introduction</label>
+                  <textarea id="applyCoverLetter" class="apply-textarea" placeholder="Briefly introduce your career focus, technical accomplishments, and what motivates you..."></textarea>
+                </div>
+
+              </div>
+
+              <!-- Consent Checkbox -->
+              <div class="apply-consent-box">
+                <input type="checkbox" id="applyConsent" required>
+                <label for="applyConsent" class="apply-consent-text">
+                  I agree to share my information for recruitment evaluation purposes in accordance with enterprise data handling policies.
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn-primary-gradient apply-btn-review">
+                Review Application <span class="flip-rtl" aria-hidden="true">→</span>
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Right Column: Application Checklist & Submission Guidance -->
+          <div class="apply-guidance-card">
+            
+            <div class="guidance-box">
+              <h4 class="guidance-box-title">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Application Checklist
+              </h4>
+              <ul class="guidance-checklist">
+                <li class="guidance-check-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Ensure your latest resume is updated with relevant metrics and deliverables.</span>
+                </li>
+                <li class="guidance-check-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Verify contact phone and work email for candidate correspondence.</span>
+                </li>
+                <li class="guidance-check-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Confirm current geographic location and availability for hybrid or remote arrangements.</span>
+                </li>
+                <li class="guidance-check-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Highlight specific competencies directly applicable to the chosen role.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Frontend Demo & Recruitment Notice -->
+            <div class="guidance-demo-notice">
+              <div class="guidance-demo-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                Frontend Demonstration Notice
+              </div>
+              <p class="guidance-demo-text">
+                This application workflow is a client-side frontend demonstration with zero backend storage. No personal data or uploaded resumes are sent to external services or saved in browser storage.
+              </p>
+              <p class="guidance-demo-text" style="margin-top: 0.65rem;">
+                Official verified company recruitment contact:
+                <br>
+                <a href="mailto:careers@company-domain.com" class="guidance-contact-link">
+                  careers@company-domain.com [Site Owner Placeholder]
+                </a>
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       HAKA SOLUTIONS FOOTER COMPONENT
+       ========================================================================== -->
+  <footer class="haka-footer" role="contentinfo">
+    <div class="footer-glow-accent" aria-hidden="true"></div>
+    
+    <div class="container">
+      <div class="footer-top-grid">
+
+        <!-- Column 1: Brand Info & Socials -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="haka-logo-link" aria-label="HAKA SOLUTIONS Homepage">
+            <div class="logo-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="logo-text-group">
+              <div class="logo-main">HAKA<span class="logo-dot">.</span></div>
+              <span class="logo-subtitle">SOLUTIONS</span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Empowering modern enterprises with dependable technology architecture, digital operations, and business acceleration solutions.
+          </p>
+
+          <div class="footer-social-links" aria-label="Social media channels">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v8.37h-2.8V10.9M7.86 6.5a1.63 1.63 0 0 0-1.63 1.62c0 .9.73 1.63 1.63 1.63.9 0 1.63-.73 1.63-1.63 0-.9-.73-1.62-1.63-1.62Z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Topics -->
+        <div>
+          <h3 class="footer-col-title">Navigation</h3>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="solutions.html" class="footer-link">Solutions</a></li>
+            <li><a href="technology.html" class="footer-link">Technology</a></li>
+            <li><a href="careers.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Solutions -->
+        <div>
+          <h3 class="footer-col-title">Solutions</h3>
+          <ul class="footer-links-list">
+            <li><a href="solutions.html" class="footer-link">Digital Operations</a></li>
+            <li><a href="solutions.html" class="footer-link">Cloud Infrastructure</a></li>
+            <li><a href="solutions.html" class="footer-link">Intelligent Automation</a></li>
+            <li><a href="solutions.html" class="footer-link">Data Analytics</a></li>
+            <li><a href="solutions.html" class="footer-link">Enterprise Architecture</a></li>
+            <li><a href="solutions.html" class="footer-link">Workflow Optimization</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact / Connect -->
+        <div>
+          <h3 class="footer-col-title">Get in Touch</h3>
+          <div class="footer-contact-box">
+            <h4 class="footer-contact-title">Have a Project in Mind?</h4>
+            <p class="footer-contact-text">
+              Let's explore how HAKA SOLUTIONS can optimize your digital operations.
+            </p>
+            <a href="contact.html" class="footer-contact-link">
+              Connect With Our Team <span class="flip-rtl">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 HAKA SOLUTIONS. All rights reserved.
+        </div>
+
+        <ul class="footer-legal-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="security.html">Security</a></li>
+        </ul>
+
+        <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+          Back to Top ↑
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS: CLIENT LOGIN & APPLICATION REVIEW
+       ========================================================================== -->
+
+  <!-- Client Login Modal Component -->
+  <div class="haka-login-modal" id="clientLoginModal" aria-hidden="true" role="dialog" aria-labelledby="loginModalTitle">
+    <div class="login-modal-backdrop" id="loginModalBackdrop"></div>
+    <div class="login-modal-container">
+      <div class="login-modal-card">
+        <button type="button" class="login-modal-close" id="loginModalCloseBtn" aria-label="Close client login modal">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="login-modal-header">
+          <div class="login-modal-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h2 class="login-modal-title" id="loginModalTitle">Client Portal Login</h2>
+          <p class="login-modal-subtitle">Access your enterprise dashboard, analytics, and project deliverables.</p>
+        </div>
+
+        <form class="login-modal-form" id="clientLoginForm" onsubmit="event.preventDefault(); handleLoginSubmit();">
+          <div class="form-group">
+            <label for="clientEmail" class="form-label">Work Email</label>
+            <input type="email" id="clientEmail" class="form-input" placeholder="name@company.com" required autocomplete="username">
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="clientPassword" class="form-label">Password</label>
+              <a href="#forgot-password" class="form-forgot-link">Forgot?</a>
+            </div>
+            <input type="password" id="clientPassword" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+
+          <div class="form-options-row">
+            <label class="form-checkbox-label">
+              <input type="checkbox" id="rememberMe">
+              <span>Remember this session</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary-gradient login-submit-btn">
+            Sign In to Portal <span class="flip-rtl" aria-hidden="true">→</span>
+          </button>
+
+          <div class="login-modal-footer-note">
+            <span>Need enterprise onboarding? <a href="contact.html">Contact Support</a></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Review Modal (Frontend Verification Workflow) -->
+  <div class="apply-review-modal" id="applicationReviewModal" aria-hidden="true" role="dialog" aria-labelledby="reviewModalTitle">
+    <div class="login-modal-backdrop" id="reviewModalBackdrop"></div>
+    <div class="review-modal-card">
+      <button type="button" class="login-modal-close" id="reviewModalCloseBtn" aria-label="Close application review modal">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="review-modal-header">
+        <h3 class="review-modal-title" id="reviewModalTitle">Review Application Details</h3>
+        <p class="review-modal-subtitle">Verify your entered information before completing the demonstration review step.</p>
+      </div>
+
+      <div class="review-summary-grid">
+        <div class="review-item">
+          <span class="review-item-label">Full Name</span>
+          <span class="review-item-val" id="revName">—</span>
+        </div>
+        <div class="review-item">
+          <span class="review-item-label">Position</span>
+          <span class="review-item-val" id="revPosition">—</span>
+        </div>
+        <div class="review-item">
+          <span class="review-item-label">Email Address</span>
+          <span class="review-item-val" id="revEmail">—</span>
+        </div>
+        <div class="review-item">
+          <span class="review-item-label">Phone Number</span>
+          <span class="review-item-val" id="revPhone">—</span>
+        </div>
+        <div class="review-item">
+          <span class="review-item-label">Location</span>
+          <span class="review-item-val" id="revLocation">—</span>
+        </div>
+        <div class="review-item">
+          <span class="review-item-label">Experience</span>
+          <span class="review-item-val" id="revExp">—</span>
+        </div>
+        <div class="review-item full-width">
+          <span class="review-item-label">Relevant Skills</span>
+          <span class="review-item-val" id="revSkills">—</span>
+        </div>
+        <div class="review-item full-width">
+          <span class="review-item-label">Attached Resume</span>
+          <span class="review-item-val" id="revResume">—</span>
+        </div>
+        <div class="review-item full-width">
+          <span class="review-item-label">Introduction / Cover Note</span>
+          <span class="review-item-val" id="revCover" style="font-weight: 400; font-size: 0.88rem; color: var(--color-text-muted);">—</span>
+        </div>
+      </div>
+
+      <div class="review-demo-banner">
+        <strong>Frontend Demonstration Notice:</strong> This review is conducted client-side without a database. No personal records or files are stored in your browser or transmitted to external servers.
+      </div>
+
+      <div class="review-actions-row">
+        <button type="button" class="btn-edit-details" id="reviewEditDetailsBtn">
+          Edit Details
+        </button>
+        <button type="button" class="btn-primary-gradient btn-finish-demo" id="reviewFinishDemoBtn">
+          Complete Review Demo <span class="flip-rtl" aria-hidden="true">✓</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Vanilla JavaScript Logic -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
