@@ -21,48 +21,58 @@
   <link rel="stylesheet" href="css/style.css">
 
   <style>
-    /* Portfolio Filter & Gallery Custom Styles */
-    .portfolio-filter-wrapper {
-      margin-bottom: 3rem;
-      display: flex;
-      justify-content: center;
+    /* Portfolio Filter & Sticky Category Bar */
+    .portfolio-filter-sticky-wrapper {
+      position: sticky;
+      top: 74px;
+      z-index: 95;
+      background: rgba(8, 20, 38, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 0;
+      margin-bottom: 2.5rem;
+      transition: all 0.3s ease;
     }
     .portfolio-filter-tabs {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
+      flex-wrap: nowrap !important;
+      overflow-x: auto;
+      gap: 0.5rem;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 0.5rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .portfolio-filter-tabs::-webkit-scrollbar {
+      display: none;
+    }
+    @media (max-width: 900px) {
+      .portfolio-filter-tabs {
+        justify-content: flex-start;
+      }
     }
     .portfolio-filter-btn {
-      padding: 0.6rem 1.25rem;
+      padding: 0.52rem 0.95rem;
       border-radius: 999px;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       font-weight: 600;
       color: var(--color-text-nav);
-      background: transparent;
-      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
       cursor: pointer;
       transition: all var(--transition-standard);
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-    }
-    .portfolio-filter-btn .filter-count {
-      font-size: 0.75rem;
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--color-text-muted);
-      transition: all var(--transition-standard);
+      gap: 0.45rem;
+      white-space: nowrap !important;
+      flex-shrink: 0;
     }
     .portfolio-filter-btn:hover {
       color: var(--color-text-heading);
-      background: var(--btn-control-bg);
-      border-color: var(--border-subtle);
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(72, 217, 237, 0.35);
     }
     .portfolio-filter-btn.active {
       color: #FFFFFF;
@@ -74,33 +84,340 @@
       background: rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
     }
-
-    /* Project Cards Grid */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2.25rem;
-      margin-bottom: 2rem;
+    .portfolio-filter-btn .filter-count {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-muted);
+      transition: all var(--transition-standard);
     }
-    .project-card {
+
+    /* Six Distinct Project Showcase Sections */
+    .portfolio-showcase-section {
+      padding: 3.5rem 0 4rem;
+      position: relative;
+      scroll-margin-top: 140px;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .portfolio-showcase-section.is-hidden {
+      display: none !important;
+    }
+    .showcase-card {
       background: var(--color-bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 18px;
+      border-radius: 24px;
+      padding: clamp(2rem, 3.5vw, 3.25rem);
+      position: relative;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
+    }
+    .showcase-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-accent-cyan), var(--color-accent-blue), transparent);
+      opacity: 0.6;
+    }
+    .showcase-card:hover {
+      border-color: rgba(72, 217, 237, 0.35);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 30px rgba(52, 120, 246, 0.12);
+    }
+
+    /* Section Top Meta Bar */
+    .showcase-header-bar {
       display: flex;
-      flex-direction: column;
-      transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), 
-                  box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1), 
-                  border-color 0.3s ease;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .showcase-index-pill {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      background: rgba(52, 120, 246, 0.12);
+      border: 1px solid rgba(72, 217, 237, 0.28);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+    }
+    .index-prefix {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+    }
+    .index-num {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--color-accent-cyan);
+      font-family: var(--font-heading);
+    }
+    .index-total {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+    .showcase-meta-group {
+      display: flex;
+      gap: 0.65rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Showcase Two-Column Grid */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: clamp(2rem, 4vw, 3.5rem);
+      align-items: center;
+    }
+    .portfolio-showcase-section.reverse-section .showcase-grid {
+      grid-template-columns: 0.95fr 1.15fr;
+    }
+    .portfolio-showcase-section.reverse-section .showcase-content {
+      order: 2;
+    }
+    .portfolio-showcase-section.reverse-section .showcase-visual {
+      order: 1;
+    }
+    [dir="rtl"] .portfolio-showcase-section.reverse-section .showcase-content {
+      order: 1;
+    }
+    [dir="rtl"] .portfolio-showcase-section.reverse-section .showcase-visual {
+      order: 2;
+    }
+    @media (max-width: 991px) {
+      .showcase-grid,
+      .portfolio-showcase-section.reverse-section .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+      }
+      .portfolio-showcase-section.reverse-section .showcase-content {
+        order: 1;
+      }
+      .portfolio-showcase-section.reverse-section .showcase-visual {
+        order: 2;
+      }
+    }
+
+    /* Showcase Content Column */
+    .showcase-title {
+      font-size: clamp(1.6rem, 2.5vw, 2.15rem);
+      font-weight: 800;
+      color: var(--color-text-heading);
+      margin-bottom: 0.65rem;
+      line-height: 1.25;
+      font-family: var(--font-heading);
+    }
+    .showcase-lead {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-accent-cyan);
+      margin-bottom: 1rem;
+      line-height: 1.45;
+    }
+    .showcase-desc {
+      font-size: 0.96rem;
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+    .showcase-caps {
+      margin-bottom: 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 14px;
+      padding: 1.25rem 1.35rem;
+    }
+    .showcase-caps-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-heading);
+      margin-bottom: 0.75rem;
+    }
+    .showcase-caps .project-features-list {
+      margin-bottom: 0;
+    }
+    .showcase-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    /* Mockup Visual Column */
+    .showcase-visual {
+      position: relative;
+      width: 100%;
+    }
+    .mockup-window {
+      background: #081426;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 1px rgba(72, 217, 237, 0.3);
+      transition: transform 0.35s cubic-bezier(0.2, 0, 0, 1), 
+                  box-shadow 0.35s cubic-bezier(0.2, 0, 0, 1), 
+                  border-color 0.35s ease;
+      cursor: pointer;
       position: relative;
     }
-    .project-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--border-glass);
-      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.4), 0 0 1px rgba(72, 217, 237, 0.3);
+    .mockup-window:hover {
+      transform: translateY(-6px);
+      border-color: rgba(72, 217, 237, 0.45);
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.65), 0 0 30px rgba(72, 217, 237, 0.2);
     }
-    .project-card.is-hidden {
-      display: none !important;
+    .mockup-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 1rem;
+      background: rgba(14, 30, 56, 0.95);
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.75rem;
+    }
+    .mockup-dots {
+      display: flex;
+      gap: 0.35rem;
+    }
+    .mockup-dots .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-red { background: #FF5F56; }
+    .dot-yellow { background: #FFBD2E; }
+    .dot-green { background: #27C93F; }
+    .mockup-address {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.25rem 0.85rem;
+      border-radius: 999px;
+      color: var(--color-text-muted);
+      font-family: monospace;
+      font-size: 0.72rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      max-width: 260px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .mockup-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #22C55E;
+      background: rgba(34, 197, 94, 0.12);
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+    }
+    .mockup-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 8px #22C55E;
+    }
+    .mockup-screen {
+      position: relative;
+      height: clamp(260px, 32vw, 360px);
+      overflow: hidden;
+      background: #0a182e;
+    }
+    .mockup-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+      display: block;
+    }
+    .mockup-window:hover .mockup-img {
+      transform: scale(1.05);
+    }
+    .mockup-hover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 13, 26, 0.55);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .mockup-window:hover .mockup-hover-overlay {
+      opacity: 1;
+    }
+    .launch-pill {
+      background: var(--color-accent-blue);
+      color: #FFFFFF;
+      padding: 0.65rem 1.35rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 8px 24px var(--color-accent-blue-glow);
+      transform: translateY(6px);
+      transition: transform 0.3s ease;
+    }
+    .mockup-window:hover .launch-pill {
+      transform: translateY(0);
+    }
+
+    /* Filter Notice Bar */
+    .filter-notice-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(52, 120, 246, 0.1);
+      border: 1px solid rgba(72, 217, 237, 0.25);
+      border-radius: 12px;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 2rem;
+      color: var(--color-text-heading);
+      font-size: 0.9rem;
+    }
+    .filter-notice-bar.is-visible {
+      display: flex;
+    }
+    .btn-show-all-inline {
+      background: none;
+      border: none;
+      color: var(--color-accent-cyan);
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-show-all-inline:hover {
+      background: rgba(72, 217, 237, 0.12);
+      color: #FFFFFF;
     }
 
     /* Card Image Container */
@@ -831,404 +1148,757 @@
     <!-- ==========================================================================
          ALL SIX PROJECTS GALLERY SECTION
          ========================================================================== -->
-    <section class="intro-section" id="portfolio-gallery" style="padding: 4.5rem 0 3.5rem;">
+    <!-- ==========================================================================
+         PORTFOLIO SHOWCASE: 6 DEDICATED SECTIONS & STICKY FILTER BAR
+         ========================================================================== -->
+    <section class="intro-section" id="portfolio-gallery" style="padding: 4.5rem 0 1.5rem;">
       <div class="container">
-
-        <div style="text-align: center; max-width: 720px; margin: 0 auto 2.5rem;">
-          <span class="section-eyebrow cyan-accent reveal-item">FEATURED GALLERY</span>
+        <div style="text-align: center; max-width: 760px; margin: 0 auto;">
+          <span class="section-eyebrow cyan-accent reveal-item">FEATURED SHOWCASE</span>
           <h2 class="section-title reveal-item delay-1">Six Distinct Industry Concepts</h2>
           <p class="section-subtitle reveal-item delay-2">
-            Each concept represents a dedicated frontend project with industry-specific design, imagery, and interactive vanilla JavaScript functionality.
+            Each concept represents an independent frontend project section with industry-specific design, live interactive workflows, and responsive engineering.
           </p>
         </div>
+      </div>
+    </section>
 
-        <!-- Category Filters -->
-        <div class="portfolio-filter-wrapper">
-          <div class="portfolio-filter-tabs" role="tablist" aria-label="Portfolio Category Filters">
-            <button type="button" class="portfolio-filter-btn active" data-category="all" role="tab" aria-selected="true">
-              <span>All Projects</span>
-              <span class="filter-count">6</span>
-            </button>
-            <button type="button" class="portfolio-filter-btn" data-category="ecommerce" role="tab" aria-selected="false">
-              <span>E-Commerce</span>
-              <span class="filter-count">1</span>
-            </button>
-            <button type="button" class="portfolio-filter-btn" data-category="construction" role="tab" aria-selected="false">
-              <span>Construction</span>
-              <span class="filter-count">1</span>
-            </button>
-            <button type="button" class="portfolio-filter-btn" data-category="healthcare" role="tab" aria-selected="false">
-              <span>Healthcare</span>
-              <span class="filter-count">1</span>
-            </button>
-            <button type="button" class="portfolio-filter-btn" data-category="events" role="tab" aria-selected="false">
-              <span>Events</span>
-              <span class="filter-count">1</span>
-            </button>
-            <button type="button" class="portfolio-filter-btn" data-category="realestate" role="tab" aria-selected="false">
-              <span>Real Estate</span>
-              <span class="filter-count">1</span>
-            </button>
-            <button type="button" class="portfolio-filter-btn" data-category="restaurant" role="tab" aria-selected="false">
-              <span>Restaurant &amp; Café</span>
-              <span class="filter-count">1</span>
-            </button>
+    <!-- Sticky Navigation & Category Switcher Bar -->
+    <div class="portfolio-filter-sticky-wrapper" id="portfolioStickyBar">
+      <div class="container">
+        <div class="portfolio-filter-tabs" role="tablist" aria-label="Portfolio Category Filters">
+          <button type="button" class="portfolio-filter-btn active" data-category="all" role="tab" aria-selected="true">
+            <span>All Projects</span>
+            <span class="filter-count">6</span>
+          </button>
+          <button type="button" class="portfolio-filter-btn" data-category="ecommerce" role="tab" aria-selected="false">
+            <span>E-Commerce</span>
+            <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="portfolio-filter-btn" data-category="construction" role="tab" aria-selected="false">
+            <span>Construction</span>
+            <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="portfolio-filter-btn" data-category="healthcare" role="tab" aria-selected="false">
+            <span>Healthcare</span>
+            <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="portfolio-filter-btn" data-category="events" role="tab" aria-selected="false">
+            <span>Events</span>
+            <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="portfolio-filter-btn" data-category="realestate" role="tab" aria-selected="false">
+            <span>Real Estate</span>
+            <span class="filter-count">1</span>
+          </button>
+          <button type="button" class="portfolio-filter-btn" data-category="restaurant" role="tab" aria-selected="false">
+            <span>Restaurant &amp; Café</span>
+            <span class="filter-count">1</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Filter Notice (Visible when a single category is isolated) -->
+    <div class="container">
+      <div class="filter-notice-bar" id="filterNoticeBar">
+        <div>
+          <span>Showing: <strong id="filterCategoryLabel" style="color:var(--color-accent-cyan);">Category</strong> (1 Concept Section)</span>
+        </div>
+        <button type="button" class="btn-show-all-inline" onclick="window.showAllProjects()">
+          <span>View All 6 Sections</span>
+          <span class="flip-rtl">→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         SECTION 01: LUXURY FASHION E-COMMERCE SHOWCASE
+         ========================================================================== -->
+    <section class="portfolio-showcase-section reveal-item" id="section-ecommerce" data-category="ecommerce" data-id="project-1">
+      <div class="container">
+        <div class="showcase-card">
+          <!-- Section Header Bar -->
+          <div class="showcase-header-bar">
+            <div class="showcase-index-pill">
+              <span class="index-prefix">SECTION</span>
+              <span class="index-num">01</span>
+              <span class="index-total">/ 06</span>
+            </div>
+            <div class="showcase-meta-group">
+              <span class="project-overlay-badge" style="position:static;">E-Commerce</span>
+              <span class="project-concept-tag" style="position:static;">Concept Project</span>
+            </div>
+          </div>
+
+          <!-- Main Two-Column Grid -->
+          <div class="showcase-grid">
+            <!-- Content Column -->
+            <div class="showcase-content">
+              <h2 class="showcase-title">Luxury Fashion E-Commerce Showcase</h2>
+              <p class="showcase-lead">Aura &amp; Atelier — High-End Boutique Experience &amp; Editorial Shopping</p>
+              <p class="showcase-desc">
+                A high-end clothing boutique concept featuring seasonal editorial collections, interactive product filters, zoom galleries, and a sleek slide-over shopping bag with live cart calculations and instant checkout simulations.
+              </p>
+
+              <!-- Key Engineering Capabilities -->
+              <div class="showcase-caps">
+                <div class="showcase-caps-title">Key Capabilities</div>
+                <ul class="project-features-list">
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Curated Haute Couture Lookbook &amp; Editorial Product Grid</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Interactive Category &amp; Size Filters with Instant Sorting</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Slide-Over Shopping Bag with Live Item Totaling and Promo Codes</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Responsive Luxury Editorial Navigation &amp; Fluid Animations</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">Live Cart Engine</span>
+                <span class="tech-pill">Responsive Design</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="showcase-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-1')" aria-label="Launch Working Demo for Luxury Fashion">
+                  <span>Launch Working Demo</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-1')" aria-label="View Technical Details for Luxury Fashion">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual / Mockup Column -->
+            <div class="showcase-visual">
+              <div class="mockup-window" onclick="openDemo('project-1')" role="button" tabindex="0" title="Click to launch interactive demo" onkeydown="if(event.key==='Enter') openDemo('project-1')">
+                <div class="mockup-bar">
+                  <div class="mockup-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="mockup-address">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>demo.hakasolutions.com/luxury-fashion</span>
+                  </div>
+                  <div class="mockup-status">LIVE</div>
+                </div>
+                <div class="mockup-screen">
+                  <img 
+                    src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80" 
+                    alt="Luxury Fashion E-Commerce Model Wearing Designer Apparel" 
+                    class="mockup-img"
+                    loading="lazy"
+                    onerror="this.parentElement.classList.add('has-fallback')"
+                  >
+                  <div class="project-thumb-fallback" aria-hidden="true">
+                    <div class="fallback-icon">👗</div>
+                    <strong style="color:#FFFFFF;">Aura &amp; Atelier Fashion</strong>
+                    <span style="font-size: 0.85rem; color: var(--color-accent-cyan);">Luxury E-Commerce Concept</span>
+                  </div>
+                  <div class="mockup-hover-overlay">
+                    <div class="launch-pill">
+                      <span>Launch Live Demo</span>
+                      <span class="flip-rtl">↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Six Portfolio Cards -->
-        <div class="portfolio-grid" id="portfolioGrid">
-
-          <!-- PROJECT 1: LUXURY FASHION E-COMMERCE SHOWCASE -->
-          <article class="project-card reveal-item" data-category="ecommerce" data-id="project-1">
-            <div class="project-thumb-box">
-              <span class="project-overlay-badge">E-Commerce</span>
-              <span class="project-concept-tag">Concept Project</span>
-              <img 
-                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80" 
-                alt="Luxury Fashion E-Commerce Model Wearing Designer Apparel" 
-                class="project-thumb-img"
-                loading="lazy"
-                onerror="this.parentElement.classList.add('has-fallback')"
-              >
-              <div class="project-thumb-fallback" aria-hidden="true">
-                <div class="fallback-icon">👗</div>
-                <strong style="color:#FFFFFF;">Aura &amp; Atelier Fashion</strong>
-                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Luxury E-Commerce Concept</span>
-              </div>
+    <!-- ==========================================================================
+         SECTION 02: TS LANDSCAPING & CONSTRUCTION SITE (REVERSE LAYOUT)
+         ========================================================================== -->
+    <section class="portfolio-showcase-section reverse-section reveal-item" id="section-construction" data-category="construction" data-id="project-2">
+      <div class="container">
+        <div class="showcase-card">
+          <!-- Section Header Bar -->
+          <div class="showcase-header-bar">
+            <div class="showcase-index-pill">
+              <span class="index-prefix">SECTION</span>
+              <span class="index-num">02</span>
+              <span class="index-total">/ 06</span>
             </div>
-            <div class="project-card-body">
-              <h2 class="project-card-title">Luxury Fashion E-Commerce Showcase</h2>
-              <p class="project-card-desc">
-                A high-end clothing boutique concept featuring seasonal editorial collections, interactive product filters, zoom galleries, and a sleek slide-over shopping bag.
+            <div class="showcase-meta-group">
+              <span class="project-overlay-badge" style="position:static;">Construction</span>
+              <span class="project-concept-tag" style="position:static;">Frontend Demo</span>
+            </div>
+          </div>
+
+          <!-- Main Two-Column Grid -->
+          <div class="showcase-grid">
+            <!-- Content Column -->
+            <div class="showcase-content">
+              <h2 class="showcase-title">TS Landscaping &amp; Construction Site</h2>
+              <p class="showcase-lead">Outdoor Transformations, Stonework &amp; Interactive Contractor Estimation</p>
+              <p class="showcase-desc">
+                A professional landscaping and construction contractor site showcasing outdoor transformations, before/after galleries, an instant quote estimator widget, and an interactive customer inquiry workflow.
               </p>
-              <ul class="project-features-list">
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Curated Product Gallery &amp; Lookbook</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Interactive Category &amp; Size Filters</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Slide-Over Shopping Bag with Live Totaling</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Responsive Luxury Editorial Navigation</span>
-                </li>
-              </ul>
+
+              <!-- Key Engineering Capabilities -->
+              <div class="showcase-caps">
+                <div class="showcase-caps-title">Key Capabilities</div>
+                <ul class="project-features-list">
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Interactive Before &amp; After Transformation Visualizer</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Instant Landscape Cost Estimator Widget (Patio, Turf, Retaining Walls)</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Commercial &amp; Residential Architectural Services Breakdown</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Interactive Multi-Step Project Quote &amp; Scope Estimation Form</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech Stack Tags -->
               <div class="project-tech-stack">
                 <span class="tech-pill">HTML5</span>
                 <span class="tech-pill">CSS3</span>
                 <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">Cost Estimator UI</span>
+                <span class="tech-pill">Dynamic Calculations</span>
               </div>
-              <div class="project-card-actions">
-                <button type="button" class="btn-view-project" onclick="openDemo('project-1')" aria-label="View Luxury Fashion Project Demo">
-                  <span>View Project</span>
+
+              <!-- Actions -->
+              <div class="showcase-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-2')" aria-label="Launch Working Demo for TS Landscaping">
+                  <span>Launch Working Demo</span>
                   <span class="flip-rtl">→</span>
                 </button>
-                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-1')" aria-label="View Details for Luxury Fashion Project">
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-2')" aria-label="View Technical Details for TS Landscaping">
                   <span>View Details</span>
                 </button>
               </div>
             </div>
-          </article>
 
-          <!-- PROJECT 2: TS LANDSCAPING & CONSTRUCTION SITE -->
-          <article class="project-card reveal-item" data-category="construction" data-id="project-2">
-            <div class="project-thumb-box">
-              <span class="project-overlay-badge">Construction</span>
-              <span class="project-concept-tag">Frontend Demo</span>
-              <img 
-                src="https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=900&q=80" 
-                alt="TS Landscaping Architectural Garden Transformation and Stone Paving" 
-                class="project-thumb-img"
-                loading="lazy"
-                onerror="this.parentElement.classList.add('has-fallback')"
-              >
-              <div class="project-thumb-fallback" aria-hidden="true">
-                <div class="fallback-icon">🏡</div>
-                <strong style="color:#FFFFFF;">TS Landscaping &amp; Construction</strong>
-                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Outdoor Transformation Showcase</span>
+            <!-- Visual / Mockup Column -->
+            <div class="showcase-visual">
+              <div class="mockup-window" onclick="openDemo('project-2')" role="button" tabindex="0" title="Click to launch interactive demo" onkeydown="if(event.key==='Enter') openDemo('project-2')">
+                <div class="mockup-bar">
+                  <div class="mockup-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="mockup-address">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>demo.hakasolutions.com/ts-construction</span>
+                  </div>
+                  <div class="mockup-status">LIVE</div>
+                </div>
+                <div class="mockup-screen">
+                  <img 
+                    src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" 
+                    alt="TS Landscaping Architectural Garden Transformation and Stone Paving" 
+                    class="mockup-img"
+                    loading="lazy"
+                    onerror="this.parentElement.classList.add('has-fallback')"
+                  >
+                  <div class="project-thumb-fallback" aria-hidden="true">
+                    <div class="fallback-icon">🏡</div>
+                    <strong style="color:#FFFFFF;">TS Landscaping &amp; Construction</strong>
+                    <span style="font-size: 0.85rem; color: var(--color-accent-cyan);">Outdoor Transformation Showcase</span>
+                  </div>
+                  <div class="mockup-hover-overlay">
+                    <div class="launch-pill">
+                      <span>Launch Live Demo</span>
+                      <span class="flip-rtl">↗</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="project-card-body">
-              <h2 class="project-card-title">TS Landscaping &amp; Construction Site</h2>
-              <p class="project-card-desc">
-                A professional landscaping and construction contractor site showcasing outdoor transformations, before/after galleries, an instant quote estimator, and inquiry workflow.
-              </p>
-              <ul class="project-features-list">
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Before &amp; After Transformation Showcase</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Instant Landscape Cost Estimator Widget</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Commercial &amp; Residential Services Breakdown</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Interactive Multi-Step Project Quote Form</span>
-                </li>
-              </ul>
-              <div class="project-tech-stack">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">Vanilla JavaScript</span>
-              </div>
-              <div class="project-card-actions">
-                <button type="button" class="btn-view-project" onclick="openDemo('project-2')" aria-label="View TS Landscaping Project Demo">
-                  <span>View Project</span>
-                  <span class="flip-rtl">→</span>
-                </button>
-                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-2')" aria-label="View Details for TS Landscaping Project">
-                  <span>View Details</span>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- PROJECT 3: HEALTHCARE PROVIDER CLINIC NETWORK -->
-          <article class="project-card reveal-item" data-category="healthcare" data-id="project-3">
-            <div class="project-thumb-box">
-              <span class="project-overlay-badge">Healthcare</span>
-              <span class="project-concept-tag">Frontend Demo</span>
-              <img 
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80" 
-                alt="Modern Medical Clinic Consultation Room and Physician Office" 
-                class="project-thumb-img"
-                loading="lazy"
-                onerror="this.parentElement.classList.add('has-fallback')"
-              >
-              <div class="project-thumb-fallback" aria-hidden="true">
-                <div class="fallback-icon">🩺</div>
-                <strong style="color:#FFFFFF;">Apex Clinic Network</strong>
-                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Healthcare Provider Concept</span>
-              </div>
-            </div>
-            <div class="project-card-body">
-              <h2 class="project-card-title">Healthcare Provider Clinic Network</h2>
-              <p class="project-card-desc">
-                A clean, reassuring clinic network platform featuring doctor specialty lookups, multi-branch facility directories, and an interactive appointment scheduling wizard.
-              </p>
-              <ul class="project-features-list">
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Specialist &amp; Doctor Directory with Filters</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Interactive 3-Step Appointment Booking UI</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Regional Clinic Branches &amp; Hours Locator</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Instant Booking Feedback (Demo Mode)</span>
-                </li>
-              </ul>
-              <div class="project-tech-stack">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">Vanilla JavaScript</span>
-              </div>
-              <div class="project-card-actions">
-                <button type="button" class="btn-view-project" onclick="openDemo('project-3')" aria-label="View Healthcare Clinic Project Demo">
-                  <span>View Project</span>
-                  <span class="flip-rtl">→</span>
-                </button>
-                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-3')" aria-label="View Details for Healthcare Clinic Project">
-                  <span>View Details</span>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- PROJECT 4: GRAND EVENT & CONFERENCE HUB -->
-          <article class="project-card reveal-item" data-category="events" data-id="project-4">
-            <div class="project-thumb-box">
-              <span class="project-overlay-badge">Events</span>
-              <span class="project-concept-tag">Concept Project</span>
-              <img 
-                src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80" 
-                alt="Corporate Grand Auditorium Event Stage with Speakers and Attendees" 
-                class="project-thumb-img"
-                loading="lazy"
-                onerror="this.parentElement.classList.add('has-fallback')"
-              >
-              <div class="project-thumb-fallback" aria-hidden="true">
-                <div class="fallback-icon">🎙️</div>
-                <strong style="color:#FFFFFF;">Nexus Global Summit 2026</strong>
-                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Grand Event &amp; Conference Hub</span>
-              </div>
-            </div>
-            <div class="project-card-body">
-              <h2 class="project-card-title">Grand Event &amp; Conference Hub</h2>
-              <p class="project-card-desc">
-                An energetic summit web application featuring a live countdown timer, interactive multi-track daily agenda, keynote speaker bios, and pass registration.
-              </p>
-              <ul class="project-features-list">
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Live Event Countdown Clock &amp; Key Stats</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Interactive 3-Day Agenda &amp; Track Switcher</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Keynote Speaker Directory &amp; Session Topics</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Interactive Pass Tier Selector &amp; Registration</span>
-                </li>
-              </ul>
-              <div class="project-tech-stack">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">Vanilla JavaScript</span>
-              </div>
-              <div class="project-card-actions">
-                <button type="button" class="btn-view-project" onclick="openDemo('project-4')" aria-label="View Conference Hub Project Demo">
-                  <span>View Project</span>
-                  <span class="flip-rtl">→</span>
-                </button>
-                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-4')" aria-label="View Details for Conference Hub Project">
-                  <span>View Details</span>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- PROJECT 5: REAL ESTATE PROPERTY PORTAL -->
-          <article class="project-card reveal-item" data-category="realestate" data-id="project-5">
-            <div class="project-thumb-box">
-              <span class="project-overlay-badge">Real Estate</span>
-              <span class="project-concept-tag">Frontend Demo</span>
-              <img 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" 
-                alt="Contemporary Luxury Home Exterior with Architectural Lighting and Pool" 
-                class="project-thumb-img"
-                loading="lazy"
-                onerror="this.parentElement.classList.add('has-fallback')"
-              >
-              <div class="project-thumb-fallback" aria-hidden="true">
-                <div class="fallback-icon">🏙️</div>
-                <strong style="color:#FFFFFF;">Valley &amp; Vista Real Estate</strong>
-                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Property Discovery Portal</span>
-              </div>
-            </div>
-            <div class="project-card-body">
-              <h2 class="project-card-title">Real Estate Property Portal</h2>
-              <p class="project-card-desc">
-                A contemporary property portal for residential and commercial spaces, featuring real-time property type filtering, dynamic favorite saving, and tour requests.
-              </p>
-              <ul class="project-features-list">
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Real-Time Property Type &amp; Price Filters</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Interactive Save to Favorites Heart Counter</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Comprehensive Specs (Bedrooms, Baths, SqFt)</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Schedule Private In-Person Viewing Modal</span>
-                </li>
-              </ul>
-              <div class="project-tech-stack">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">Vanilla JavaScript</span>
-              </div>
-              <div class="project-card-actions">
-                <button type="button" class="btn-view-project" onclick="openDemo('project-5')" aria-label="View Real Estate Project Demo">
-                  <span>View Project</span>
-                  <span class="flip-rtl">→</span>
-                </button>
-                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-5')" aria-label="View Details for Real Estate Project">
-                  <span>View Details</span>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <!-- PROJECT 6: PREMIUM RESTAURANT & CAFÉ PLATFORM -->
-          <article class="project-card reveal-item" data-category="restaurant" data-id="project-6">
-            <div class="project-thumb-box">
-              <span class="project-overlay-badge">Restaurant &amp; Café</span>
-              <span class="project-concept-tag">Frontend Demo</span>
-              <img 
-                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" 
-                alt="Upscale Bistro Restaurant Atmosphere Dining Room and Modern Table Setting" 
-                class="project-thumb-img"
-                loading="lazy"
-                onerror="this.parentElement.classList.add('has-fallback')"
-              >
-              <div class="project-thumb-fallback" aria-hidden="true">
-                <div class="fallback-icon">🍽️</div>
-                <strong style="color:#FFFFFF;">L'Atelier Gourmet &amp; Bistro</strong>
-                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Culinary Platform Concept</span>
-              </div>
-            </div>
-            <div class="project-card-body">
-              <h2 class="project-card-title">Premium Restaurant &amp; Café Platform</h2>
-              <p class="project-card-desc">
-                An artisanal culinary web platform featuring categorized seasonal dining menus, dietary and allergen tags (vegan, gluten-free), and an instant table reservation system.
-              </p>
-              <ul class="project-features-list">
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Categorized Menu Tabs (Starters, Mains, Desserts)</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Dietary Tags (Vegan, Gluten-Free, Chef Pick)</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Working Instant Table Reservation Widget</span>
-                </li>
-                <li class="project-feature-item">
-                  <span class="feature-bullet-icon">✓</span>
-                  <span>Chef's Story, Operating Hours &amp; Location</span>
-                </li>
-              </ul>
-              <div class="project-tech-stack">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">Vanilla JavaScript</span>
-              </div>
-              <div class="project-card-actions">
-                <button type="button" class="btn-view-project" onclick="openDemo('project-6')" aria-label="View Restaurant Project Demo">
-                  <span>View Project</span>
-                  <span class="flip-rtl">→</span>
-                </button>
-                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-6')" aria-label="View Details for Restaurant Project">
-                  <span>View Details</span>
-                </button>
-              </div>
-            </div>
-          </article>
-
+          </div>
         </div>
+      </div>
+    </section>
 
+    <!-- ==========================================================================
+         SECTION 03: HEALTHCARE PROVIDER CLINIC NETWORK
+         ========================================================================== -->
+    <section class="portfolio-showcase-section reveal-item" id="section-healthcare" data-category="healthcare" data-id="project-3">
+      <div class="container">
+        <div class="showcase-card">
+          <!-- Section Header Bar -->
+          <div class="showcase-header-bar">
+            <div class="showcase-index-pill">
+              <span class="index-prefix">SECTION</span>
+              <span class="index-num">03</span>
+              <span class="index-total">/ 06</span>
+            </div>
+            <div class="showcase-meta-group">
+              <span class="project-overlay-badge" style="position:static;">Healthcare</span>
+              <span class="project-concept-tag" style="position:static;">Frontend Demo</span>
+            </div>
+          </div>
+
+          <!-- Main Two-Column Grid -->
+          <div class="showcase-grid">
+            <!-- Content Column -->
+            <div class="showcase-content">
+              <h2 class="showcase-title">Healthcare Provider Clinic Network</h2>
+              <p class="showcase-lead">Apex Health — Specialist Directory &amp; Multi-Step Appointment Booking</p>
+              <p class="showcase-desc">
+                A clean, reassuring clinic network platform featuring doctor specialty lookups, multi-branch facility directories, working appointment calendar scheduling, and instant booking confirmations.
+              </p>
+
+              <!-- Key Engineering Capabilities -->
+              <div class="showcase-caps">
+                <div class="showcase-caps-title">Key Capabilities</div>
+                <ul class="project-features-list">
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Specialist &amp; Doctor Directory with Department &amp; Rating Filters</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Interactive 3-Step Appointment Booking UI with Time-Slot Selection</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Regional Clinic Branches &amp; Real-Time Operating Hours Locator</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Instant Booking Confirmation Modal with Summary Export</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">Booking Wizard</span>
+                <span class="tech-pill">Accessible UI</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="showcase-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-3')" aria-label="Launch Working Demo for Healthcare Clinic">
+                  <span>Launch Working Demo</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-3')" aria-label="View Technical Details for Healthcare Clinic">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual / Mockup Column -->
+            <div class="showcase-visual">
+              <div class="mockup-window" onclick="openDemo('project-3')" role="button" tabindex="0" title="Click to launch interactive demo" onkeydown="if(event.key==='Enter') openDemo('project-3')">
+                <div class="mockup-bar">
+                  <div class="mockup-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="mockup-address">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>demo.hakasolutions.com/apex-clinic</span>
+                  </div>
+                  <div class="mockup-status">LIVE</div>
+                </div>
+                <div class="mockup-screen">
+                  <img 
+                    src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80" 
+                    alt="Modern Medical Clinic Consultation Room and Physician Office" 
+                    class="mockup-img"
+                    loading="lazy"
+                    onerror="this.parentElement.classList.add('has-fallback')"
+                  >
+                  <div class="project-thumb-fallback" aria-hidden="true">
+                    <div class="fallback-icon">🩺</div>
+                    <strong style="color:#FFFFFF;">Apex Clinic Network</strong>
+                    <span style="font-size: 0.85rem; color: var(--color-accent-cyan);">Healthcare Provider Concept</span>
+                  </div>
+                  <div class="mockup-hover-overlay">
+                    <div class="launch-pill">
+                      <span>Launch Live Demo</span>
+                      <span class="flip-rtl">↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 04: GRAND EVENT & CONFERENCE HUB (REVERSE LAYOUT)
+         ========================================================================== -->
+    <section class="portfolio-showcase-section reverse-section reveal-item" id="section-events" data-category="events" data-id="project-4">
+      <div class="container">
+        <div class="showcase-card">
+          <!-- Section Header Bar -->
+          <div class="showcase-header-bar">
+            <div class="showcase-index-pill">
+              <span class="index-prefix">SECTION</span>
+              <span class="index-num">04</span>
+              <span class="index-total">/ 06</span>
+            </div>
+            <div class="showcase-meta-group">
+              <span class="project-overlay-badge" style="position:static;">Events</span>
+              <span class="project-concept-tag" style="position:static;">Concept Project</span>
+            </div>
+          </div>
+
+          <!-- Main Two-Column Grid -->
+          <div class="showcase-grid">
+            <!-- Content Column -->
+            <div class="showcase-content">
+              <h2 class="showcase-title">Grand Event &amp; Conference Hub</h2>
+              <p class="showcase-lead">Nexus Global Summit 2026 — Live Countdown, Multi-Track Agenda &amp; Passes</p>
+              <p class="showcase-desc">
+                An energetic summit web application featuring a real-time live countdown timer, interactive 3-day multi-track agenda, keynote speaker bios, and tiered delegate pass registrations.
+              </p>
+
+              <!-- Key Engineering Capabilities -->
+              <div class="showcase-caps">
+                <div class="showcase-caps-title">Key Capabilities</div>
+                <ul class="project-features-list">
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Live Event Countdown Clock &amp; Real-Time Attendance Metrics</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Interactive 3-Day Agenda &amp; Multi-Track Switcher (Tech, Design, Enterprise)</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Keynote Speaker Directory with In-Depth Session Outlines &amp; Bios</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Interactive Delegate Pass Tier Selector with Live Totaling</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">Countdown Timer</span>
+                <span class="tech-pill">Track Switcher</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="showcase-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-4')" aria-label="Launch Working Demo for Conference Hub">
+                  <span>Launch Working Demo</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-4')" aria-label="View Technical Details for Conference Hub">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual / Mockup Column -->
+            <div class="showcase-visual">
+              <div class="mockup-window" onclick="openDemo('project-4')" role="button" tabindex="0" title="Click to launch interactive demo" onkeydown="if(event.key==='Enter') openDemo('project-4')">
+                <div class="mockup-bar">
+                  <div class="mockup-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="mockup-address">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>demo.hakasolutions.com/nexus-summit</span>
+                  </div>
+                  <div class="mockup-status">LIVE</div>
+                </div>
+                <div class="mockup-screen">
+                  <img 
+                    src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80" 
+                    alt="Corporate Grand Auditorium Event Stage with Speakers and Attendees" 
+                    class="mockup-img"
+                    loading="lazy"
+                    onerror="this.parentElement.classList.add('has-fallback')"
+                  >
+                  <div class="project-thumb-fallback" aria-hidden="true">
+                    <div class="fallback-icon">🎙️</div>
+                    <strong style="color:#FFFFFF;">Nexus Global Summit 2026</strong>
+                    <span style="font-size: 0.85rem; color: var(--color-accent-cyan);">Grand Event &amp; Conference Hub</span>
+                  </div>
+                  <div class="mockup-hover-overlay">
+                    <div class="launch-pill">
+                      <span>Launch Live Demo</span>
+                      <span class="flip-rtl">↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 05: REAL ESTATE PROPERTY PORTAL
+         ========================================================================== -->
+    <section class="portfolio-showcase-section reveal-item" id="section-realestate" data-category="realestate" data-id="project-5">
+      <div class="container">
+        <div class="showcase-card">
+          <!-- Section Header Bar -->
+          <div class="showcase-header-bar">
+            <div class="showcase-index-pill">
+              <span class="index-prefix">SECTION</span>
+              <span class="index-num">05</span>
+              <span class="index-total">/ 06</span>
+            </div>
+            <div class="showcase-meta-group">
+              <span class="project-overlay-badge" style="position:static;">Real Estate</span>
+              <span class="project-concept-tag" style="position:static;">Frontend Demo</span>
+            </div>
+          </div>
+
+          <!-- Main Two-Column Grid -->
+          <div class="showcase-grid">
+            <!-- Content Column -->
+            <div class="showcase-content">
+              <h2 class="showcase-title">Real Estate Property Portal</h2>
+              <p class="showcase-lead">Valley &amp; Vista — Luxury Property Search, Save Favorites &amp; Tour Booking</p>
+              <p class="showcase-desc">
+                A contemporary property portal for luxury residential and commercial architecture, featuring real-time category filtering, dynamic favorite bookmarking, and private viewing appointment requests.
+              </p>
+
+              <!-- Key Engineering Capabilities -->
+              <div class="showcase-caps">
+                <div class="showcase-caps-title">Key Capabilities</div>
+                <ul class="project-features-list">
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Real-Time Property Type (Villa, Penthouse, Loft) &amp; Price Range Filters</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Interactive Save to Favorites Heart Counter with Live UI Badges</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Comprehensive Architectural Specs (Bedrooms, Baths, Square Footage)</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Schedule Private In-Person Viewing &amp; Virtual Walkthrough Request Form</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">Favorites Store</span>
+                <span class="tech-pill">Dynamic Property Grid</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="showcase-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-5')" aria-label="Launch Working Demo for Real Estate">
+                  <span>Launch Working Demo</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-5')" aria-label="View Technical Details for Real Estate">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual / Mockup Column -->
+            <div class="showcase-visual">
+              <div class="mockup-window" onclick="openDemo('project-5')" role="button" tabindex="0" title="Click to launch interactive demo" onkeydown="if(event.key==='Enter') openDemo('project-5')">
+                <div class="mockup-bar">
+                  <div class="mockup-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="mockup-address">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>demo.hakasolutions.com/valley-vista</span>
+                  </div>
+                  <div class="mockup-status">LIVE</div>
+                </div>
+                <div class="mockup-screen">
+                  <img 
+                    src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" 
+                    alt="Contemporary Luxury Home Exterior with Architectural Lighting and Pool" 
+                    class="mockup-img"
+                    loading="lazy"
+                    onerror="this.parentElement.classList.add('has-fallback')"
+                  >
+                  <div class="project-thumb-fallback" aria-hidden="true">
+                    <div class="fallback-icon">🏙️</div>
+                    <strong style="color:#FFFFFF;">Valley &amp; Vista Real Estate</strong>
+                    <span style="font-size: 0.85rem; color: var(--color-accent-cyan);">Property Discovery Portal</span>
+                  </div>
+                  <div class="mockup-hover-overlay">
+                    <div class="launch-pill">
+                      <span>Launch Live Demo</span>
+                      <span class="flip-rtl">↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 06: PREMIUM RESTAURANT & CAFÉ PLATFORM (REVERSE LAYOUT)
+         ========================================================================== -->
+    <section class="portfolio-showcase-section reverse-section reveal-item" id="section-restaurant" data-category="restaurant" data-id="project-6">
+      <div class="container">
+        <div class="showcase-card">
+          <!-- Section Header Bar -->
+          <div class="showcase-header-bar">
+            <div class="showcase-index-pill">
+              <span class="index-prefix">SECTION</span>
+              <span class="index-num">06</span>
+              <span class="index-total">/ 06</span>
+            </div>
+            <div class="showcase-meta-group">
+              <span class="project-overlay-badge" style="position:static;">Restaurant &amp; Café</span>
+              <span class="project-concept-tag" style="position:static;">Frontend Demo</span>
+            </div>
+          </div>
+
+          <!-- Main Two-Column Grid -->
+          <div class="showcase-grid">
+            <!-- Content Column -->
+            <div class="showcase-content">
+              <h2 class="showcase-title">Premium Restaurant &amp; Café Platform</h2>
+              <p class="showcase-lead">L'Atelier Gourmet &amp; Bistro — Seasonal Menus &amp; Instant Table Reservations</p>
+              <p class="showcase-desc">
+                An artisanal culinary web platform featuring categorized seasonal dining menus, dietary and allergen tags (vegan, gluten-free, chef's picks), sommelier pairings, and an instant table reservation system.
+              </p>
+
+              <!-- Key Engineering Capabilities -->
+              <div class="showcase-caps">
+                <div class="showcase-caps-title">Key Capabilities</div>
+                <ul class="project-features-list">
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Categorized Menu Tabs (Starters, Main Courses, Desserts &amp; Cellar)</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Dietary &amp; Allergen Tags (Vegan, Gluten-Free, Organic, Chef Pick)</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Working Instant Table Reservation Widget with Guest Size &amp; Time Slots</span>
+                  </li>
+                  <li class="project-feature-item">
+                    <span class="feature-bullet-icon">✓</span>
+                    <span>Executive Chef's Story, Operating Hours, Sommelier Notes &amp; Location Map</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tech Stack Tags -->
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+                <span class="tech-pill">Reservation Engine</span>
+                <span class="tech-pill">Menu Filter</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="showcase-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-6')" aria-label="Launch Working Demo for Restaurant">
+                  <span>Launch Working Demo</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-6')" aria-label="View Technical Details for Restaurant">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Visual / Mockup Column -->
+            <div class="showcase-visual">
+              <div class="mockup-window" onclick="openDemo('project-6')" role="button" tabindex="0" title="Click to launch interactive demo" onkeydown="if(event.key==='Enter') openDemo('project-6')">
+                <div class="mockup-bar">
+                  <div class="mockup-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                  </div>
+                  <div class="mockup-address">
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <span>demo.hakasolutions.com/latelier-bistro</span>
+                  </div>
+                  <div class="mockup-status">LIVE</div>
+                </div>
+                <div class="mockup-screen">
+                  <img 
+                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" 
+                    alt="Upscale Bistro Restaurant Atmosphere Dining Room and Modern Table Setting" 
+                    class="mockup-img"
+                    loading="lazy"
+                    onerror="this.parentElement.classList.add('has-fallback')"
+                  >
+                  <div class="project-thumb-fallback" aria-hidden="true">
+                    <div class="fallback-icon">🍽️</div>
+                    <strong style="color:#FFFFFF;">L'Atelier Gourmet &amp; Bistro</strong>
+                    <span style="font-size: 0.85rem; color: var(--color-accent-cyan);">Culinary Platform Concept</span>
+                  </div>
+                  <div class="mockup-hover-overlay">
+                    <div class="launch-pill">
+                      <span>Launch Live Demo</span>
+                      <span class="flip-rtl">↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1632,7 +2302,7 @@
           title: 'TS Landscaping & Construction Site',
           category: 'Construction',
           badge: 'Frontend Demo',
-          image: 'https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1200&q=80',
+          image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
           desc: 'A robust, commercial outdoor contracting platform showcasing luxury garden design, architectural stone masonry, excavation services, and an interactive instant cost estimation tool.',
           features: [
             'Before & After garden transformation visualizer',
@@ -1660,7 +2330,7 @@
                   </nav>
                 </header>
 
-                <section style="background:linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.7)), url('https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1600&q=80') center/cover; padding:80px 24px; color:#ffffff; text-align:center;">
+                <section style="background:linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.7)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=80') center/cover; padding:80px 24px; color:#ffffff; text-align:center;">
                   <span style="background:#059669; color:#fff; font-size:12px; font-weight:700; padding:4px 12px; border-radius:999px; text-transform:uppercase;">Contractor Excellence</span>
                   <h1 style="font-size:clamp(30px, 4.5vw, 50px); font-weight:800; margin:16px 0;">Transforming Outdoor Living Spaces</h1>
                   <p style="max-width:600px; margin:0 auto 24px; color:#e2e8f0; font-size:16px;">
@@ -2085,31 +2755,104 @@
       };
 
       /* ------------------------------------------------------------------------
-         2. CATEGORY FILTERING INTERACTION
+         2. CATEGORY FILTERING & SMOOTH SECTION NAVIGATION (6 DISTINCT SECTIONS)
          ------------------------------------------------------------------------ */
       const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
-      const projectCards = document.querySelectorAll('.project-card');
+      const showcaseSections = document.querySelectorAll('.portfolio-showcase-section');
+      const filterNoticeBar = document.getElementById('filterNoticeBar');
+      const filterCategoryLabel = document.getElementById('filterCategoryLabel');
 
-      filterButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          filterButtons.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
+      const categoryLabels = {
+        'all': 'All Projects',
+        'ecommerce': 'E-Commerce Showcase',
+        'construction': 'Construction & Landscaping',
+        'healthcare': 'Healthcare Clinic Network',
+        'events': 'Grand Event & Conference Hub',
+        'realestate': 'Real Estate Property Portal',
+        'restaurant': 'Restaurant & Café Platform'
+      };
 
-          const category = btn.getAttribute('data-category');
+      let activeMode = 'all';
 
-          projectCards.forEach(card => {
-            if (category === 'all' || card.getAttribute('data-category') === category) {
-              card.classList.remove('is-hidden');
+      function updateCategoryView(category, shouldScroll = true) {
+        activeMode = category;
+
+        filterButtons.forEach(b => {
+          const match = b.getAttribute('data-category') === category;
+          b.classList.toggle('active', match);
+          b.setAttribute('aria-selected', match ? 'true' : 'false');
+        });
+
+        if (category === 'all') {
+          showcaseSections.forEach(sec => sec.classList.remove('is-hidden'));
+          if (filterNoticeBar) filterNoticeBar.classList.remove('is-visible');
+
+          if (shouldScroll) {
+            const firstSec = document.querySelector('.portfolio-showcase-section');
+            if (firstSec) {
+              const yOffset = -140;
+              const y = firstSec.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+            }
+          }
+        } else {
+          showcaseSections.forEach(sec => {
+            if (sec.getAttribute('data-category') === category) {
+              sec.classList.remove('is-hidden');
             } else {
-              card.classList.add('is-hidden');
+              sec.classList.add('is-hidden');
             }
           });
+
+          if (filterNoticeBar && filterCategoryLabel) {
+            filterCategoryLabel.textContent = categoryLabels[category] || category;
+            filterNoticeBar.classList.add('is-visible');
+          }
+
+          if (shouldScroll) {
+            const targetSec = document.querySelector(`.portfolio-showcase-section[data-category="${category}"]`);
+            if (targetSec) {
+              const yOffset = -140;
+              const y = targetSec.getBoundingClientRect().top + window.pageYOffset + yOffset;
+              window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+            }
+          }
+        }
+      }
+
+      window.showAllProjects = function() {
+        updateCategoryView('all', true);
+      };
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const cat = btn.getAttribute('data-category');
+          updateCategoryView(cat, true);
         });
       });
+
+      // Scroll Spy when all 6 sections are visible
+      if ('IntersectionObserver' in window) {
+        const spyObserver = new IntersectionObserver((entries) => {
+          if (activeMode !== 'all') return;
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const cat = entry.target.getAttribute('data-category');
+              const targetBtn = document.querySelector(`.portfolio-filter-btn[data-category="${cat}"]`);
+              if (targetBtn && activeMode === 'all') {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                targetBtn.classList.add('active');
+              }
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: '-35% 0px -45% 0px',
+          threshold: 0
+        });
+
+        showcaseSections.forEach(sec => spyObserver.observe(sec));
+      }
 
       /* ------------------------------------------------------------------------
          3. VIEW DETAILS MODAL CONTROLLER
