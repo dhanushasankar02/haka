@@ -1,0 +1,2357 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — HAKA SOLUTIONS | Turning Ideas Into Digital Experiences</title>
+  <meta name="description" content="Explore HAKA SOLUTIONS' collection of creative website concepts, digital experiences, and frontend projects built to demonstrate modern design, usability, and responsive development.">
+
+  <!-- Google Fonts: Inter & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Shared Primary Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Portfolio Filter & Gallery Custom Styles */
+    .portfolio-filter-wrapper {
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: center;
+    }
+    .portfolio-filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+    }
+    .portfolio-filter-btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-text-nav);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition-standard);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .portfolio-filter-btn .filter-count {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-muted);
+      transition: all var(--transition-standard);
+    }
+    .portfolio-filter-btn:hover {
+      color: var(--color-text-heading);
+      background: var(--btn-control-bg);
+      border-color: var(--border-subtle);
+    }
+    .portfolio-filter-btn.active {
+      color: #FFFFFF;
+      background: var(--color-accent-blue);
+      border-color: var(--color-accent-blue);
+      box-shadow: 0 4px 16px var(--color-accent-blue-glow);
+    }
+    .portfolio-filter-btn.active .filter-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    /* Project Cards Grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.25rem;
+      margin-bottom: 2rem;
+    }
+    .project-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), 
+                  box-shadow 0.3s cubic-bezier(0.2, 0, 0, 1), 
+                  border-color 0.3s ease;
+      position: relative;
+    }
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-glass);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.4), 0 0 1px rgba(72, 217, 237, 0.3);
+    }
+    .project-card.is-hidden {
+      display: none !important;
+    }
+
+    /* Card Image Container */
+    .project-thumb-box {
+      position: relative;
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      background: #0f1f38;
+    }
+    .project-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .project-card:hover .project-thumb-img {
+      transform: scale(1.06);
+    }
+    .project-thumb-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1.5rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(14, 30, 56, 0.95), rgba(8, 20, 38, 0.98));
+    }
+    .has-fallback .project-thumb-img {
+      display: none;
+    }
+    .has-fallback .project-thumb-fallback {
+      display: flex;
+    }
+    .fallback-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-overlay-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(8, 20, 38, 0.88);
+      backdrop-filter: blur(8px);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-accent-cyan);
+      border: 1px solid rgba(72, 217, 237, 0.35);
+      z-index: 2;
+    }
+    .project-concept-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #CBD5E1;
+      border: 1px solid var(--border-subtle);
+      z-index: 2;
+    }
+
+    /* Card Body */
+    .project-card-body {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .project-card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--color-text-heading);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+      font-family: var(--font-heading);
+    }
+    .project-card-desc {
+      font-size: 0.94rem;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+    
+    /* Feature Bullets */
+    .project-features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .project-feature-item {
+      font-size: 0.85rem;
+      color: var(--color-text-nav);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .feature-bullet-icon {
+      color: var(--color-accent-cyan);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* Tech Badges */
+    .project-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .tech-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--color-text-muted);
+      border: 1px solid var(--border-subtle);
+    }
+    
+    /* Card Action Buttons */
+    .project-card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .btn-view-project {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: var(--color-accent-blue);
+      color: #FFFFFF;
+      text-decoration: none;
+      transition: all var(--transition-standard);
+      border: 1px solid var(--color-accent-blue);
+      cursor: pointer;
+    }
+    .btn-view-project:hover {
+      background: var(--color-accent-blue-hover);
+      box-shadow: 0 4px 14px var(--color-accent-blue-glow);
+    }
+    .btn-view-details {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: var(--btn-control-bg);
+      color: var(--color-text-heading);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+    .btn-view-details:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--border-glass);
+      color: var(--color-accent-cyan);
+    }
+
+    /* Modal Styles */
+    .details-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 13, 26, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .details-modal-overlay.is-active {
+      display: flex;
+      opacity: 1;
+    }
+    .details-modal-box {
+      background: var(--color-bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      position: relative;
+      animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px) scale(0.96); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .details-modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--btn-control-bg);
+      border: 1px solid var(--border-subtle);
+      color: var(--color-text-nav);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+    .details-modal-close-btn:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border-color: #ef4444;
+    }
+    .details-modal-hero-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    .details-modal-content {
+      padding: 2rem;
+    }
+    .details-modal-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Fullscreen Live Demo Viewer */
+    .demo-fullscreen-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--color-bg-primary);
+      z-index: 10000;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .demo-fullscreen-overlay.is-active {
+      display: flex;
+    }
+    
+    .demo-top-bar {
+      height: 60px;
+      background: rgba(8, 20, 38, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      flex-shrink: 0;
+      z-index: 10001;
+    }
+    .demo-top-left {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .demo-btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: var(--btn-control-bg);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+    .demo-btn-back:hover {
+      background: var(--color-accent-blue);
+      border-color: var(--color-accent-blue);
+    }
+    .demo-project-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .demo-title-text {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-text-heading);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 280px;
+    }
+    .demo-industry-pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(52, 120, 246, 0.2);
+      color: var(--color-accent-cyan);
+      font-weight: 600;
+    }
+    
+    .demo-viewport-controls {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 3px;
+      gap: 3px;
+    }
+    .viewport-btn {
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      background: transparent;
+      border: none;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .viewport-btn:hover {
+      color: var(--color-text-heading);
+    }
+    .viewport-btn.active {
+      background: var(--color-accent-blue);
+      color: #FFFFFF;
+    }
+
+    .demo-viewport-stage {
+      flex-grow: 1;
+      overflow-y: auto;
+      background: #060d17;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+      transition: padding 0.3s ease;
+    }
+    .demo-device-frame {
+      width: 100%;
+      min-height: 100%;
+      background: #ffffff;
+      color: #1e293b;
+      transition: max-width 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .demo-viewport-stage.view-tablet {
+      padding: 1.5rem 0;
+    }
+    .demo-viewport-stage.view-tablet .demo-device-frame {
+      max-width: 768px;
+      border-radius: 16px;
+      box-shadow: 0 0 0 8px #1e293b, 0 20px 50px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+    }
+    .demo-viewport-stage.view-mobile {
+      padding: 1.5rem 0;
+    }
+    .demo-viewport-stage.view-mobile .demo-device-frame {
+      max-width: 390px;
+      border-radius: 28px;
+      box-shadow: 0 0 0 10px #1e293b, 0 20px 50px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+    }
+
+    .demo-body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      color: #1e293b;
+      background: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      .demo-viewport-controls {
+        display: none;
+      }
+      .demo-title-text {
+        max-width: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HAKA SOLUTIONS NAVIGATION BAR COMPONENT
+       ========================================================================== -->
+  <header class="haka-header" id="hakaHeader">
+    <div class="haka-container">
+
+      <!-- Brand Logo -->
+      <a href="index.html" class="haka-logo-link" aria-label="HAKA SOLUTIONS Homepage">
+        <div class="logo-brand-mark" aria-hidden="true">
+          <img src="images/logo-icon.png" alt="HAKA SOLUTIONS Logo" class="logo-brand-icon">
+        </div>
+        <div class="logo-text-group">
+          <div class="logo-main">HAKA<span class="logo-dot">.</span></div>
+          <span class="logo-subtitle">SOLUTIONS</span>
+        </div>
+      </a>
+
+      <!-- Navigation Menu (Portfolio is Active) -->
+      <nav class="haka-nav" id="primaryNav" role="navigation" aria-label="Primary Navigation">
+        <ul class="haka-nav-list" role="menubar">
+          <li class="haka-nav-item" role="none">
+            <a href="index.html" class="haka-nav-link" role="menuitem">Home</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="about.html" class="haka-nav-link" role="menuitem">About Us</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="services.html" class="haka-nav-link" role="menuitem">Services</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="solutions.html" class="haka-nav-link" role="menuitem">Solutions</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="technology.html" class="haka-nav-link" role="menuitem">Technology</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="portfolio.html" class="haka-nav-link active" role="menuitem" aria-current="page">Portfolio</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="careers.html" class="haka-nav-link" role="menuitem">Careers</a>
+          </li>
+          <li class="haka-nav-item" role="none">
+            <a href="contact.html" class="haka-nav-link" role="menuitem">Contact</a>
+          </li>
+        </ul>
+
+        <!-- Mobile Drawer Preferences / Controls -->
+        <div class="haka-nav-mobile-controls">
+          <button 
+            type="button" 
+            class="haka-control-btn theme-toggle-btn" 
+            onclick="toggleTheme()"
+            aria-label="Toggle dark and light mode"
+            title="Toggle Dark / Light Theme"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="themeLabel">Light</span>
+          </button>
+
+          <button 
+            type="button" 
+            class="haka-control-btn rtl-toggle-btn" 
+            onclick="toggleRTL()"
+            aria-label="Toggle text direction between LTR and RTL"
+            title="Toggle RTL / LTR Direction"
+          >
+            <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="17 11 21 7 17 3"></polyline>
+              <line x1="21" y1="7" x2="9" y2="7"></line>
+              <polyline points="7 21 3 17 7 13"></polyline>
+              <line x1="3" y1="17" x2="15" y2="17"></line>
+            </svg>
+            <span class="rtlLabel">RTL</span>
+          </button>
+        </div>
+
+        <!-- Mobile Drawer Action Buttons -->
+        <div class="haka-nav-mobile-cta">
+          <a href="contact.html" class="haka-nav-btn-primary" aria-label="Contact HAKA Solutions">
+            <span>Let's Talk</span>
+            <span class="flip-rtl cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- Right Actions: CTA Buttons & Controls -->
+      <div class="haka-actions-group">
+        <div class="haka-cta-group">
+          <a href="contact.html" class="haka-nav-btn-primary" aria-label="Contact HAKA Solutions">
+            <span>Let's Talk</span>
+            <span class="flip-rtl cta-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="haka-controls-group">
+          <!-- Theme Toggle -->
+          <button 
+            type="button" 
+            class="haka-control-btn theme-toggle-btn" 
+            id="themeToggleBtn"
+            onclick="toggleTheme()"
+            aria-label="Toggle dark and light mode"
+            title="Toggle Dark / Light Theme"
+          >
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <span class="themeLabel" id="themeLabel">Light</span>
+          </button>
+
+          <!-- RTL Direction Toggle -->
+          <button 
+            type="button" 
+            class="haka-control-btn rtl-toggle-btn" 
+            id="rtlToggleBtn"
+            onclick="toggleRTL()"
+            aria-label="Toggle text direction between LTR and RTL"
+            title="Toggle RTL / LTR Direction"
+          >
+            <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="17 11 21 7 17 3"></polyline>
+              <line x1="21" y1="7" x2="9" y2="7"></line>
+              <polyline points="7 21 3 17 7 13"></polyline>
+              <line x1="3" y1="17" x2="15" y2="17"></line>
+            </svg>
+            <span class="rtlLabel" id="rtlLabel">RTL</span>
+          </button>
+        </div>
+
+        <!-- Accessible Hamburger Toggle Button (Mobile) -->
+        <button 
+          type="button" 
+          class="haka-hamburger-btn" 
+          id="hamburgerBtn" 
+          aria-expanded="false" 
+          aria-controls="primaryNav" 
+          aria-label="Toggle navigation menu"
+        >
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Overlay Backdrop -->
+  <div class="haka-mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main>
+
+    <!-- ==========================================================================
+         HERO SECTION (MATCHES INDEX.HTML ARCHITECTURE EXACTLY)
+         ========================================================================== -->
+    <section class="hero-section" id="hero" aria-label="Portfolio Introduction">
+      <div class="hero-bg-glow-blue" aria-hidden="true"></div>
+      <div class="hero-bg-glow-cyan" aria-hidden="true"></div>
+      <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-container">
+        
+        <!-- Left Column: Copy & Dual Action Buttons -->
+        <div class="hero-content">
+          <div class="hero-pill-badge reveal-item">
+            <span class="pulse-dot"></span>
+            OUR PORTFOLIO
+          </div>
+
+          <h1 class="hero-headline reveal-item delay-1">
+            Turning Ideas Into <br class="desktop-break">
+            <span class="gradient-text">Digital Experiences</span>
+          </h1>
+
+          <p class="hero-supporting-text reveal-item delay-2">
+            Explore our collection of creative website concepts, digital experiences, and frontend projects built to demonstrate modern design, usability, and responsive development.
+          </p>
+
+          <div class="hero-cta-group reveal-item delay-3">
+            <a href="#portfolio-gallery" class="btn-primary-gradient">
+              Explore Projects
+              <span class="btn-arrow flip-rtl" aria-hidden="true">↓</span>
+            </a>
+            <a href="contact.html" class="btn-secondary-outline">
+              Discuss Your Project
+              <span class="btn-arrow flip-rtl" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Animated Glass Dashboard Visual (Same as index.html) -->
+        <div class="hero-visual-wrapper reveal-item delay-2" aria-hidden="true">
+          <div class="visual-ambient-circle"></div>
+
+          <!-- Central Glassmorphism Dashboard -->
+          <div class="glass-dashboard-card">
+            <div class="card-top-bar">
+              <div class="card-status-badge">
+                <span class="live-dot"></span>
+                Portfolio Showcase Live
+              </div>
+              <span class="card-meta-tag">6 CONCEPTS ONLINE</span>
+            </div>
+
+            <div class="metric-row">
+              <span class="metric-title">Frontend Architecture</span>
+              <span class="metric-value">100<span>% Responsive</span></span>
+            </div>
+
+            <svg class="dashboard-chart" viewBox="0 0 320 65" fill="none">
+              <defs>
+                <linearGradient id="chartGradientPort" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#3478F6" />
+                  <stop offset="60%" stop-color="#48D9ED" />
+                  <stop offset="100%" stop-color="#3478F6" />
+                </linearGradient>
+                <linearGradient id="fillGradientPort" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(72, 217, 237, 0.3)" />
+                  <stop offset="100%" stop-color="rgba(52, 120, 246, 0.0)" />
+                </linearGradient>
+              </defs>
+              <path d="M0,52 Q40,48 80,32 T160,38 T240,16 T320,24 L320,65 L0,65 Z" fill="url(#fillGradientPort)" />
+              <path d="M0,52 Q40,48 80,32 T160,38 T240,16 T320,24" stroke="url(#chartGradientPort)" stroke-width="3" stroke-linecap="round" fill="none" />
+              <circle cx="80" cy="32" r="4" fill="#48D9ED" />
+              <circle cx="160" cy="38" r="4" fill="#3478F6" />
+              <circle cx="240" cy="16" r="4" fill="#48D9ED" />
+            </svg>
+
+            <div class="dashboard-footer" style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--color-text-muted);">
+              <span>Tech: <strong style="color: var(--color-accent-cyan);">Vanilla JS &amp; CSS</strong></span>
+              <span>Performance: <strong style="color: var(--color-accent-cyan);">60 FPS</strong></span>
+            </div>
+          </div>
+
+          <!-- Floating Micro Card 1: E-Commerce -->
+          <div class="floating-card card-data-analytics">
+            <div class="f-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </div>
+            <div class="f-card-info">
+              <span class="f-card-label">E-Commerce</span>
+              <span class="f-card-desc">Luxury Fashion Boutique</span>
+            </div>
+          </div>
+
+          <!-- Floating Micro Card 2: Healthcare -->
+          <div class="floating-card card-automation">
+            <div class="f-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <div class="f-card-info">
+              <span class="f-card-label">Healthcare Hub</span>
+              <span class="f-card-desc">Provider Clinic Network</span>
+            </div>
+          </div>
+
+          <!-- Floating Micro Card 3: Construction -->
+          <div class="floating-card card-cloud">
+            <div class="f-icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div class="f-card-info">
+              <span class="f-card-label">Construction</span>
+              <span class="f-card-desc">TS Landscaping &amp; Build</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ALL SIX PROJECTS GALLERY SECTION
+         ========================================================================== -->
+    <section class="intro-section" id="portfolio-gallery" style="padding: 4.5rem 0 3.5rem;">
+      <div class="container">
+
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 2.5rem;">
+          <span class="section-eyebrow cyan-accent reveal-item">FEATURED GALLERY</span>
+          <h2 class="section-title reveal-item delay-1">Six Distinct Industry Concepts</h2>
+          <p class="section-subtitle reveal-item delay-2">
+            Each concept represents a dedicated frontend project with industry-specific design, imagery, and interactive vanilla JavaScript functionality.
+          </p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="portfolio-filter-wrapper">
+          <div class="portfolio-filter-tabs" role="tablist" aria-label="Portfolio Category Filters">
+            <button type="button" class="portfolio-filter-btn active" data-category="all" role="tab" aria-selected="true">
+              <span>All Projects</span>
+              <span class="filter-count">6</span>
+            </button>
+            <button type="button" class="portfolio-filter-btn" data-category="ecommerce" role="tab" aria-selected="false">
+              <span>E-Commerce</span>
+              <span class="filter-count">1</span>
+            </button>
+            <button type="button" class="portfolio-filter-btn" data-category="construction" role="tab" aria-selected="false">
+              <span>Construction</span>
+              <span class="filter-count">1</span>
+            </button>
+            <button type="button" class="portfolio-filter-btn" data-category="healthcare" role="tab" aria-selected="false">
+              <span>Healthcare</span>
+              <span class="filter-count">1</span>
+            </button>
+            <button type="button" class="portfolio-filter-btn" data-category="events" role="tab" aria-selected="false">
+              <span>Events</span>
+              <span class="filter-count">1</span>
+            </button>
+            <button type="button" class="portfolio-filter-btn" data-category="realestate" role="tab" aria-selected="false">
+              <span>Real Estate</span>
+              <span class="filter-count">1</span>
+            </button>
+            <button type="button" class="portfolio-filter-btn" data-category="restaurant" role="tab" aria-selected="false">
+              <span>Restaurant &amp; Café</span>
+              <span class="filter-count">1</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Six Portfolio Cards -->
+        <div class="portfolio-grid" id="portfolioGrid">
+
+          <!-- PROJECT 1: LUXURY FASHION E-COMMERCE SHOWCASE -->
+          <article class="project-card reveal-item" data-category="ecommerce" data-id="project-1">
+            <div class="project-thumb-box">
+              <span class="project-overlay-badge">E-Commerce</span>
+              <span class="project-concept-tag">Concept Project</span>
+              <img 
+                src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80" 
+                alt="Luxury Fashion E-Commerce Model Wearing Designer Apparel" 
+                class="project-thumb-img"
+                loading="lazy"
+                onerror="this.parentElement.classList.add('has-fallback')"
+              >
+              <div class="project-thumb-fallback" aria-hidden="true">
+                <div class="fallback-icon">👗</div>
+                <strong style="color:#FFFFFF;">Aura &amp; Atelier Fashion</strong>
+                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Luxury E-Commerce Concept</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h2 class="project-card-title">Luxury Fashion E-Commerce Showcase</h2>
+              <p class="project-card-desc">
+                A high-end clothing boutique concept featuring seasonal editorial collections, interactive product filters, zoom galleries, and a sleek slide-over shopping bag.
+              </p>
+              <ul class="project-features-list">
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Curated Product Gallery &amp; Lookbook</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Interactive Category &amp; Size Filters</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Slide-Over Shopping Bag with Live Totaling</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Responsive Luxury Editorial Navigation</span>
+                </li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-1')" aria-label="View Luxury Fashion Project Demo">
+                  <span>View Project</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-1')" aria-label="View Details for Luxury Fashion Project">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 2: TS LANDSCAPING & CONSTRUCTION SITE -->
+          <article class="project-card reveal-item" data-category="construction" data-id="project-2">
+            <div class="project-thumb-box">
+              <span class="project-overlay-badge">Construction</span>
+              <span class="project-concept-tag">Frontend Demo</span>
+              <img 
+                src="https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=900&q=80" 
+                alt="TS Landscaping Architectural Garden Transformation and Stone Paving" 
+                class="project-thumb-img"
+                loading="lazy"
+                onerror="this.parentElement.classList.add('has-fallback')"
+              >
+              <div class="project-thumb-fallback" aria-hidden="true">
+                <div class="fallback-icon">🏡</div>
+                <strong style="color:#FFFFFF;">TS Landscaping &amp; Construction</strong>
+                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Outdoor Transformation Showcase</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h2 class="project-card-title">TS Landscaping &amp; Construction Site</h2>
+              <p class="project-card-desc">
+                A professional landscaping and construction contractor site showcasing outdoor transformations, before/after galleries, an instant quote estimator, and inquiry workflow.
+              </p>
+              <ul class="project-features-list">
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Before &amp; After Transformation Showcase</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Instant Landscape Cost Estimator Widget</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Commercial &amp; Residential Services Breakdown</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Interactive Multi-Step Project Quote Form</span>
+                </li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-2')" aria-label="View TS Landscaping Project Demo">
+                  <span>View Project</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-2')" aria-label="View Details for TS Landscaping Project">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 3: HEALTHCARE PROVIDER CLINIC NETWORK -->
+          <article class="project-card reveal-item" data-category="healthcare" data-id="project-3">
+            <div class="project-thumb-box">
+              <span class="project-overlay-badge">Healthcare</span>
+              <span class="project-concept-tag">Frontend Demo</span>
+              <img 
+                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=900&q=80" 
+                alt="Modern Medical Clinic Consultation Room and Physician Office" 
+                class="project-thumb-img"
+                loading="lazy"
+                onerror="this.parentElement.classList.add('has-fallback')"
+              >
+              <div class="project-thumb-fallback" aria-hidden="true">
+                <div class="fallback-icon">🩺</div>
+                <strong style="color:#FFFFFF;">Apex Clinic Network</strong>
+                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Healthcare Provider Concept</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h2 class="project-card-title">Healthcare Provider Clinic Network</h2>
+              <p class="project-card-desc">
+                A clean, reassuring clinic network platform featuring doctor specialty lookups, multi-branch facility directories, and an interactive appointment scheduling wizard.
+              </p>
+              <ul class="project-features-list">
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Specialist &amp; Doctor Directory with Filters</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Interactive 3-Step Appointment Booking UI</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Regional Clinic Branches &amp; Hours Locator</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Instant Booking Feedback (Demo Mode)</span>
+                </li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-3')" aria-label="View Healthcare Clinic Project Demo">
+                  <span>View Project</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-3')" aria-label="View Details for Healthcare Clinic Project">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 4: GRAND EVENT & CONFERENCE HUB -->
+          <article class="project-card reveal-item" data-category="events" data-id="project-4">
+            <div class="project-thumb-box">
+              <span class="project-overlay-badge">Events</span>
+              <span class="project-concept-tag">Concept Project</span>
+              <img 
+                src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80" 
+                alt="Corporate Grand Auditorium Event Stage with Speakers and Attendees" 
+                class="project-thumb-img"
+                loading="lazy"
+                onerror="this.parentElement.classList.add('has-fallback')"
+              >
+              <div class="project-thumb-fallback" aria-hidden="true">
+                <div class="fallback-icon">🎙️</div>
+                <strong style="color:#FFFFFF;">Nexus Global Summit 2026</strong>
+                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Grand Event &amp; Conference Hub</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h2 class="project-card-title">Grand Event &amp; Conference Hub</h2>
+              <p class="project-card-desc">
+                An energetic summit web application featuring a live countdown timer, interactive multi-track daily agenda, keynote speaker bios, and pass registration.
+              </p>
+              <ul class="project-features-list">
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Live Event Countdown Clock &amp; Key Stats</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Interactive 3-Day Agenda &amp; Track Switcher</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Keynote Speaker Directory &amp; Session Topics</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Interactive Pass Tier Selector &amp; Registration</span>
+                </li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-4')" aria-label="View Conference Hub Project Demo">
+                  <span>View Project</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-4')" aria-label="View Details for Conference Hub Project">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 5: REAL ESTATE PROPERTY PORTAL -->
+          <article class="project-card reveal-item" data-category="realestate" data-id="project-5">
+            <div class="project-thumb-box">
+              <span class="project-overlay-badge">Real Estate</span>
+              <span class="project-concept-tag">Frontend Demo</span>
+              <img 
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" 
+                alt="Contemporary Luxury Home Exterior with Architectural Lighting and Pool" 
+                class="project-thumb-img"
+                loading="lazy"
+                onerror="this.parentElement.classList.add('has-fallback')"
+              >
+              <div class="project-thumb-fallback" aria-hidden="true">
+                <div class="fallback-icon">🏙️</div>
+                <strong style="color:#FFFFFF;">Valley &amp; Vista Real Estate</strong>
+                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Property Discovery Portal</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h2 class="project-card-title">Real Estate Property Portal</h2>
+              <p class="project-card-desc">
+                A contemporary property portal for residential and commercial spaces, featuring real-time property type filtering, dynamic favorite saving, and tour requests.
+              </p>
+              <ul class="project-features-list">
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Real-Time Property Type &amp; Price Filters</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Interactive Save to Favorites Heart Counter</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Comprehensive Specs (Bedrooms, Baths, SqFt)</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Schedule Private In-Person Viewing Modal</span>
+                </li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-5')" aria-label="View Real Estate Project Demo">
+                  <span>View Project</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-5')" aria-label="View Details for Real Estate Project">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 6: PREMIUM RESTAURANT & CAFÉ PLATFORM -->
+          <article class="project-card reveal-item" data-category="restaurant" data-id="project-6">
+            <div class="project-thumb-box">
+              <span class="project-overlay-badge">Restaurant &amp; Café</span>
+              <span class="project-concept-tag">Frontend Demo</span>
+              <img 
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80" 
+                alt="Upscale Bistro Restaurant Atmosphere Dining Room and Modern Table Setting" 
+                class="project-thumb-img"
+                loading="lazy"
+                onerror="this.parentElement.classList.add('has-fallback')"
+              >
+              <div class="project-thumb-fallback" aria-hidden="true">
+                <div class="fallback-icon">🍽️</div>
+                <strong style="color:#FFFFFF;">L'Atelier Gourmet &amp; Bistro</strong>
+                <span style="font-size: 0.8rem; color: var(--color-accent-cyan);">Culinary Platform Concept</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <h2 class="project-card-title">Premium Restaurant &amp; Café Platform</h2>
+              <p class="project-card-desc">
+                An artisanal culinary web platform featuring categorized seasonal dining menus, dietary and allergen tags (vegan, gluten-free), and an instant table reservation system.
+              </p>
+              <ul class="project-features-list">
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Categorized Menu Tabs (Starters, Mains, Desserts)</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Dietary Tags (Vegan, Gluten-Free, Chef Pick)</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Working Instant Table Reservation Widget</span>
+                </li>
+                <li class="project-feature-item">
+                  <span class="feature-bullet-icon">✓</span>
+                  <span>Chef's Story, Operating Hours &amp; Location</span>
+                </li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Vanilla JavaScript</span>
+              </div>
+              <div class="project-card-actions">
+                <button type="button" class="btn-view-project" onclick="openDemo('project-6')" aria-label="View Restaurant Project Demo">
+                  <span>View Project</span>
+                  <span class="flip-rtl">→</span>
+                </button>
+                <button type="button" class="btn-view-details" onclick="openDetailsModal('project-6')" aria-label="View Details for Restaurant Project">
+                  <span>View Details</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         FINAL PORTFOLIO CALL TO ACTION (MATCHES INDEX.HTML EXACTLY)
+         ========================================================================== -->
+    <section class="intro-section" style="padding: 2rem 0 5rem;">
+      <div class="container">
+        <div class="final-cta-panel reveal-item delay-2">
+          <div class="cta-glow-backdrop" aria-hidden="true"></div>
+
+          <div class="cta-content-inner">
+            <h2 class="cta-title">Have a Project in Mind?</h2>
+            <p class="cta-desc">
+              Let's work together to create a digital experience that fits your business goals.
+            </p>
+
+            <div class="cta-buttons-wrap">
+              <a href="contact.html" class="btn-primary-gradient">
+                Start a Conversation <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+              <a href="services.html" class="btn-secondary-outline">
+                Explore Our Services <span class="flip-rtl" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       VIEW DETAILS MODAL
+       ========================================================================== -->
+  <div class="details-modal-overlay" id="detailsModal" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+    <div class="details-modal-box">
+      <button type="button" class="details-modal-close-btn" onclick="closeDetailsModal()" aria-label="Close Project Details Modal">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <img src="" alt="" id="modalProjectImg" class="details-modal-hero-img">
+
+      <div class="details-modal-content">
+        <div class="details-modal-meta">
+          <span class="project-overlay-badge" id="modalCategoryBadge" style="position:static;">Category</span>
+          <span class="project-concept-tag" id="modalStatusBadge" style="position:static;">Concept Project</span>
+        </div>
+
+        <h3 id="modalProjectTitle" style="font-size: 1.6rem; font-weight: 800; color: var(--color-text-heading); margin-bottom: 0.85rem; font-family: var(--font-heading);">
+          Project Title
+        </h3>
+
+        <p id="modalProjectDesc" style="color: var(--color-text-muted); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.98rem;">
+          Project overview description goes here.
+        </p>
+
+        <h4 style="font-size: 1rem; color: var(--color-text-heading); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+          Key Engineering Capabilities
+        </h4>
+        <ul id="modalFeaturesList" class="project-features-list" style="margin-bottom: 1.75rem;">
+          <!-- Injected dynamically -->
+        </ul>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); flex-wrap: wrap; gap: 1rem;">
+          <div id="modalTechStack" class="project-tech-stack" style="margin: 0; padding: 0; border: none;">
+            <span class="tech-pill">HTML5</span>
+            <span class="tech-pill">CSS3</span>
+            <span class="tech-pill">Vanilla JavaScript</span>
+          </div>
+          <button type="button" class="btn-view-project" id="modalLaunchDemoBtn">
+            <span>Launch Working Demo</span>
+            <span class="flip-rtl">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FULLSCREEN INTERACTIVE LIVE DEMO VIEWER
+       ========================================================================== -->
+  <div class="demo-fullscreen-overlay" id="demoFullscreenViewer" role="dialog" aria-modal="true" aria-label="Interactive Demo Viewer">
+    
+    <!-- Top Control Bar -->
+    <header class="demo-top-bar">
+      <div class="demo-top-left">
+        <button type="button" class="demo-btn-back" onclick="closeDemo()" title="Return to Portfolio Gallery">
+          <span class="flip-rtl">←</span>
+          <span>Back to Portfolio</span>
+        </button>
+        <div class="demo-project-badge-group">
+          <div class="demo-title-text" id="demoActiveTitle">Demo Project</div>
+          <span class="demo-industry-pill" id="demoActiveCategory">Concept Demo</span>
+        </div>
+      </div>
+
+      <!-- Device Viewport Switcher -->
+      <div class="demo-viewport-controls" aria-label="Device Viewport Switcher">
+        <button type="button" class="viewport-btn active" data-view="desktop" onclick="setDemoViewport('desktop')" title="Desktop View (100%)">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <span>Desktop</span>
+        </button>
+        <button type="button" class="viewport-btn" data-view="tablet" onclick="setDemoViewport('tablet')" title="Tablet View (768px)">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <span>Tablet</span>
+        </button>
+        <button type="button" class="viewport-btn" data-view="mobile" onclick="setDemoViewport('mobile')" title="Mobile View (390px)">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <span>Mobile</span>
+        </button>
+      </div>
+
+      <div style="display: flex; gap: 0.5rem; align-items: center;">
+        <button type="button" class="demo-btn-back" onclick="closeDemo()" style="padding: 0.45rem 0.75rem;">
+          <span>✕ Close</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Stage Area containing the live demo -->
+    <div class="demo-viewport-stage" id="demoStage">
+      <div class="demo-device-frame" id="demoFrameContainer">
+        <!-- The live demo HTML will be dynamically mounted here -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==========================================================================
+       HAKA SOLUTIONS FOOTER COMPONENT (IDENTICAL TO INDEX.HTML)
+       ========================================================================== -->
+  <footer class="haka-footer" role="contentinfo">
+    <div class="footer-glow-accent" aria-hidden="true"></div>
+    
+    <div class="container">
+      <div class="footer-top-grid">
+
+        <!-- Column 1: Brand Info & Socials -->
+        <div class="footer-brand-col">
+          <a href="index.html" class="haka-logo-link" aria-label="HAKA SOLUTIONS Homepage">
+            <div class="logo-brand-mark" aria-hidden="true">
+              <img src="images/logo-icon.png" alt="HAKA SOLUTIONS Logo" class="logo-brand-icon">
+            </div>
+            <div class="logo-text-group">
+              <div class="logo-main">HAKA<span class="logo-dot">.</span></div>
+              <span class="logo-subtitle">SOLUTIONS</span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Empowering modern enterprises with dependable technology architecture, digital operations, and business acceleration solutions.
+          </p>
+
+          <div class="footer-social-links" aria-label="Social media channels">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v8.37h-2.8V10.9M7.86 6.5a1.63 1.63 0 0 0-1.63 1.62c0 .9.73 1.63 1.63 1.63.9 0 1.63-.73 1.63-1.63 0-.9-.73-1.62-1.63-1.62Z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Navigation Topics -->
+        <div>
+          <h3 class="footer-col-title">Navigation</h3>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="services.html" class="footer-link">Services</a></li>
+            <li><a href="solutions.html" class="footer-link">Solutions</a></li>
+            <li><a href="technology.html" class="footer-link">Technology</a></li>
+            <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+            <li><a href="careers.html" class="footer-link">Careers</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Solutions -->
+        <div>
+          <h3 class="footer-col-title">Solutions</h3>
+          <ul class="footer-links-list">
+            <li><a href="solutions.html" class="footer-link">Digital Operations</a></li>
+            <li><a href="solutions.html" class="footer-link">Cloud Infrastructure</a></li>
+            <li><a href="solutions.html" class="footer-link">Intelligent Automation</a></li>
+            <li><a href="solutions.html" class="footer-link">Data Analytics</a></li>
+            <li><a href="solutions.html" class="footer-link">Enterprise Architecture</a></li>
+            <li><a href="solutions.html" class="footer-link">Workflow Optimization</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact / Connect -->
+        <div>
+          <h3 class="footer-col-title">Get in Touch</h3>
+          <div class="footer-contact-box">
+            <h4 class="footer-contact-title">Have a Project in Mind?</h4>
+            <p class="footer-contact-text">
+              Let's explore how HAKA SOLUTIONS can optimize your digital operations.
+            </p>
+            <a href="contact.html" class="footer-contact-link">
+              Connect With Our Team <span class="flip-rtl">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <div>
+          © 2026 HAKA SOLUTIONS. All rights reserved.
+        </div>
+
+        <ul class="footer-legal-links">
+          <li><a href="contact.html">Privacy Policy</a></li>
+          <li><a href="contact.html">Terms of Service</a></li>
+          <li><a href="contact.html">Security</a></li>
+        </ul>
+
+        <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Scroll back to top">
+          Back to Top ↑
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- External Script -->
+  <script src="js/script.js"></script>
+
+  <!-- ==========================================================================
+       PORTFOLIO & LIVE DEMOS CONTROLLER (JAVASCRIPT)
+       ========================================================================== -->
+  <script>
+    (function() {
+      'use strict';
+
+      /* ------------------------------------------------------------------------
+         1. PROJECT DATA REPOSITORY
+         ------------------------------------------------------------------------ */
+      const projectsData = {
+        'project-1': {
+          id: 'project-1',
+          title: 'Luxury Fashion E-Commerce Showcase',
+          category: 'E-Commerce',
+          badge: 'Concept Project',
+          image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1200&q=80',
+          desc: 'A premium apparel boutique concept designed to demonstrate an elegant fashion shopping experience. Featuring seasonal editorial lookbooks, fluid category & size filtering, interactive shopping bag drawer with price totaling, and checkout flow.',
+          features: [
+            'Curated Haute Couture Lookbook and Product Grid',
+            'Interactive Category Filter (All, Outerwear, Dresses, Knitwear, Accessories)',
+            'Slide-over Shopping Bag with live item quantity, price calculations, and promo code entry',
+            'Full Responsive Layout with Editorial Styling and subtle animations'
+          ],
+          renderDemo: function() {
+            return `
+              <div class="demo-body" style="background:#fafafa; color:#18181b;">
+                <div style="background:#18181b; color:#f4f4f5; text-align:center; padding:7px 14px; font-size:12px; letter-spacing:0.05em; font-weight:500;">
+                  COMPLIMENTARY WORLDWIDE WHITE-GLOVE DELIVERY ON ORDERS OVER $300
+                </div>
+
+                <header style="border-bottom:1px solid #e4e4e7; background:#ffffff; position:sticky; top:0; z-index:20;">
+                  <div style="max-width:1200px; margin:0 auto; padding:18px 24px; display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-family:serif; font-size:24px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;">
+                      AURA &amp; ATELIER
+                    </div>
+                    <nav style="display:flex; gap:20px; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;">
+                      <a href="#new" style="color:#18181b; text-decoration:none;">New Arrivals</a>
+                      <a href="#collections" style="color:#71717a; text-decoration:none;">Collections</a>
+                      <a href="#lookbook" style="color:#71717a; text-decoration:none;">Editorial</a>
+                    </nav>
+                    <div style="display:flex; gap:16px; align-items:center;">
+                      <button type="button" id="fashionCartBtn" style="position:relative; background:none; border:none; cursor:pointer; font-size:14px; font-weight:600;">
+                        BAG (<span id="cartCount">2</span>)
+                      </button>
+                    </div>
+                  </div>
+                </header>
+
+                <section style="background:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; padding:100px 24px; color:#ffffff; position:relative;">
+                  <div style="position:absolute; inset:0; background:linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2));"></div>
+                  <div style="position:relative; max-width:1200px; margin:0 auto;">
+                    <span style="font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#e4e4e7;">AUTUMN / WINTER 2026</span>
+                    <h1 style="font-family:serif; font-size:clamp(32px, 5vw, 56px); margin:12px 0 16px; max-width:600px; line-height:1.15;">
+                      Sculpted Elegance &amp; Timeless Silhouettes
+                    </h1>
+                    <p style="max-width:480px; font-size:15px; color:#d4d4d8; line-height:1.6; margin-bottom:24px;">
+                      Crafted from ethically sourced European virgin wool, brushed cashmere, and hand-finished mulberry silk.
+                    </p>
+                    <a href="#catalog" style="display:inline-block; background:#ffffff; color:#18181b; padding:12px 28px; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; border-radius:2px;">
+                      Explore Collection ↓
+                    </a>
+                  </div>
+                </section>
+
+                <section id="catalog" style="max-width:1200px; margin:0 auto; padding:60px 24px;">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:32px; flex-wrap:wrap; gap:16px;">
+                    <div>
+                      <span style="font-size:12px; font-weight:700; color:#a1a1aa; text-transform:uppercase; letter-spacing:0.1em;">Curated Selection</span>
+                      <h2 style="font-family:serif; font-size:28px; margin:4px 0 0;">Signature Garments</h2>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                      <button type="button" class="fashion-filter-btn" style="padding:6px 14px; border:1px solid #18181b; background:#18181b; color:#fff; border-radius:20px; font-size:12px; cursor:pointer;">All Pieces</button>
+                      <button type="button" class="fashion-filter-btn" style="padding:6px 14px; border:1px solid #e4e4e7; background:#fff; color:#71717a; border-radius:20px; font-size:12px; cursor:pointer;">Outerwear</button>
+                      <button type="button" class="fashion-filter-btn" style="padding:6px 14px; border:1px solid #e4e4e7; background:#fff; color:#71717a; border-radius:20px; font-size:12px; cursor:pointer;">Silk Dresses</button>
+                    </div>
+                  </div>
+
+                  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:28px;">
+                    <div style="background:#ffffff; border:1px solid #f4f4f5; border-radius:4px; overflow:hidden;">
+                      <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80" style="width:100%; height:320px; object-fit:cover;" alt="Structured Wool Trench Coat">
+                      <div style="padding:16px;">
+                        <span style="font-size:11px; text-transform:uppercase; color:#a1a1aa; font-weight:700;">Outerwear</span>
+                        <h3 style="font-size:16px; margin:4px 0 8px; font-weight:600;">Tailored Double-Breasted Trench</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+                          <span style="font-weight:700; font-size:16px;">$890</span>
+                          <button type="button" onclick="window.addFashionItem('Tailored Double-Breasted Trench', 890)" style="padding:8px 16px; background:#18181b; color:#fff; border:none; font-size:12px; font-weight:600; cursor:pointer; border-radius:2px;">Add to Bag</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="background:#ffffff; border:1px solid #f4f4f5; border-radius:4px; overflow:hidden;">
+                      <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80" style="width:100%; height:320px; object-fit:cover;" alt="Silk Bias-Cut Slip Dress">
+                      <div style="padding:16px;">
+                        <span style="font-size:11px; text-transform:uppercase; color:#a1a1aa; font-weight:700;">Evening Wear</span>
+                        <h3 style="font-size:16px; margin:4px 0 8px; font-weight:600;">Midnight Silk Bias Evening Gown</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+                          <span style="font-weight:700; font-size:16px;">$1,120</span>
+                          <button type="button" onclick="window.addFashionItem('Midnight Silk Bias Evening Gown', 1120)" style="padding:8px 16px; background:#18181b; color:#fff; border:none; font-size:12px; font-weight:600; cursor:pointer; border-radius:2px;">Add to Bag</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="background:#ffffff; border:1px solid #f4f4f5; border-radius:4px; overflow:hidden;">
+                      <img src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=600&q=80" style="width:100%; height:320px; object-fit:cover;" alt="Cashmere Turtleneck Knit">
+                      <div style="padding:16px;">
+                        <span style="font-size:11px; text-transform:uppercase; color:#a1a1aa; font-weight:700;">Knitwear</span>
+                        <h3 style="font-size:16px; margin:4px 0 8px; font-weight:600;">Brushed Mongolian Cashmere Knit</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px;">
+                          <span style="font-weight:700; font-size:16px;">$540</span>
+                          <button type="button" onclick="window.addFashionItem('Brushed Mongolian Cashmere Knit', 540)" style="padding:8px 16px; background:#18181b; color:#fff; border:none; font-size:12px; font-weight:600; cursor:pointer; border-radius:2px;">Add to Bag</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <div id="fashionCartDrawer" style="position:fixed; top:0; right:-420px; width:100%; max-width:400px; height:100vh; background:#ffffff; box-shadow:-10px 0 30px rgba(0,0,0,0.15); z-index:100; transition:right 0.3s ease; display:flex; flex-direction:column; padding:24px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e4e4e7; padding-bottom:16px;">
+                    <h3 style="margin:0; font-family:serif; font-size:20px;">Shopping Bag</h3>
+                    <button type="button" onclick="window.toggleFashionCart(false)" style="background:none; border:none; font-size:20px; cursor:pointer;">✕</button>
+                  </div>
+                  <div id="cartItemsList" style="flex-grow:1; overflow-y:auto; padding:16px 0; display:flex; flex-direction:column; gap:16px;">
+                    <div style="display:flex; justify-content:space-between; font-size:14px; border-bottom:1px solid #f4f4f5; padding-bottom:12px;">
+                      <div>
+                        <strong>Tailored Trench Coat</strong>
+                        <div style="color:#71717a; font-size:12px;">Size: M • Camel</div>
+                      </div>
+                      <span>$890</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; font-size:14px; border-bottom:1px solid #f4f4f5; padding-bottom:12px;">
+                      <div>
+                        <strong>Mongolian Cashmere Knit</strong>
+                        <div style="color:#71717a; font-size:12px;">Size: S • Ivory</div>
+                      </div>
+                      <span>$540</span>
+                    </div>
+                  </div>
+                  <div style="border-top:1px solid #e4e4e7; padding-top:16px;">
+                    <div style="display:flex; justify-content:space-between; font-weight:700; font-size:16px; margin-bottom:16px;">
+                      <span>Total</span>
+                      <span id="cartTotalPrice">$1,430</span>
+                    </div>
+                    <button type="button" onclick="alert('Checkout demo completed. This is a concept project.')" style="width:100%; padding:14px; background:#18181b; color:#fff; border:none; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; cursor:pointer; font-size:13px;">
+                      Proceed to Checkout →
+                    </button>
+                  </div>
+                </div>
+
+                <footer style="background:#18181b; color:#a1a1aa; padding:40px 24px; text-align:center; font-size:13px;">
+                  © 2026 AURA &amp; ATELIER. High Fashion Concept • Designed for HAKA SOLUTIONS Portfolio.
+                </footer>
+              </div>
+            `;
+          }
+        },
+
+        'project-2': {
+          id: 'project-2',
+          title: 'TS Landscaping & Construction Site',
+          category: 'Construction',
+          badge: 'Frontend Demo',
+          image: 'https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1200&q=80',
+          desc: 'A robust, commercial outdoor contracting platform showcasing luxury garden design, architectural stone masonry, excavation services, and an interactive instant cost estimation tool.',
+          features: [
+            'Before & After garden transformation visualizer',
+            'Interactive Landscape Cost Estimator (patio, turf, retaining walls)',
+            'Comprehensive equipment and architectural services catalog',
+            'Contractor enquiry form with project scope parameters'
+          ],
+          renderDemo: function() {
+            return `
+              <div class="demo-body" style="background:#f8fafc; color:#0f172a;">
+                <div style="background:#0f172a; color:#94a3b8; font-size:12px; padding:8px 24px; display:flex; justify-content:space-between; align-items:center;">
+                  <span>📍 Serving Greater Metropolitan &amp; Coastal Estates</span>
+                  <span>Direct Site Hotline: (800) 425-2832</span>
+                </div>
+
+                <header style="background:#ffffff; border-bottom:2px solid #e2e8f0; padding:16px 24px; display:flex; justify-content:space-between; align-items:center;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="width:32px; height:32px; background:#059669; border-radius:4px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:18px;">TS</div>
+                    <span style="font-size:18px; font-weight:800; letter-spacing:-0.01em;">TS LANDSCAPING &amp; BUILD</span>
+                  </div>
+                  <nav style="display:flex; gap:20px; font-size:14px; font-weight:600;">
+                    <a href="#services" style="color:#475569; text-decoration:none;">Services</a>
+                    <a href="#transformations" style="color:#475569; text-decoration:none;">Transformations</a>
+                    <a href="#estimator" style="color:#059669; text-decoration:none;">Cost Estimator</a>
+                  </nav>
+                </header>
+
+                <section style="background:linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.7)), url('https://images.unsplash.com/photo-1558904541-efa8c4a08931?auto=format&fit=crop&w=1600&q=80') center/cover; padding:80px 24px; color:#ffffff; text-align:center;">
+                  <span style="background:#059669; color:#fff; font-size:12px; font-weight:700; padding:4px 12px; border-radius:999px; text-transform:uppercase;">Contractor Excellence</span>
+                  <h1 style="font-size:clamp(30px, 4.5vw, 50px); font-weight:800; margin:16px 0;">Transforming Outdoor Living Spaces</h1>
+                  <p style="max-width:600px; margin:0 auto 24px; color:#e2e8f0; font-size:16px;">
+                    Specialized in porcelain stone paving, bespoke pergolas, drainage engineering, and precision garden redesign.
+                  </p>
+                  <a href="#estimator" style="background:#059669; color:#fff; padding:12px 28px; border-radius:6px; font-weight:700; text-decoration:none; display:inline-block;">Calculate Project Cost ↓</a>
+                </section>
+
+                <section id="estimator" style="max-width:900px; margin:40px auto; padding:32px; background:#ffffff; border-radius:12px; border:1px solid #cbd5e1; box-shadow:0 10px 25px rgba(0,0,0,0.05);">
+                  <div style="text-align:center; margin-bottom:24px;">
+                    <span style="color:#059669; font-weight:700; font-size:13px;">INSTANT ESTIMATE WIDGET</span>
+                    <h2 style="font-size:24px; font-weight:800; margin:6px 0;">Landscaping &amp; Paving Budget Calculator</h2>
+                  </div>
+
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+                    <div>
+                      <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Project Scope</label>
+                      <select id="tsProjectType" onchange="window.calcLandscapeCost()" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1; font-size:14px;">
+                        <option value="stone">Porcelain Patios &amp; Stonework ($85/sqm)</option>
+                        <option value="turf">Artificial &amp; Seeded Turf ($45/sqm)</option>
+                        <option value="deck">Hardwood Timber &amp; Composite Decking ($110/sqm)</option>
+                        <option value="complete">Complete Full Yard Transformation ($150/sqm)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Estimated Area: <span id="tsAreaVal">60</span> sq meters</label>
+                      <input type="range" id="tsAreaSlider" min="20" max="250" value="60" oninput="document.getElementById('tsAreaVal').textContent=this.value; window.calcLandscapeCost();" style="width:100%; margin-top:10px;">
+                    </div>
+                  </div>
+
+                  <div style="background:#f1f5f9; padding:20px; border-radius:8px; display:flex; justify-content:space-between; align-items:center; border-left:4px solid #059669;">
+                    <div>
+                      <div style="font-size:13px; color:#64748b; font-weight:600;">Estimated Project Investment</div>
+                      <div id="tsTotalCost" style="font-size:28px; font-weight:800; color:#059669;">$5,100 – $6,375</div>
+                    </div>
+                    <button type="button" onclick="alert('Thank you for requesting an on-site survey! Demo feedback only.')" style="background:#0f172a; color:#fff; border:none; padding:12px 20px; border-radius:6px; font-weight:700; font-size:14px; cursor:pointer;">
+                      Book Free Survey →
+                    </button>
+                  </div>
+                </section>
+
+                <footer style="background:#0f172a; color:#94a3b8; text-align:center; padding:30px; font-size:13px;">
+                  © 2026 TS Landscaping &amp; Construction. Frontend Demo • Built for HAKA SOLUTIONS Portfolio.
+                </footer>
+              </div>
+            `;
+          }
+        },
+
+        'project-3': {
+          id: 'project-3',
+          title: 'Healthcare Provider Clinic Network',
+          category: 'Healthcare',
+          badge: 'Frontend Demo',
+          image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80',
+          desc: 'A patient-friendly clinic network hub designed to streamline clinical access. Featuring physician profiles by medical discipline, clinic branch schedules, and an interactive 3-step appointment booking wizard.',
+          features: [
+            'Physician and specialist directory with discipline filters',
+            'Interactive 3-Step Appointment Booking Interface',
+            'Clinic facility locations, operating hours, and live triage status',
+            'Confidential patient confirmation simulation (zero real data collection)'
+          ],
+          renderDemo: function() {
+            return `
+              <div class="demo-body" style="background:#f8fafc; color:#0f172a;">
+                <div style="background:#0284c7; color:#fff; text-align:center; padding:8px 16px; font-size:13px; font-weight:600;">
+                  ⚡ All 4 Regional Clinics Open Today • Average Wait Time: 10 mins
+                </div>
+
+                <header style="background:#fff; border-bottom:1px solid #e2e8f0; padding:18px 24px; display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:20px; font-weight:800; color:#0369a1; display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:24px;">✚</span> APEX HEALTHCARE
+                  </div>
+                  <nav style="display:flex; gap:20px; font-size:14px; font-weight:600;">
+                    <a href="#specialties" style="color:#64748b; text-decoration:none;">Specialties</a>
+                    <a href="#doctors" style="color:#64748b; text-decoration:none;">Physicians</a>
+                    <a href="#booking" style="color:#0284c7; text-decoration:none;">Schedule Visit</a>
+                  </nav>
+                </header>
+
+                <section style="background:linear-gradient(135deg, #e0f2fe, #f0fdf4); padding:60px 24px; text-align:center;">
+                  <h1 style="font-size:clamp(28px, 4vw, 44px); font-weight:800; color:#0f172a; margin-bottom:12px;">
+                    Compassionate Care Built Around You
+                  </h1>
+                  <p style="max-width:580px; margin:0 auto 24px; color:#475569; font-size:16px;">
+                    Book accredited consultations with certified cardiologists, pediatricians, neurologists, and general practitioners.
+                  </p>
+                </section>
+
+                <section id="booking" style="max-width:840px; margin:40px auto; padding:32px; background:#fff; border-radius:12px; border:1px solid #e2e8f0; box-shadow:0 12px 30px rgba(0,0,0,0.06);">
+                  <div style="display:flex; gap:12px; border-bottom:1px solid #e2e8f0; padding-bottom:16px; margin-bottom:24px;">
+                    <div style="font-weight:700; color:#0284c7;">Step 1: Select Clinic &amp; Specialty</div>
+                    <span style="color:#cbd5e1;">›</span>
+                    <div style="font-weight:600; color:#64748b;">Step 2: Choose Date &amp; Time</div>
+                  </div>
+
+                  <form onsubmit="event.preventDefault(); window.confirmHealthcareBooking();">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+                      <div>
+                        <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Regional Clinic Location</label>
+                        <select id="healthClinic" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1; font-size:14px;">
+                          <option>Downtown Medical Tower (Main Branch)</option>
+                          <option>Westside Community Care Center</option>
+                          <option>North Summit Pediatric &amp; Family Clinic</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Medical Specialty</label>
+                        <select id="healthSpecialty" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1; font-size:14px;">
+                          <option>General Family Medicine (Dr. Sarah Chen, MD)</option>
+                          <option>Cardiology &amp; Heart Health (Dr. Robert Vance, MD)</option>
+                          <option>Pediatrics &amp; Child Wellness (Dr. Maya Patel, MD)</option>
+                          <option>Orthopedics &amp; Joint Health (Dr. Alex Weber, MD)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px;">
+                      <div>
+                        <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Preferred Consultation Date</label>
+                        <input type="date" value="2026-10-28" style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1; font-size:14px;">
+                      </div>
+                      <div>
+                        <label style="display:block; font-size:13px; font-weight:700; margin-bottom:6px;">Available Time Slot</label>
+                        <select style="width:100%; padding:10px; border-radius:6px; border:1px solid #cbd5e1; font-size:14px;">
+                          <option>09:30 AM (Morning Session)</option>
+                          <option>11:15 AM (Morning Session)</option>
+                          <option>02:00 PM (Afternoon Session)</option>
+                          <option>04:30 PM (Evening Session)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <button type="submit" style="width:100%; padding:14px; background:#0284c7; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:15px; cursor:pointer;">
+                      Confirm Consultation Booking →
+                    </button>
+                    <div style="font-size:12px; color:#94a3b8; text-align:center; margin-top:10px;">
+                      * Simulation Only: No real health data is stored or transmitted.
+                    </div>
+                  </form>
+                </section>
+
+                <footer style="background:#0f172a; color:#94a3b8; text-align:center; padding:30px; font-size:13px;">
+                  © 2026 Apex Healthcare Clinic Network. Frontend Demo • Built for HAKA SOLUTIONS Portfolio.
+                </footer>
+              </div>
+            `;
+          }
+        },
+
+        'project-4': {
+          id: 'project-4',
+          title: 'Grand Event & Conference Hub',
+          category: 'Events',
+          badge: 'Concept Project',
+          image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80',
+          desc: 'A dynamic convention web experience for tech congresses and corporate forums. Equipped with a real-time countdown timer, multi-track schedule filter, speaker showcases, and ticket tier reservation.',
+          features: [
+            'Live Countdown Timer ticking to event opening date',
+            'Interactive Multi-Track Agenda switcher (AI, Cloud, Leadership)',
+            'Keynote Speaker Directory with talk topics and bio popups',
+            'Interactive Ticket Pass tier selection and registration UI'
+          ],
+          renderDemo: function() {
+            return `
+              <div class="demo-body" style="background:#0b1329; color:#f8fafc;">
+                <div style="background:#1d4ed8; color:#fff; padding:8px 24px; font-size:12px; font-weight:700; letter-spacing:0.05em; display:flex; justify-content:space-between; align-items:center;">
+                  <span>OCTOBER 28–30, 2026 • METROPOLITAN CONVENTION CENTER</span>
+                  <span>EARLY BIRD PASSES OPEN</span>
+                </div>
+
+                <header style="padding:20px 24px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
+                  <div style="font-size:22px; font-weight:800; letter-spacing:-0.02em; color:#60a5fa;">
+                    NEXUS SUMMIT <span style="color:#38bdf8;">'26</span>
+                  </div>
+                  <nav style="display:flex; gap:20px; font-size:14px; font-weight:600;">
+                    <a href="#countdown" style="color:#cbd5e1; text-decoration:none;">Countdown</a>
+                    <a href="#agenda" style="color:#cbd5e1; text-decoration:none;">Schedule</a>
+                    <a href="#tickets" style="background:#3b82f6; color:#fff; padding:6px 16px; border-radius:999px; text-decoration:none;">Get Tickets</a>
+                  </nav>
+                </header>
+
+                <section id="countdown" style="padding:70px 24px; text-align:center; background:radial-gradient(circle at center, rgba(37,99,235,0.25) 0%, transparent 70%);">
+                  <span style="font-size:12px; font-weight:700; letter-spacing:0.15em; color:#38bdf8; text-transform:uppercase;">Global Technology Conference</span>
+                  <h1 style="font-size:clamp(32px, 5vw, 54px); font-weight:800; margin:16px 0; line-height:1.15;">
+                    The Future of Autonomous Engineering &amp; AI
+                  </h1>
+                  
+                  <div style="display:flex; justify-content:center; gap:16px; margin:32px 0;">
+                    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px 20px; min-width:80px;">
+                      <div id="eventDays" style="font-size:32px; font-weight:800; color:#60a5fa;">14</div>
+                      <div style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Days</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px 20px; min-width:80px;">
+                      <div id="eventHours" style="font-size:32px; font-weight:800; color:#60a5fa;">08</div>
+                      <div style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Hours</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px 20px; min-width:80px;">
+                      <div id="eventMins" style="font-size:32px; font-weight:800; color:#60a5fa;">42</div>
+                      <div style="font-size:11px; text-transform:uppercase; color:#94a3b8;">Minutes</div>
+                    </div>
+                  </div>
+                </section>
+
+                <section id="agenda" style="max-width:960px; margin:0 auto; padding:40px 24px;">
+                  <h2 style="font-size:26px; font-weight:800; text-align:center; margin-bottom:24px;">Summit Track Schedule</h2>
+                  <div style="display:flex; justify-content:center; gap:8px; margin-bottom:24px;">
+                    <button type="button" onclick="window.switchEventTrack('day1')" id="btnDay1" style="padding:8px 20px; border-radius:999px; background:#3b82f6; color:#fff; border:none; font-weight:700; cursor:pointer;">Day 1: AI &amp; Cloud</button>
+                    <button type="button" onclick="window.switchEventTrack('day2')" id="btnDay2" style="padding:8px 20px; border-radius:999px; background:rgba(255,255,255,0.08); color:#cbd5e1; border:none; font-weight:700; cursor:pointer;">Day 2: Cybersecurity</button>
+                  </div>
+
+                  <div id="eventScheduleContainer" style="display:flex; flex-direction:column; gap:12px;">
+                    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 22px; display:flex; justify-content:space-between; align-items:center;">
+                      <div>
+                        <span style="font-size:12px; color:#38bdf8; font-weight:700;">09:00 AM – 10:30 AM • MAIN STAGE</span>
+                        <h4 style="margin:4px 0 0; font-size:16px;">Keynote: Next Generation Distributed Neural Architectures</h4>
+                      </div>
+                      <span style="font-size:13px; color:#94a3b8;">Keynote Hall A</span>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 22px; display:flex; justify-content:space-between; align-items:center;">
+                      <div>
+                        <span style="font-size:12px; color:#38bdf8; font-weight:700;">11:00 AM – 12:30 PM • TRACK A</span>
+                        <h4 style="margin:4px 0 0; font-size:16px;">Panel: Scaling Zero-Trust Infrastructure Across Hybrid Clouds</h4>
+                      </div>
+                      <span style="font-size:13px; color:#94a3b8;">Auditorium B</span>
+                    </div>
+                  </div>
+                </section>
+
+                <footer style="background:#050914; color:#64748b; text-align:center; padding:30px; font-size:13px; border-top:1px solid rgba(255,255,255,0.06);">
+                  © 2026 Nexus Summit. Concept Project • Built for HAKA SOLUTIONS Portfolio.
+                </footer>
+              </div>
+            `;
+          }
+        },
+
+        'project-5': {
+          id: 'project-5',
+          title: 'Real Estate Property Portal',
+          category: 'Real Estate',
+          badge: 'Frontend Demo',
+          image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+          desc: 'A modern architectural estate platform featuring live multi-criteria property search, dynamic favorite toggling, detailed specifications, and in-person private viewing appointment requests.',
+          features: [
+            'Dynamic Property Type (Villa, Penthouse, Luxury Apartment) and Price Filtering',
+            'Interactive "Save to Favorites" Heart Button with real-time header count',
+            'Detailed Property Specs: Bedrooms, Bathrooms, Total Sq Footage, and Parking',
+            'Schedule Private Viewing Form with date selector and agent inquiry'
+          ],
+          renderDemo: function() {
+            return `
+              <div class="demo-body" style="background:#f8fafc; color:#0f172a;">
+                <header style="background:#fff; border-bottom:1px solid #e2e8f0; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:20;">
+                  <div style="font-size:20px; font-weight:800; color:#0f172a; letter-spacing:-0.02em;">
+                    VALLEY &amp; VISTA <span style="font-weight:400; color:#64748b;">ESTATES</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:20px;">
+                    <a href="#properties" style="font-size:14px; font-weight:600; color:#475569; text-decoration:none;">Properties</a>
+                    <div style="background:#f1f5f9; padding:6px 14px; border-radius:999px; font-size:13px; font-weight:700;">
+                      ❤️ Saved (<span id="reSavedCount">1</span>)
+                    </div>
+                  </div>
+                </header>
+
+                <section style="background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') center/cover; padding:70px 24px; color:#fff; text-align:center; position:relative;">
+                  <div style="position:absolute; inset:0; background:rgba(15,23,42,0.6);"></div>
+                  <div style="position:relative; max-width:800px; margin:0 auto;">
+                    <h1 style="font-size:clamp(28px, 4.5vw, 48px); font-weight:800; margin-bottom:12px;">Discover Architect-Designed Estates</h1>
+                    <p style="font-size:16px; color:#e2e8f0; margin-bottom:24px;">Exquisite waterfront villas, modern penthouses, and private coastal residences.</p>
+                  </div>
+                </section>
+
+                <section id="properties" style="max-width:1100px; margin:40px auto; padding:0 24px;">
+                  <div style="background:#fff; padding:16px 20px; border-radius:8px; border:1px solid #e2e8f0; margin-bottom:30px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                    <div style="display:flex; gap:8px;">
+                      <button type="button" onclick="window.filterRealEstate('all')" class="re-btn" style="padding:6px 16px; border-radius:6px; background:#0f172a; color:#fff; border:none; font-size:13px; font-weight:600; cursor:pointer;">All Types</button>
+                      <button type="button" onclick="window.filterRealEstate('villa')" class="re-btn" style="padding:6px 16px; border-radius:6px; background:#f1f5f9; color:#475569; border:none; font-size:13px; font-weight:600; cursor:pointer;">Villas Only</button>
+                      <button type="button" onclick="window.filterRealEstate('penthouse')" class="re-btn" style="padding:6px 16px; border-radius:6px; background:#f1f5f9; color:#475569; border:none; font-size:13px; font-weight:600; cursor:pointer;">Penthouses</button>
+                    </div>
+                    <span style="font-size:13px; color:#64748b;">Showing 3 Featured Listings</span>
+                  </div>
+
+                  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px;">
+                    <div class="re-prop-card" data-type="villa" style="background:#fff; border-radius:10px; border:1px solid #e2e8f0; overflow:hidden;">
+                      <div style="position:relative; height:220px;">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" style="width:100%; height:100%; object-fit:cover;" alt="The Obsidian Waterfront Villa">
+                        <button type="button" onclick="window.toggleFavoriteRealEstate(this)" style="position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%; background:#fff; border:none; cursor:pointer; font-size:16px;">❤️</button>
+                      </div>
+                      <div style="padding:18px;">
+                        <div style="font-size:22px; font-weight:800; color:#0f172a; margin-bottom:4px;">$4,850,000</div>
+                        <h3 style="font-size:16px; margin:0 0 8px; font-weight:700;">The Obsidian Waterfront Villa</h3>
+                        <p style="color:#64748b; font-size:13px; margin-bottom:12px;">742 Ocean Crest Drive, Malibu Coast</p>
+                        <div style="display:flex; justify-content:space-between; border-top:1px solid #f1f5f9; padding-top:12px; font-size:13px; color:#475569; font-weight:600;">
+                          <span>5 Beds</span> • <span>6 Baths</span> • <span>6,400 Sq Ft</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="re-prop-card" data-type="penthouse" style="background:#fff; border-radius:10px; border:1px solid #e2e8f0; overflow:hidden;">
+                      <div style="position:relative; height:220px;">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=700&q=80" style="width:100%; height:100%; object-fit:cover;" alt="Skyline High-Floor Penthouse">
+                        <button type="button" onclick="window.toggleFavoriteRealEstate(this)" style="position:absolute; top:12px; right:12px; width:36px; height:36px; border-radius:50%; background:#fff; border:none; cursor:pointer; font-size:16px;">🤍</button>
+                      </div>
+                      <div style="padding:18px;">
+                        <div style="font-size:22px; font-weight:800; color:#0f172a; margin-bottom:4px;">$2,950,000</div>
+                        <h3 style="font-size:16px; margin:0 0 8px; font-weight:700;">Skyline High-Floor Penthouse</h3>
+                        <p style="color:#64748b; font-size:13px; margin-bottom:12px;">1200 Grand Avenue, Metropolitan Center</p>
+                        <div style="display:flex; justify-content:space-between; border-top:1px solid #f1f5f9; padding-top:12px; font-size:13px; color:#475569; font-weight:600;">
+                          <span>3 Beds</span> • <span>3.5 Baths</span> • <span>3,200 Sq Ft</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <footer style="background:#0f172a; color:#94a3b8; text-align:center; padding:30px; font-size:13px; margin-top:40px;">
+                  © 2026 Valley &amp; Vista Estates. Frontend Demo • Built for HAKA SOLUTIONS Portfolio.
+                </footer>
+              </div>
+            `;
+          }
+        },
+
+        'project-6': {
+          id: 'project-6',
+          title: 'Premium Restaurant & Café Platform',
+          category: 'Restaurant & Café',
+          badge: 'Frontend Demo',
+          image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80',
+          desc: 'An artisanal restaurant and café web destination celebrating farm-to-table gastronomy. Featuring categorized seasonal menus with dietary tags, chef stories, and a functional table booking system.',
+          features: [
+            'Categorized Menu Tabs: Starters, Signature Mains, Woodfired, Desserts',
+            'Dietary and Allergen Badges: Vegan, Gluten-Free, Chef Recommended',
+            'Interactive Table Reservation System with party size and time slot selection',
+            'Sommelier wine pairings and chef tasting menu experiences'
+          ],
+          renderDemo: function() {
+            return `
+              <div class="demo-body" style="background:#121212; color:#f5f5f5;">
+                <header style="padding:22px 30px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; background:#181818;">
+                  <div style="font-family:serif; font-size:22px; font-weight:700; letter-spacing:0.1em; color:#e0a96d;">
+                    L'ATELIER BISTRO
+                  </div>
+                  <nav style="display:flex; gap:20px; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;">
+                    <a href="#menu" style="color:#d4d4d8; text-decoration:none;">Menu</a>
+                    <a href="#reserve" style="color:#e0a96d; text-decoration:none;">Reserve Table</a>
+                  </nav>
+                </header>
+
+                <section style="background:linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80') center/cover; padding:80px 24px; text-align:center;">
+                  <span style="color:#e0a96d; font-size:12px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase;">Artisanal Farm-To-Table Gastronomy</span>
+                  <h1 style="font-family:serif; font-size:clamp(30px, 5vw, 52px); margin:12px 0 16px; color:#ffffff;">
+                    Culinary Mastery &amp; Sommelier Pairings
+                  </h1>
+                  <p style="max-width:560px; margin:0 auto 24px; color:#a1a1aa; font-size:15px; line-height:1.6;">
+                    Dinner Served Daily from 5:00 PM – 11:00 PM • Weekend Brunch 10:00 AM – 3:00 PM
+                  </p>
+                  <a href="#reserve" style="background:#e0a96d; color:#181818; padding:12px 28px; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; text-decoration:none; border-radius:2px; display:inline-block;">Reserve a Table ↓</a>
+                </section>
+
+                <section id="menu" style="max-width:880px; margin:40px auto; padding:0 24px;">
+                  <h2 style="font-family:serif; font-size:28px; text-align:center; color:#e0a96d; margin-bottom:24px;">Seasonal Dining Offerings</h2>
+                  
+                  <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div style="background:#1e1e1e; border:1px solid rgba(255,255,255,0.06); padding:20px; border-radius:6px; display:flex; justify-content:space-between; align-items:flex-start;">
+                      <div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                          <h4 style="font-size:17px; margin:0; font-weight:700; color:#fff;">Pan-Seared Diver Scallops</h4>
+                          <span style="font-size:11px; padding:2px 6px; border-radius:4px; background:rgba(224,169,109,0.2); color:#e0a96d; font-weight:600;">Gluten-Free</span>
+                        </div>
+                        <p style="color:#a1a1aa; font-size:13px; margin:6px 0 0;">Cauliflower mousseline, crispy pancetta lardons, black truffle brown butter reduction.</p>
+                      </div>
+                      <span style="font-weight:700; color:#e0a96d; font-size:18px;">$34</span>
+                    </div>
+
+                    <div style="background:#1e1e1e; border:1px solid rgba(255,255,255,0.06); padding:20px; border-radius:6px; display:flex; justify-content:space-between; align-items:flex-start;">
+                      <div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                          <h4 style="font-size:17px; margin:0; font-weight:700; color:#fff;">Slow-Braised Prime Short Rib</h4>
+                          <span style="font-size:11px; padding:2px 6px; border-radius:4px; background:rgba(224,169,109,0.2); color:#e0a96d; font-weight:600;">Chef's Pick</span>
+                        </div>
+                        <p style="color:#a1a1aa; font-size:13px; margin:6px 0 0;">Cabernet Sauvignon jus, smoked potato purée, glazed heirloom baby carrots.</p>
+                      </div>
+                      <span style="font-weight:700; color:#e0a96d; font-size:18px;">$48</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section id="reserve" style="max-width:720px; margin:40px auto 60px; padding:32px; background:#1e1e1e; border-radius:8px; border:1px solid rgba(224,169,109,0.3);">
+                  <h3 style="font-family:serif; font-size:24px; color:#e0a96d; margin:0 0 16px; text-align:center;">Instant Table Booking</h3>
+                  <form onsubmit="event.preventDefault(); window.confirmRestaurantBooking();">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+                      <div>
+                        <label style="display:block; font-size:12px; font-weight:700; color:#a1a1aa; margin-bottom:4px;">Guest Party Size</label>
+                        <select id="restoGuests" style="width:100%; padding:10px; background:#2a2a2a; color:#fff; border:1px solid #3f3f46; border-radius:4px;">
+                          <option>Table for 2 Guests</option>
+                          <option>Table for 4 Guests</option>
+                          <option>Table for 6 Guests (Booth)</option>
+                          <option>Chef's Table (8-10 Guests)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label style="display:block; font-size:12px; font-weight:700; color:#a1a1aa; margin-bottom:4px;">Dining Date</label>
+                        <input type="date" value="2026-10-28" style="width:100%; padding:10px; background:#2a2a2a; color:#fff; border:1px solid #3f3f46; border-radius:4px;">
+                      </div>
+                    </div>
+                    <button type="submit" style="width:100%; padding:14px; background:#e0a96d; color:#181818; border:none; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:0.08em; border-radius:4px; cursor:pointer;">
+                      Confirm Table Reservation
+                    </button>
+                  </form>
+                </section>
+
+                <footer style="background:#0a0a0a; color:#71717a; text-align:center; padding:30px; font-size:13px; border-top:1px solid rgba(255,255,255,0.06);">
+                  © 2026 L'Atelier Gourmet Bistro. Frontend Demo • Built for HAKA SOLUTIONS Portfolio.
+                </footer>
+              </div>
+            `;
+          }
+        }
+      };
+
+      /* ------------------------------------------------------------------------
+         2. CATEGORY FILTERING INTERACTION
+         ------------------------------------------------------------------------ */
+      const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterButtons.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+
+          const category = btn.getAttribute('data-category');
+
+          projectCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.classList.remove('is-hidden');
+            } else {
+              card.classList.add('is-hidden');
+            }
+          });
+        });
+      });
+
+      /* ------------------------------------------------------------------------
+         3. VIEW DETAILS MODAL CONTROLLER
+         ------------------------------------------------------------------------ */
+      const detailsModal = document.getElementById('detailsModal');
+      const modalProjectImg = document.getElementById('modalProjectImg');
+      const modalProjectTitle = document.getElementById('modalProjectTitle');
+      const modalProjectDesc = document.getElementById('modalProjectDesc');
+      const modalCategoryBadge = document.getElementById('modalCategoryBadge');
+      const modalStatusBadge = document.getElementById('modalStatusBadge');
+      const modalFeaturesList = document.getElementById('modalFeaturesList');
+      const modalLaunchDemoBtn = document.getElementById('modalLaunchDemoBtn');
+
+      window.openDetailsModal = function(projectId) {
+        const data = projectsData[projectId];
+        if (!data) return;
+
+        modalProjectImg.src = data.image;
+        modalProjectImg.alt = data.title;
+        modalProjectTitle.textContent = data.title;
+        modalProjectDesc.textContent = data.desc;
+        modalCategoryBadge.textContent = data.category;
+        modalStatusBadge.textContent = data.badge;
+
+        modalFeaturesList.innerHTML = data.features.map(f => `
+          <li class="project-feature-item">
+            <span class="feature-bullet-icon">✓</span>
+            <span>${f}</span>
+          </li>
+        `).join('');
+
+        modalLaunchDemoBtn.onclick = function() {
+          closeDetailsModal();
+          openDemo(projectId);
+        };
+
+        detailsModal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      };
+
+      window.closeDetailsModal = function() {
+        detailsModal.classList.remove('is-active');
+        document.body.style.overflow = '';
+      };
+
+      detailsModal.addEventListener('click', function(e) {
+        if (e.target === detailsModal) {
+          closeDetailsModal();
+        }
+      });
+
+      /* ------------------------------------------------------------------------
+         4. FULLSCREEN INTERACTIVE LIVE DEMO CONTROLLER
+         ------------------------------------------------------------------------ */
+      const demoFullscreenViewer = document.getElementById('demoFullscreenViewer');
+      const demoFrameContainer = document.getElementById('demoFrameContainer');
+      const demoActiveTitle = document.getElementById('demoActiveTitle');
+      const demoActiveCategory = document.getElementById('demoActiveCategory');
+      const demoStage = document.getElementById('demoStage');
+      const viewportBtns = document.querySelectorAll('.viewport-btn');
+
+      window.openDemo = function(projectId) {
+        const data = projectsData[projectId];
+        if (!data) return;
+
+        demoActiveTitle.textContent = data.title;
+        demoActiveCategory.textContent = data.category;
+
+        demoFrameContainer.innerHTML = data.renderDemo();
+        setDemoViewport('desktop');
+
+        demoFullscreenViewer.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+        demoStage.scrollTop = 0;
+      };
+
+      window.closeDemo = function() {
+        demoFullscreenViewer.classList.remove('is-active');
+        demoFrameContainer.innerHTML = '';
+        document.body.style.overflow = '';
+      };
+
+      window.setDemoViewport = function(viewMode) {
+        demoStage.className = 'demo-viewport-stage';
+        viewportBtns.forEach(b => b.classList.remove('active'));
+
+        const targetBtn = document.querySelector(`.viewport-btn[data-view="${viewMode}"]`);
+        if (targetBtn) targetBtn.classList.add('active');
+
+        if (viewMode === 'tablet') {
+          demoStage.classList.add('view-tablet');
+        } else if (viewMode === 'mobile') {
+          demoStage.classList.add('view-mobile');
+        }
+      };
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          if (detailsModal.classList.contains('is-active')) {
+            closeDetailsModal();
+          } else if (demoFullscreenViewer.classList.contains('is-active')) {
+            closeDemo();
+          }
+        }
+      });
+
+      /* ------------------------------------------------------------------------
+         5. DEMO MINI-INTERACTIONS
+         ------------------------------------------------------------------------ */
+      window.fashionCartItems = [
+        { name: 'Tailored Double-Breasted Trench', price: 890 },
+        { name: 'Brushed Mongolian Cashmere Knit', price: 540 }
+      ];
+
+      window.toggleFashionCart = function(show) {
+        const drawer = document.getElementById('fashionCartDrawer');
+        if (drawer) drawer.style.right = show ? '0' : '-420px';
+      };
+
+      window.addFashionItem = function(name, price) {
+        window.fashionCartItems.push({ name: name, price: price });
+        const countSpan = document.getElementById('cartCount');
+        if (countSpan) countSpan.textContent = window.fashionCartItems.length;
+
+        const cartList = document.getElementById('cartItemsList');
+        if (cartList) {
+          const itemDiv = document.createElement('div');
+          itemDiv.style.cssText = 'display:flex; justify-content:space-between; font-size:14px; border-bottom:1px solid #f4f4f5; padding-bottom:12px;';
+          itemDiv.innerHTML = `<div><strong>${name}</strong><div style="color:#71717a; font-size:12px;">Standard Size</div></div><span>$${price}</span>`;
+          cartList.appendChild(itemDiv);
+        }
+
+        const total = window.fashionCartItems.reduce((acc, curr) => acc + curr.price, 0);
+        const totalSpan = document.getElementById('cartTotalPrice');
+        if (totalSpan) totalSpan.textContent = '$' + total.toLocaleString();
+
+        window.toggleFashionCart(true);
+      };
+
+      window.calcLandscapeCost = function() {
+        const typeSelect = document.getElementById('tsProjectType');
+        const slider = document.getElementById('tsAreaSlider');
+        const costOutput = document.getElementById('tsTotalCost');
+        if (!typeSelect || !slider || !costOutput) return;
+
+        const rates = { stone: 85, turf: 45, deck: 110, complete: 150 };
+        const rate = rates[typeSelect.value] || 85;
+        const area = parseInt(slider.value, 10);
+        const low = Math.round(area * rate);
+        const high = Math.round(low * 1.25);
+
+        costOutput.textContent = `$${low.toLocaleString()} – $${high.toLocaleString()}`;
+      };
+
+      window.confirmHealthcareBooking = function() {
+        const clinic = document.getElementById('healthClinic').value;
+        const specialty = document.getElementById('healthSpecialty').value;
+        alert(`Appointment Confirmed (Demo)!\n\nClinic: ${clinic}\nDepartment: ${specialty}\n\nA representative has scheduled your consultation slot.`);
+      };
+
+      window.switchEventTrack = function(day) {
+        const container = document.getElementById('eventScheduleContainer');
+        const b1 = document.getElementById('btnDay1');
+        const b2 = document.getElementById('btnDay2');
+        if (!container || !b1 || !b2) return;
+
+        if (day === 'day1') {
+          b1.style.background = '#3b82f6';
+          b1.style.color = '#fff';
+          b2.style.background = 'rgba(255,255,255,0.08)';
+          b2.style.color = '#cbd5e1';
+          container.innerHTML = `
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 22px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="font-size:12px; color:#38bdf8; font-weight:700;">09:00 AM – 10:30 AM • MAIN STAGE</span>
+                <h4 style="margin:4px 0 0; font-size:16px;">Keynote: Next Generation Distributed Neural Architectures</h4>
+              </div>
+              <span style="font-size:13px; color:#94a3b8;">Keynote Hall A</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 22px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="font-size:12px; color:#38bdf8; font-weight:700;">11:00 AM – 12:30 PM • TRACK A</span>
+                <h4 style="margin:4px 0 0; font-size:16px;">Panel: Scaling Zero-Trust Infrastructure Across Hybrid Clouds</h4>
+              </div>
+              <span style="font-size:13px; color:#94a3b8;">Auditorium B</span>
+            </div>
+          `;
+        } else {
+          b2.style.background = '#3b82f6';
+          b2.style.color = '#fff';
+          b1.style.background = 'rgba(255,255,255,0.08)';
+          b1.style.color = '#cbd5e1';
+          container.innerHTML = `
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 22px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="font-size:12px; color:#38bdf8; font-weight:700;">10:00 AM – 11:30 AM • SECURITY TRACK</span>
+                <h4 style="margin:4px 0 0; font-size:16px;">Live Red-Team Defense &amp; Threat Detection Frameworks</h4>
+              </div>
+              <span style="font-size:13px; color:#94a3b8;">Hall C</span>
+            </div>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:18px 22px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="font-size:12px; color:#38bdf8; font-weight:700;">02:00 PM – 03:30 PM • EXECUTIVE TRACK</span>
+                <h4 style="margin:4px 0 0; font-size:16px;">Global Compliance: Cross-Border Data Governance &amp; AI Law</h4>
+              </div>
+              <span style="font-size:13px; color:#94a3b8;">Executive Suite</span>
+            </div>
+          `;
+        }
+      };
+
+      window.toggleFavoriteRealEstate = function(btn) {
+        const countSpan = document.getElementById('reSavedCount');
+        let count = parseInt(countSpan.textContent, 10) || 0;
+        if (btn.textContent.trim() === '🤍') {
+          btn.textContent = '❤️';
+          count++;
+        } else {
+          btn.textContent = '🤍';
+          count = Math.max(0, count - 1);
+        }
+        if (countSpan) countSpan.textContent = count;
+      };
+
+      window.filterRealEstate = function(type) {
+        const cards = document.querySelectorAll('.re-prop-card');
+        cards.forEach(card => {
+          if (type === 'all' || card.getAttribute('data-type') === type) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      };
+
+      window.confirmRestaurantBooking = function() {
+        const guests = document.getElementById('restoGuests').value;
+        alert(`Table Reserved (Demo)!\n\n${guests}\nReservation confirmed at L'Atelier Bistro.\nConfirmation code: #LBF-${Math.floor(1000 + Math.random() * 9000)}.`);
+      };
+
+    })();
+  </script>
+
+</body>
+</html>
