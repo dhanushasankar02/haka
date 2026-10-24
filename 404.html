@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 â€” Page Not Found | HAKA SOLUTIONS</title>
+  <meta name="description" content="The page you are looking for does not exist or has been moved. Explore HAKA SOLUTIONS services, enterprise solutions, and technology offerings.">
+
+  <!-- Google Fonts: Inter & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+
+  <!-- Primary Shared Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="error-page-body">
+
+  <!-- Minimalist Utility Controls (No Navbar Section) -->
+  <header class="error-header-bar" role="banner">
+    <!-- Theme & Direction Controls -->
+    <div class="error-header-controls">
+      <!-- Dark / Light Theme Toggle -->
+      <button 
+        type="button" 
+        class="haka-control-btn theme-toggle-btn" 
+        id="themeToggleBtn"
+        onclick="toggleTheme()"
+        aria-label="Toggle dark and light mode"
+        title="Toggle Dark / Light Theme"
+      >
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <span id="themeLabel">Light</span>
+      </button>
+
+      <!-- RTL Direction Toggle -->
+      <button 
+        type="button" 
+        class="haka-control-btn rtl-toggle-btn" 
+        id="rtlToggleBtn"
+        onclick="toggleRTL()"
+        aria-label="Toggle text direction between LTR and RTL"
+        title="Toggle RTL / LTR Direction"
+      >
+        <svg class="flip-rtl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="17 11 21 7 17 3"></polyline>
+          <line x1="21" y1="7" x2="9" y2="7"></line>
+          <polyline points="7 21 3 17 7 13"></polyline>
+          <line x1="3" y1="17" x2="15" y2="17"></line>
+        </svg>
+        <span id="rtlLabel">RTL</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Centered 404 Error Content (No Footer Section) -->
+  <main class="error-main-container">
+    <div class="error-card-wrapper">
+      <div class="error-card">
+        
+        <!-- Centered Brand Logo Inside 404 Card -->
+        <div class="error-card-logo">
+          <a href="index.html" class="haka-logo-link" aria-label="HAKA SOLUTIONS Homepage">
+            <div class="logo-brand-mark" aria-hidden="true">
+              <img src="images/logo-icon.png" alt="HAKA SOLUTIONS Logo" class="logo-brand-icon">
+            </div>
+            <div class="logo-text-group">
+              <div class="logo-main">HAKA<span class="logo-dot">.</span></div>
+              <span class="logo-subtitle">SOLUTIONS</span>
+            </div>
+          </a>
+        </div>
+        
+        <!-- Status Indicator Pill -->
+        <div class="error-badge" role="status">
+          <span class="error-badge-dot" aria-hidden="true"></span>
+          <span>HTTP Error 404 â€¢ Resource Not Found</span>
+        </div>
+
+        <!-- 404 Display Typography -->
+        <div class="error-number-container">
+          <div class="error-number-text" aria-label="404">404</div>
+        </div>
+
+        <!-- Descriptive Headings -->
+        <h1 class="error-title">Looking for Something? We Can't Find This Page</h1>
+        <p class="error-description">
+          The link you followed may be broken, or the page may have been removed, renamed, or is temporarily unavailable in our directory.
+        </p>
+
+        <!-- Primary Action CTAs -->
+        <div class="error-actions-group">
+          <!-- Back to Homepage -->
+          <a href="index.html" class="btn-primary-gradient" aria-label="Return to Homepage">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Back to Homepage</span>
+          </a>
+
+          <!-- Go Back to Previous Page -->
+          <button 
+            type="button" 
+            class="btn-secondary-outline" 
+            onclick="if(window.history.length > 1) { window.history.back(); } else { window.location.href='index.html'; }" 
+            aria-label="Return to previous page"
+          >
+            <svg class="flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>Previous Page</span>
+          </button>
+
+          <!-- Contact Support -->
+          <a href="contact.html" class="btn-secondary-outline" aria-label="Contact HAKA Support">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span>Contact Support</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Shared Vanilla JavaScript Logic (Theme, RTL, Safe Storage) -->
+  <script src="js/script.js"></script>
+</body>
+</html>
